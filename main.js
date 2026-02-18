@@ -117,7 +117,8 @@
     '.impact-item',
     '.t2-card',
     '.tier3-list li',
-    '.contact-left', '.contact-right',
+    '.dao-verse',
+    '.contact-title', '.contact-email', '.contact-profile',
   ];
 
   targets.forEach(sel => {
@@ -140,17 +141,131 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
-// ── WU WEI CHARACTERS ─────────────────────────────────────────
-(function wuReveal() {
-  const wu = document.querySelector('.wu');
-  if (!wu) return;
-  const io = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      wu.classList.add('visible');
-      io.disconnect();
+// ── DAO DE JING RIPPLE CANVAS ─────────────────────────────────
+// Ripples here are wider, slower, more meditative than the hero.
+// They emanate from the positions of the Chinese characters —
+// as if the words themselves are stones dropped into water.
+(function initDaoRipples() {
+  const canvas = document.getElementById('daoCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const section = canvas.parentElement;
+
+  let W, H;
+  const ripples = [];
+
+  // Seed positions from the data-ripple-x/y on each verse
+  const verses = Array.from(section.querySelectorAll('.dao-verse'));
+  const seeds = verses.map(v => ({
+    nx: parseFloat(v.dataset.rippleX || 0.5),
+    ny: parseFloat(v.dataset.rippleY || 0.5),
+  }));
+
+  function resize() {
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  function spawnAt(nx, ny, big = false) {
+    ripples.push({
+      x:     nx * W,
+      y:     ny * H,
+      r:     0,
+      maxR:  big ? 160 + Math.random() * 100 : 80 + Math.random() * 80,
+      alpha: big ? 0.18 : 0.13,
+      speed: big ? 0.45 : 0.65,
+      lw:    big ? 0.7  : 0.5,
+    });
+  }
+
+  // Auto-spawn: one ripple per verse on a slow, non-uniform cycle
+  // Each character position gets its own quiet rhythm
+  const intervals = seeds.map((seed, i) => {
+    const base = 3500 + i * 1200;
+    return {
+      seed,
+      next: Date.now() + base + Math.random() * 2000,
+      delay: base + Math.random() * 2000,
+    };
+  });
+
+  // Mouse click inside dao section spawns a ripple there
+  section.addEventListener('click', (e) => {
+    const rect = section.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top)  / rect.height;
+    spawnAt(nx, ny, true); // bigger on intentional tap
+  });
+
+  // When a verse is hovered, seed a ripple from its character position
+  verses.forEach((v, i) => {
+    v.addEventListener('mouseenter', () => {
+      spawnAt(seeds[i].nx, seeds[i].ny, true);
+    });
+  });
+
+  function frame() {
+    const now = Date.now();
+
+    // Auto-spawn from character positions
+    intervals.forEach(iv => {
+      if (now > iv.next) {
+        spawnAt(iv.seed.nx, iv.seed.ny);
+        iv.next = now + iv.delay + Math.random() * 1500;
+      }
+    });
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rp = ripples[i];
+      rp.r += rp.speed;
+
+      const progress = rp.r / rp.maxR;
+      const alpha    = rp.alpha * (1 - progress) * (1 - progress); // quadratic fade — more graceful
+
+      if (alpha <= 0.005 || rp.r >= rp.maxR) {
+        ripples.splice(i, 1);
+        continue;
+      }
+
+      // Primary ring — celadon
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(107, 144, 128, ${alpha})`;
+      ctx.lineWidth   = rp.lw;
+      ctx.stroke();
+
+      // Inner ghost ring — ink, echoes the character strokes
+      if (rp.r > 20) {
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r * 0.65, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(26, 20, 16, ${alpha * 0.25})`;
+        ctx.lineWidth   = rp.lw * 0.5;
+        ctx.stroke();
+      }
+
+      // Outermost whisper ring — very faint, wide, slow
+      if (rp.r > 50 && rp.maxR > 120) {
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r * 1.3, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(107, 144, 128, ${alpha * 0.15})`;
+        ctx.lineWidth   = 0.4;
+        ctx.stroke();
+      }
     }
-  }, { threshold: 0.5 });
-  io.observe(wu);
+
+    requestAnimationFrame(frame);
+  }
+
+  frame();
+
+  // Seed initial ripples with a stagger so section isn't blank
+  setTimeout(() => seeds.forEach((s, i) =>
+    setTimeout(() => spawnAt(s.nx, s.ny, true), i * 700)
+  ), 300);
 })();
 
 // ── NAV ACTIVE STATE ──────────────────────────────────────────

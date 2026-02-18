@@ -425,79 +425,131 @@ sup { font-size: 0.5em; vertical-align: super; }
 .t3n { font-size: 0.97rem; color: var(--ink-mid); }
 .t3d { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.6; }
 
-/* ── CONTACT ─────────────────────────────────────────────────── */
-.contact {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 55vh;
-  border-bottom: 1px solid var(--rule);
+/* ── DAO DE JING SECTION ─────────────────────────────────────── */
+.dao {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+  background: var(--ground-lift);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
 }
 
-.contact-left {
-  padding: clamp(5rem, 10vw, 9rem) clamp(3rem, 6vw, 6rem);
-  border-right: 1px solid var(--rule);
+.dao-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dao-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(5rem, 10vw, 9rem) clamp(2rem, 6vw, 6rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4rem 3rem;
+  align-items: start;
+}
+
+.dao-verse {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Stagger vertical positions for rhythm */
+.dao-verse--mid   { margin-top: clamp(3rem, 6vw, 5rem); }
+.dao-verse--right { margin-top: clamp(1rem, 3vw, 2rem); }
+
+/* Chinese characters — seal script atmosphere */
+/* Large, featherlight, like a rubbing from stone */
+.dao-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 200;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1.25;
+  color: var(--ink);
+  opacity: 0.1;
+  letter-spacing: 0.12em;
+  user-select: none;
+  pointer-events: none;
+  /* Slight vertical elongation — echoes 小篆 proportions */
+  transform: scaleY(1.08);
+  transform-origin: top left;
+  /* Worn-stone effect: slight blur softens strokes like rubbed ink */
+  filter: blur(0.4px);
+  transition: opacity 1.8s ease, filter 1.8s ease;
+}
+
+/* On hover of the whole verse, characters breathe up */
+.dao-verse:hover .dao-zh {
+  opacity: 0.18;
+  filter: blur(0px);
+  transition-duration: 0.6s;
+}
+
+/* English — prominent, clear, generous */
+.dao-en {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.dao-translation {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.dao-source {
+  color: var(--ink-ghost);
+  display: block;
+}
+
+/* ── CONTACT ─────────────────────────────────────────────────── */
+.contact {
+  padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 6rem);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: baseline;
+  gap: 4rem;
+  flex-wrap: wrap;
 }
 
 .contact-title {
   font-family: var(--ff-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  line-height: 1;
   letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .contact-email {
   font-family: var(--ff-mono);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
   color: var(--ink-mid);
   border-bottom: 1px solid var(--rule-mid);
-  padding-bottom: 0.4rem;
-  align-self: flex-start;
+  padding-bottom: 0.3rem;
   transition: color 0.25s, border-color 0.25s;
 }
-
 .contact-email:hover { color: var(--celadon); border-color: var(--celadon-dim); }
 
 .contact-profile {
   color: var(--ink-ghost);
   transition: color 0.25s;
-  align-self: flex-start;
 }
 .contact-profile:hover { color: var(--celadon-mid); }
-
-/* Wu Wei panel */
-.contact-right {
-  background: var(--ground-lift);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: 4rem;
-}
-
-.wu {
-  font-family: serif;
-  font-size: clamp(5rem, 12vw, 9rem);
-  line-height: 1;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  opacity: 0.08;
-  transition: opacity 2.5s ease;
-}
-
-.wu.visible { opacity: 0.13; }
-.contact-right:hover .wu { opacity: 0.22; transition-duration: 0.8s; }
-
-.wu-gloss {
-  color: var(--ink-ghost);
-  letter-spacing: 0.1em;
-}
 
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer {
@@ -521,17 +573,19 @@ sup { font-size: 0.5em; vertical-align: super; }
   .impact-item:nth-child(3) { border-right: none; }
   .impact-item:nth-child(4) { border-right: 1px solid var(--rule); }
   .impact-item:nth-child(6) { border-right: none; }
+  .dao-inner { grid-template-columns: 1fr 1fr; gap: 3rem 2rem; }
+  .dao-verse--right { margin-top: 0; }
 }
 
 @media (max-width: 820px) {
   .project-full { grid-template-columns: 1fr; min-height: auto; }
   .pf-left { border-right: none; border-bottom: 1px solid var(--rule); justify-content: flex-start; }
   .t2-grid { grid-template-columns: 1fr; }
-  .contact { grid-template-columns: 1fr; min-height: auto; }
-  .contact-left { border-right: none; border-bottom: 1px solid var(--rule); }
-  .contact-right { min-height: 40vh; }
   .tier3-list li { grid-template-columns: 52px 1fr; grid-template-rows: auto auto; }
   .t3d { grid-column: 2; }
+  .dao-inner { grid-template-columns: 1fr; gap: 4rem; }
+  .dao-verse--mid, .dao-verse--right { margin-top: 0; }
+  .contact { gap: 2rem; }
 }
 
 @media (max-width: 600px) {
