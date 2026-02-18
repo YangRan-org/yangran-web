@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching — Ran Yang</title>
+  <meta name="description" content="Student projects from PHYS 252 Electronics, PHYS 351 Advanced Scientific Instrumentation, and EPAD Capstone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── teaching page ───────────────────────────────────── */
+
+    .t-hero {
+      padding: clamp(8rem, 14vw, 12rem) clamp(2rem, 6vw, 6rem) clamp(4rem, 7vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ghost lambda in the corner — the geek easter egg */
+    .t-hero::before {
+      content: 'λ';
+      position: absolute;
+      right: -0.05em;
+      bottom: -0.15em;
+      font-family: var(--ff-display);
+      font-size: clamp(12rem, 25vw, 20rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--rule);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .t-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 3.5rem;
+      transition: color 0.25s;
+    }
+    .t-back:hover { color: var(--celadon); }
+
+    .t-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .t-hero-title em { color: var(--celadon); }
+
+    .t-hero-body {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 580px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    /* ── COURSE SECTIONS ─────────────────────────────────── */
+
+    .course-section { border-bottom: 1px solid var(--rule); }
+
+    .course-section:nth-child(even) { background: var(--ground-lift); }
+
+    .course-head {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding: 3rem clamp(2rem, 6vw, 6rem) 2.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ch-code { padding-top: 0.4rem; }
+
+    .ch-name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .ch-desc {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── PROJECT ENTRIES ─────────────────────────────────── */
+
+    .proj-list { list-style: none; padding: 0 clamp(2rem, 6vw, 6rem); }
+
+    .proj-item {
+      display: grid;
+      grid-template-columns: 44px 1fr 180px;
+      gap: 0 2.5rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+      transition: opacity 0.2s;
+    }
+
+    .proj-item:hover { opacity: 0.75; }
+
+    .pi-num {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      color: var(--ink-ghost);
+      letter-spacing: 0.1em;
+      padding-top: 0.4rem;
+    }
+
+    .pi-body {}
+
+    .pi-title {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .pi-authors {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: var(--celadon-mid);
+      margin-bottom: 0.7rem;
+    }
+
+    .pi-desc {
+      font-size: 0.92rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    .pi-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-end;
+      padding-top: 0.3rem;
+    }
+
+    .pi-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.25em 0.7em;
+      border: 1px solid var(--rule-mid);
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+
+    .pi-tag-hl {
+      border-color: rgba(107,144,128,0.3);
+      color: var(--celadon);
+    }
+
+    /* ── PLACEHOLDER NOTICE ──────────────────────────────── */
+    .notice {
+      margin: 2.5rem clamp(2rem, 6vw, 6rem);
+      padding: 1.25rem 1.75rem;
+      border: 1px dashed var(--rule-mid);
+      background: var(--ground-deep);
+    }
+
+    .notice p {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ── CAPSTONE NOTE ───────────────────────────────────── */
+    .capstone {
+      padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 6vw, 6rem);
+      background: var(--ground-deep);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .capstone h3 {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .capstone p {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* ── CLOSING ─────────────────────────────────────────── */
+    .t-closing {
+      padding: clamp(5rem, 10vw, 8rem) clamp(2rem, 6vw, 6rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .t-closing blockquote {
+      font-family: var(--ff-display);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink-mid);
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .t-closing cite {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      font-style: normal;
+    }
+
+    .t-footer-links {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .t-footer-link {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      border-bottom: 1px solid var(--celadon-dim);
+      padding-bottom: 2px;
+      transition: color 0.25s;
+    }
+    .t-footer-link:hover { color: var(--celadon); }
+
+    @media (max-width: 700px) {
+      .course-head { grid-template-columns: 1fr; gap: 1rem; }
+      .proj-item   { grid-template-columns: 36px 1fr; }
+      .pi-tags     { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html#irays"    class="nav-item">iRays</a>
+    <a href="index.html#vessel"   class="nav-item">The Vessel</a>
+    <a href="teaching.html"       class="nav-item" style="color:var(--ink); border-bottom: 1px solid var(--celadon);">Teaching</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="t-hero">
+    <a href="index.html" class="t-back">← yangran.org</a>
+    <h1 class="t-hero-title">
+      What students<br/>built in the <em>lab</em>.
+    </h1>
+    <p class="t-hero-body">
+      These are selected works from Electronics (PHYS&nbsp;252),
+      Advanced Scientific Instrumentation (PHYS&nbsp;351), and Capstone EPAD —
+      instruments and systems that began as a question and became something real.
+    </p>
+  </section>
+
+  <div class="notice">
+    <p>
+      ⚙ PLACEHOLDER CONTENT — Replace [ Student Name(s) ] and semester with real entries.
+      Delete unused project blocks, or duplicate them to add more. Structure is complete.
+    </p>
+  </div>
+
+  <!-- ── PHYS 252 ─────────────────────────────────────────── -->
+  <section class="course-section">
+    <div class="course-head">
+      <span class="ch-code label">PHYS 252</span>
+      <div>
+        <h2 class="ch-name">Electronics</h2>
+        <p class="ch-desc">
+          Op-amps, filters, microcontrollers, and analog signal chains — designed, soldered,
+          and debugged from first principles. The final question is always the same:
+          what human problem can this circuit solve?
+        </p>
+      </div>
+    </div>
+
+    <ul class="proj-list">
+      <li class="proj-item">
+        <span class="pi-num">01</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Wearable Pulse Oximeter with Analog Front-End</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">Custom transimpedance amplifier, bandpass filter, and threshold detector for PPG signal capture via IR LED–photodetector pair. Validated against a clinical reference device.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">Biomedical</span>
+          <span class="pi-tag">Op-Amp Design</span>
+          <span class="pi-tag">Analog</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">02</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Soil Moisture Network for Precision Agriculture</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Fall 20XX</p>
+          <p class="pi-desc">Resistive sensor array, multiplexed ADC, custom PCB, low-power sleep scheduling, and wireless logging to a base station. Field-tested on campus.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag">IoT</span>
+          <span class="pi-tag">PCB Design</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">03</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Contact-Based Nerve Conduction Velocity Measurement</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Fall 20XX</p>
+          <p class="pi-desc">Surface EMG with INA128 instrumentation amplifier and time-of-flight circuit estimating nerve conduction speed between two sites. Validated against clinical benchmarks.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">Neuroscience</span>
+          <span class="pi-tag">EMG</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">04</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Gesture-Controlled MIDI Synthesizer</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">IR proximity sensors driving a VCO through a DAC interface, outputting MIDI over USB. Continuous analog gesture mapped to musical expression — no contact required.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag">Music Tech</span>
+          <span class="pi-tag">Creative</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">05</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Real-Time Audio Spectrum Analyzer</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">STM32 microcontroller running a fixed-point FFT algorithm, with Sallen-Key anti-aliasing filter and LED bar-graph frequency display.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag">DSP</span>
+          <span class="pi-tag">Embedded</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── PHYS 351 ─────────────────────────────────────────── -->
+  <section class="course-section">
+    <div class="course-head">
+      <span class="ch-code label">PHYS 351</span>
+      <div>
+        <h2 class="ch-name">Advanced Scientific Instrumentation</h2>
+        <p class="ch-desc">
+          GPIB, SPI, I²C, lock-in detection, noise analysis, LabVIEW, Python DAQ.
+          Students instrument real physical phenomena and must characterize
+          not just the system, but the limits of what they can know.
+        </p>
+      </div>
+    </div>
+
+    <ul class="proj-list">
+      <li class="proj-item">
+        <span class="pi-num">01</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Lock-In Amplifier: Detecting a Signal at −80 dBV</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">Software lock-in using a function generator reference and Python DAQ board. Demonstrated recovery of a 10 μV sinusoid buried in >100 mV broadband noise. Full noise floor and phase characterization.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">High Sensitivity</span>
+          <span class="pi-tag">Lock-In</span>
+          <span class="pi-tag">Python / DAQ</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">02</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Pupil Diameter Tracking with Near-IR Camera</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Fall 20XX</p>
+          <p class="pi-desc">Sub-millimeter pupil tracking using a Raspberry Pi camera, custom 850 nm IR illumination ring, and OpenCV circle detection. Directly inspired by the iRays project. Validated under controlled luminance steps.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">iRays Adjacent</span>
+          <span class="pi-tag">Computer Vision</span>
+          <span class="pi-tag">IR Imaging</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">03</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Automated Optical Thin Film Characterization</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Fall 20XX</p>
+          <p class="pi-desc">GPIB-controlled spectrometer and motorized sample stage automated via Python. Extracted refractive index dispersion curves and film thickness from interference fringes.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag">GPIB</span>
+          <span class="pi-tag">Thin Films</span>
+          <span class="pi-tag">Optics</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">04</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Environmental Radon Monitor, PIN Diode Array</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">Shielded charge-sensitive preamplifier driving a multichannel analyzer to count alpha events from radon decay. Measurements across campus over 72-hour windows with full statistical analysis.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">Radiation Detection</span>
+          <span class="pi-tag">Environmental</span>
+        </div>
+      </li>
+
+      <li class="proj-item">
+        <span class="pi-num">05</span>
+        <div class="pi-body">
+          <h3 class="pi-title">Scanning Tunneling Microscopy: Building the Piezo Controller</h3>
+          <p class="pi-authors">[ Student Name(s) ] · Spring 20XX</p>
+          <p class="pi-desc">High-voltage piezo driver (0–150 V), coarse approach stepper, tunneling current I-V via transimpedance amplifier. Achieved atomic step resolution on HOPG graphite.</p>
+        </div>
+        <div class="pi-tags">
+          <span class="pi-tag pi-tag-hl">Nanoscale</span>
+          <span class="pi-tag">High Voltage</span>
+          <span class="pi-tag">Surface Physics</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── CAPSTONE ──────────────────────────────────────────── -->
+  <section class="capstone">
+    <h3>PHYS 471/472 · EPAD Capstone</h3>
+    <p>
+      Students from Physics, CS, Biology, and Neuroscience form teams around a real problem —
+      clinical, environmental, humanitarian — and spend a full year building something deployable.
+      Dr. Yang advises simultaneously on circuit design, measurement uncertainty, user research,
+      and the ethics of what they are building.
+      Several capstone projects have seeded funded research and filed patents.
+    </p>
+  </section>
+
+  <!-- ── CLOSING ───────────────────────────────────────────── -->
+  <section class="t-closing">
+    <blockquote>
+      "The instrument is not the point.
+      The question the instrument was built to answer —
+      that is the point."
+    </blockquote>
+    <cite>Dr. Ran Yang · PHYS 351, Opening Lecture</cite>
+    <div class="t-footer-links">
+      <a href="index.html" class="t-footer-link">← Back</a>
+      <a href="mailto:rxyan2@wm.edu" class="t-footer-link">rxyan2@wm.edu</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="label">© 2026 Ran Yang · yangran.org</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

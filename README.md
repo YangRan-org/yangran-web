@@ -1,16 +1,18 @@
-# yangran.org
+# yangran.org — v2
 
 **Personal website of Dr. Ran Yang, Teaching Professor of Physics, William & Mary.**
 
-> *"The precision of a waveform. The patience of a planted seed."*
+> *"Where the instrument meets the infinite."*
 
 ---
 
-## Overview
+## Design Concept: Ink on Still Water
 
-This repository contains the complete source code for `yangran.org` — a static, single-page personal website built to reflect Dr. Yang's dual identity as a rigorous applied physicist and a deeply humanistic educator, artist, and interdisciplinary thinker.
+Version 1 was a physics lab at night. Version 2 is a philosopher's study at dawn.
 
-**Design concept:** *Oscilloscope Meets Ink Wash.* The clinical precision of a physics lab instrument — grid lines, waveforms, monospace readouts — fused with the fluid patience of East Asian calligraphy. Dark field. Teal pulse. Amber soul.
+The design principle is **Wu Wei** (無為) — effortless action, the Taoist concept at the center of Dr. Yang's Untitled Time work. The void is not empty. It is the most powerful thing. The website embodies this: radical negative space, one barely-there waveform that breathes rather than oscillates, and a single accent color — celadon green, drawn from Song dynasty porcelain — used with extreme restraint.
+
+**The one unforgettable thing:** You scroll to the bottom, and the Chinese characters 無為 emerge from the dark, barely visible, fading in over two seconds. They don't announce themselves. They were always there.
 
 ---
 
@@ -18,222 +20,166 @@ This repository contains the complete source code for `yangran.org` — a static
 
 ```
 yangran.org/
-├── index.html    — Complete single-page site (semantic HTML5)
-├── style.css     — Full stylesheet (CSS custom properties, responsive, no framework)
-├── main.js       — Canvas waveform animation, scroll reveals, cursor, interactions
-└── README.md     — This file
+├── index.html      — Main single-page site
+├── teaching.html   — PHYS 252 / PHYS 351 / EPAD student project gallery
+├── style.css       — Shared stylesheet (both pages)
+├── main.js         — Shared JS (breathing canvas, scroll reveals, nav)
+└── README.md       — This file
 ```
 
-No build tools. No npm. No framework. **Zero dependencies.** Ships as-is.
+No build tools. No npm. No framework. Zero dependencies. Ships as-is.
 
 ---
 
-## Design System
+## Design Tokens
 
-### Color Palette
+### Colors
 
-| Token         | Hex / Value             | Meaning                        |
-|---------------|-------------------------|--------------------------------|
-| `--void`      | `#060810`               | Deep space — background        |
-| `--deep`      | `#0b0f1a`               | Secondary surfaces             |
-| `--teal`      | `#00d4dc`               | Science pulse — iRays, physics |
-| `--amber`     | `#f5a623`               | Human soul — art, mentorship   |
-| `--white`     | `#f0f0ee`               | Primary text                   |
-| `--white-dim` | `rgba(240,240,238,0.55)`| Secondary text                 |
+| Token           | Value                        | Role                                       |
+|-----------------|------------------------------|--------------------------------------------|
+| `--ink`         | `#0d0a08`                    | Warm near-black — like charred wood        |
+| `--ink-lift`    | `#151008`                    | Slightly lifted surfaces                   |
+| `--paper`       | `#e4ddd1`                    | Warm cream — rice paper, not white         |
+| `--paper-dim`   | `rgba(228,221,209,0.55)`     | Secondary body text                        |
+| `--paper-mute`  | `rgba(228,221,209,0.28)`     | Labels, timestamps, footer                 |
+| `--celadon`     | `#7a9e8e`                    | **The one accent.** Song dynasty porcelain |
+| `--rust`        | `#9e6b55`                    | iRays section only — life, urgency         |
 
 ### Typography
 
-| Role    | Font                   | Weights   | Usage                        |
-|---------|------------------------|-----------|------------------------------|
-| Display | `Cormorant` (serif)    | 300       | Hero name, section titles    |
-| Body    | `Cormorant Garamond`   | 300–600   | All prose, quotes, body      |
-| Mono    | `JetBrains Mono`       | 300–500   | Labels, codes, data, status  |
-
-Loaded from Google Fonts. Two families, three optical roles.
-
-### Motion
-
-- **Hero waveform**: Canvas-based dual-channel oscilloscope animation (teal = science, amber = humanity). Mouse-reactive glow.
-- **Scroll reveals**: `IntersectionObserver`-based stagger. Elements translate up 28px and fade in as they enter viewport.
-- **Card enter**: Grid children stagger at 80ms intervals on section entry.
-- **Vessel rings**: Three concentric `border-radius: 50%` rings with CSS `animation: spin` at different speeds/directions. No JS required.
-- **Cursor**: Custom 8px teal dot via CSS `::after` + CSS custom properties `--cx`, `--cy` set by JS `mousemove`.
+| Role    | Font              | Weight   | Usage                          |
+|---------|-------------------|----------|--------------------------------|
+| Display | `Cormorant Infant`| 300 / it | Hero name, section headings    |
+| Body    | `EB Garamond`     | 400 / it | All prose                      |
+| Mono    | `IBM Plex Mono`   | 300–400  | Labels, codes, status, footer  |
 
 ---
 
-## Sections
+## Page Architecture
 
-| # | Section        | ID           | Purpose                                                    |
-|---|---------------|-------------|-------------------------------------------------------------|
-| — | Navigation    | `#nav`      | Fixed, blur-backdrop, collapses on mobile                   |
-| — | Hero          | `#hero`     | Full-screen waveform canvas, name monument, duality tagline |
-| — | Duality       | `#duality`  | Hard-core physics ↔ Soft soul. Metrics + philosophy quote   |
-| 01| Research      | `#research` | 5 project cards: iRays, Waveform.ai, MCP, QD Bandage, Brite|
-| 02| Teaching      | `#teaching` | Course cards + mentorship impact statistics                 |
-| 03| Recognition   | `#honors`   | Vertical timeline: grants, talks, awards (2022–2025)        |
-| 04| The Vessel    | `#vessel`   | Untitled Time proposal, deep time philosophy, collaborators |
-| 05| Formation     | `#education`| Ph.D., B.E., professional certifications                   |
-| — | Contact       | `#contact`  | Email, phone, W&M faculty profile, address                  |
+### `index.html`
+
+| Section        | Purpose                                                            |
+|----------------|--------------------------------------------------------------------|
+| **Nav**        | `RY` mark · iRays · The Vessel · Teaching pillars + Contact ghost |
+| **Hero**       | Name, one italic subtitle, single breathing waveform canvas        |
+| **Breath**     | Three-line opening poem — sets the philosophical register          |
+| **Tier 1**     | iRays (left, rust tint) ↔ The Vessel (right, celadon) side by side|
+| **Impact**     | 6 aggregate statistics — wide type, no footnotes                   |
+| **Tier 2**     | MCP + Waveform.ai — equal weight, horizontal split                 |
+| **Teaching**   | Brief intro + course list + link to teaching.html                  |
+| **Tier 3**     | Everything else — compact list, one line each                      |
+| **Contact**    | Email only · Wu Wei characters emerging in the dark                |
+
+### `teaching.html`
+
+Separate page showcasing student work from PHYS 252, PHYS 351, and EPAD Capstone.
+
+Each project entry shows:
+- Sequential number
+- Project title
+- Student name(s) + semester ← **replace with real names**
+- Description paragraph
+- 2–3 tag badges
+
+**To update with real projects:** Find all `[ Student Name(s) ]` and `[ Spring/Fall 20XX ]` placeholder text and replace. Delete any placeholder entries, add new ones by copying the `<div class="project-entry">` block.
+
+---
+
+## The Breathing Waveform
+
+`main.js` → `initBreath()`
+
+Two channels, both barely visible:
+
+- **Celadon channel** (science): amplitude 5.5% of viewport height, moderate speed
+- **Paper/cream channel** (soul): amplitude 8.5%, very slow — takes ~45 seconds per cycle
+
+The waveform is not an oscilloscope. It is a breath. It suggests rather than declares. The physics is there if you look; the poetry is there if you feel.
 
 ---
 
 ## Deployment
 
-This is a **static site**. No server-side logic required.
+**Static site — no build step required.** Deploy all four files to any host.
 
-### Option A — GitHub Pages (Recommended)
+### GitHub Pages
 
 ```bash
-# 1. Push to a repo named yangran.org or any repo
-git init
-git add .
-git commit -m "initial launch"
+git init && git add .
+git commit -m "launch yangran.org"
 git remote add origin https://github.com/yourusername/yangran.org.git
 git push -u origin main
-
-# 2. In GitHub repo Settings → Pages → Branch: main / root
-# 3. Add custom domain: yangran.org
-# 4. Add CNAME record at your DNS registrar pointing to yourusername.github.io
+# Then: Settings → Pages → Branch: main / root
+# Add CNAME pointing yangran.org to yourusername.github.io
 ```
 
-### Option B — Netlify (Drag-and-Drop)
+### Netlify (fastest)
 
-1. Go to [netlify.com](https://netlify.com) → "Add new site" → "Deploy manually"
-2. Drag the entire `yangran.org/` folder into the drop zone
-3. Set custom domain to `yangran.org` in Site Settings → Domain management
-4. Update DNS at your registrar: add a `CNAME` for `www` → `yoursite.netlify.app`
+Drag the folder to [app.netlify.com](https://app.netlify.com) → set custom domain → done.
 
-### Option C — Any Static Host (Vercel, Cloudflare Pages, etc.)
+### DNS Records (at your registrar)
 
-Just upload the three files. There is no build step.
+```
+A     @    185.199.108.153    (GitHub Pages)
+A     @    185.199.109.153
+A     @    185.199.110.153
+A     @    185.199.111.153
+CNAME www  yourusername.github.io
+```
+
+Adjust CNAME target for Netlify/Vercel accordingly. Enable HTTPS in dashboard.
 
 ---
 
-## DNS Configuration
+## Updating Content
 
-At your domain registrar (GoDaddy, Namecheap, Google Domains, etc.):
-
-```
-Type  Name   Value                    TTL
-A     @      185.199.108.153          Auto   (GitHub Pages IPs)
-A     @      185.199.109.153          Auto
-A     @      185.199.110.153          Auto
-A     @      185.199.111.153          Auto
-CNAME www    yourusername.github.io   Auto
-```
-
-*(Adjust the CNAME target for Netlify/Vercel accordingly.)*
-
-Enable **HTTPS / SSL** (free via Let's Encrypt) in your host's dashboard.
-
----
-
-## Customization Guide
-
-### Updating Projects
-
-In `index.html`, find any `<article class="project-card">` block. Each card has:
-- `data-type="science"` → teal accent, or `data-type="art"` / `"human"` → amber accent
-- `class="project-featured"` → spans 2 columns (use for flagship projects like iRays)
-- `.project-status` → shows active/complete dot + date range
-
-### Adding a New Grant to the Timeline
+### Adding a grant or talk to Tier 3
 
 ```html
-<div class="timeline-item reveal-left">
-  <span class="tl-year mono">2026</span>
-  <div class="tl-content">
-    <div class="tl-title">Grant Name — Status</div>
-    <div class="tl-sub mono">Funding body · Role</div>
-  </div>
-</div>
+<li class="tier3-item">
+  <span class="t3-year mono-sm">2026</span>
+  <span class="t3-name">Title of Grant or Talk</span>
+  <span class="t3-desc">One sentence. Funder or venue. Role.</span>
+</li>
 ```
 
-### Changing the Waveform Colors
+### Changing the impact numbers
 
-In `main.js`, lines near the top of `initWaveform()`:
+In `index.html`, search for `impact-num`. Six stats, each has a number and label. Edit directly.
 
-```js
-const TEAL  = '#00d4dc'; // science channel — change to any hex
-const AMBER = '#f5a623'; // humanity channel — change to any hex
-```
+### Adding a student project to teaching.html
 
-### Adding a Photo
+Copy any `<div class="project-entry">` block and fill in title, authors, description, and tags. Change `pe-tag-highlight` to highlight the first/most important tag in celadon.
 
-Insert before `.hero-content` or inside `.contact-section`:
+### Adding a photo
 
 ```html
-<img
-  src="assets/ran-yang.jpg"
-  alt="Dr. Ran Yang"
-  class="profile-photo"
-  width="300"
-  height="300"
-/>
-```
-
-Then in `style.css`:
-```css
-.profile-photo {
-  border-radius: 1px;
-  border: 1px solid var(--border);
-  filter: grayscale(0.3) contrast(1.05);
-  max-width: 280px;
-}
+<!-- In .t-hero or .contact-inner: -->
+<img src="assets/ran.jpg" alt="Dr. Ran Yang" 
+     style="max-width:240px; filter:grayscale(0.2) contrast(1.05); border:1px solid var(--border-mid);" />
 ```
 
 ---
 
-## Accessibility
+## Performance
 
-- Semantic HTML5 landmarks (`<nav>`, `<section>`, `<article>`, `<footer>`)
-- All images require `alt` attributes when added
-- Color contrast: teal (#00d4dc) on dark void (#060810) → **AA compliant**
-- Amber (#f5a623) on dark void → **AA compliant**
-- Keyboard navigable via native anchor tags
-- `prefers-reduced-motion`: Add to `style.css` to respect user preferences:
+- No JS frameworks — vanilla JS ~3KB
+- No CSS frameworks — pure CSS ~9KB
+- Google Fonts: 2 families, preconnect hints
+- Canvas: `requestAnimationFrame` with `clearRect` — no leak
+- Scroll reveals: `IntersectionObserver` — no polling
+- All animations on `opacity` + `transform` — GPU-composited
 
-```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  .wave-canvas { display: none; }
-}
-```
-
----
-
-## Performance Notes
-
-- **No JavaScript frameworks** — vanilla JS only (~4KB)
-- **No CSS frameworks** — pure CSS (~10KB)
-- Google Fonts loaded with `preconnect` hints
-- Canvas waveform uses `requestAnimationFrame` with `clearRect` — no memory leak
-- `IntersectionObserver` used for scroll reveals — no scroll listeners polling
-- All animations are CSS `transform` + `opacity` — GPU-composited, no layout thrash
-
-Expected Lighthouse scores: Performance 95+, Accessibility 90+, Best Practices 100.
+Expected Lighthouse: Performance 95+, Best Practices 100.
 
 ---
 
 ## Browser Support
 
-Chrome 90+, Firefox 88+, Safari 14+, Edge 90+. IE not supported.
+Chrome 90+, Firefox 88+, Safari 14+, Edge 90+.
 
 ---
 
-## Credits & Acknowledgments
-
-Built to honor the work of **Dr. Ran Yang**, Teaching Professor of Physics at William & Mary — physicist, inventor, educator, artist, and architect of deep time.
-
-Projects referenced:
-- **iRays** — dual-spectrum pupillometry (Patent Pending, NIH/AI4Health)
-- **Waveform.ai** — [waveformai.wm.edu](https://waveformai.wm.edu)
-- **MCP Program** — [mcp.physics.wm.edu](https://mcp.physics.wm.edu)
-- **Untitled Time** — W&M Pathfinder Proposal, 2026
-
----
-
-*"Can you plant a seed for a shadow you will never see?"*
+*"Can you plant a seed for a shadow you will never see?"*  
+*— Untitled Time, Ran Yang, 2026*

@@ -3,531 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ran Yang, Ph.D. — Physics, Innovation & Human Time</title>
-  <meta name="description" content="Teaching Professor of Physics at William & Mary. Applied physicist, inventor of iRays, creator of Waveform.ai, and founder of MCP. Living at the intersection of precision and poetry." />
-  <meta property="og:title" content="Ran Yang, Ph.D." />
-  <meta property="og:description" content="Where applied physics meets human consciousness." />
-  <meta property="og:url" content="https://yangran.org" />
-
+  <title>Ran Yang</title>
+  <meta name="description" content="Applied physicist. Inventor of iRays. Architect of deep time. Educator." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&family=Cormorant:wght@300;400&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════
-       NAVIGATION
-  ═══════════════════════════════════════════════════ -->
+  <!-- ── NAV ───────────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <div class="nav-logo">
-      <span class="nav-logo-ry">RY</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#research" class="nav-link">Research</a></li>
-      <li><a href="#teaching" class="nav-link">Teaching</a></li>
-      <li><a href="#vessel" class="nav-link">The Vessel</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <div class="nav-status">
-      <span class="status-dot"></span>
-      <span class="status-text">W&M Physics</span>
-    </div>
+    <a href="#irays"    class="nav-item" id="nav-irays">iRays</a>
+    <a href="#vessel"   class="nav-item" id="nav-vessel">The Vessel</a>
+    <a href="teaching.html" class="nav-item">Teaching</a>
   </nav>
 
-  <!-- ═══════════════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════════════ -->
-  <section class="hero" id="hero">
-    <canvas id="waveCanvas" class="wave-canvas"></canvas>
-    <div class="grid-overlay"></div>
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" id="top">
+    <canvas id="rippleCanvas" class="ripple-canvas"></canvas>
 
     <div class="hero-content">
-      <div class="hero-label reveal-up">
-        <span class="mono">Ph.D. Applied Physics · William &amp; Mary</span>
-      </div>
+      <h1 class="hero-name">Ran Yang</h1>
+      <p class="hero-line">Applied physicist. Inventor. Educator.</p>
+    </div>
 
-      <h1 class="hero-name reveal-up delay-1">
-        <span class="name-ran">Ran</span>
-        <span class="name-yang">Yang</span>
-      </h1>
+    <div class="hero-down">
+      <div class="down-bar"></div>
+    </div>
+  </section>
 
-      <p class="hero-duality reveal-up delay-2">
-        <em class="duality-science">The precision of a waveform.</em>
-        <span class="duality-sep">∿</span>
-        <em class="duality-soul">The patience of a planted seed.</em>
+  <!-- ── OPENING ────────────────────────────────────────────── -->
+  <section class="opening">
+    <p class="opening-text">
+      Some scientists measure the speed of light.<br/>
+      Some plant forests harvested a century from now.<br/>
+      <em>She does both.</em>
+    </p>
+  </section>
+
+  <!-- ── TIER 1: iRAYS ─────────────────────────────────────── -->
+  <section class="project-full" id="irays">
+    <div class="pf-left">
+      <header class="pf-header">
+        <span class="label">Clinical · 2024</span>
+      </header>
+      <h2 class="pf-title">iRays</h2>
+      <p class="pf-tagline">A device that reads the eye<br/>before the hospital can.</p>
+    </div>
+
+    <div class="pf-right">
+      <p>
+        Dual-spectrum pupillometry for prehospital neuro-triage. In the back of an
+        ambulance — in the minutes that define survival — iRays reads what no unaided
+        eye can see: the neurological signature of traumatic brain injury, encoded in the
+        pupil's response to two frequencies of light simultaneously.
       </p>
-
-      <div class="hero-tags reveal-up delay-3">
-        <span class="tag tag-science">iRays</span>
-        <span class="tag tag-science">Waveform.ai</span>
-        <span class="tag tag-human">MCP</span>
-        <span class="tag tag-human">Deep Time</span>
-        <span class="tag tag-science">Quantum Dot Bandage</span>
-      </div>
-
-      <a href="#research" class="hero-scroll reveal-up delay-4">
-        <span class="mono">Explore her universe</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="hero-side-text">
-      <span class="mono vertical-text">Applied Physicist · Inventor · Educator · 2008 —</span>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════
-       DUALITY STATEMENT
-  ═══════════════════════════════════════════════════ -->
-  <section class="duality-section" id="duality">
-    <div class="duality-grid">
-      <div class="duality-half duality-hard">
-        <div class="duality-label mono">// hard.core</div>
-        <p class="duality-text">
-          From superconducting HTS thin films to dual-spectrum pupillometry — 
-          Dr. Yang speaks in signals, frequencies, and impedance. She builds 
-          instruments that save lives in the back of an ambulance.
-        </p>
-        <div class="duality-metrics">
-          <div class="metric">
-            <span class="metric-num">7+</span>
-            <span class="metric-label mono">Active grants</span>
-          </div>
-          <div class="metric">
-            <span class="metric-num">40+</span>
-            <span class="metric-label mono">Students mentored</span>
-          </div>
-          <div class="metric">
-            <span class="metric-num">1</span>
-            <span class="metric-label mono">Patent pending</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="duality-divider">
-        <div class="divider-line"></div>
-        <div class="divider-symbol">⊗</div>
-        <div class="divider-line"></div>
-      </div>
-
-      <div class="duality-half duality-soft">
-        <div class="duality-label mono">// soft.soul</div>
-        <p class="duality-text">
-          She plants forests that outlive careers. She composes AI music that 
-          premieres on stage. She asks — in the age of the algorithm — 
-          what does it mean to be <em>irreplaceably human</em>?
-        </p>
-        <div class="duality-quote">
-          <blockquote>
-            "Human consciousness is the negative space described in Taoist philosophy — 
-            the only state the machine cannot replicate."
-          </blockquote>
-          <cite>— Ran Yang, <em>Untitled Time</em> Proposal, 2026</cite>
-        </div>
+      <p>
+        Patent pending. Built with the City of Hampton Fire &amp; Rescue.
+        Funded by NIH Mid-South REACH and the AI4Health Initiative.
+      </p>
+      <div class="pf-badges">
+        <span class="badge">NIH · AI4Health</span>
+        <span class="badge">Patent Pending</span>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       RESEARCH & INNOVATION
-  ═══════════════════════════════════════════════════ -->
-  <section class="research-section" id="research">
-    <div class="section-header">
-      <span class="section-number mono">01</span>
-      <h2 class="section-title">Research &amp; Innovation</h2>
-      <p class="section-sub">Five frontiers. One fearless mind.</p>
+  <!-- ── TIER 1: THE VESSEL ─────────────────────────────────── -->
+  <section class="project-full project-full--alt" id="vessel">
+    <div class="pf-left">
+      <header class="pf-header">
+        <span class="label">Philosophical · 2026</span>
+      </header>
+      <h2 class="pf-title">The Vessel</h2>
+      <p class="pf-tagline">A cathedral of patience<br/>for a civilization leaving home.</p>
     </div>
 
-    <div class="projects-grid">
+    <div class="pf-right">
+      <p>
+        On a launch pad in Florida, a rocket prepares to leave Earth. In a Norwegian
+        forest, 1,000 spruce saplings planted in 2014 will not be harvested until
+        2114 — to become paper for books no one alive today will ever read.
+        One is escape. One is permanence.
+      </p>
+      <p>
+        Dr. Yang leads an interdisciplinary Pathfinder asking: in an age of algorithmic
+        production, what remains irreplaceably human? Her answer is rooted in
+        <em>Wu Wei</em> — the stillness the machine cannot replicate. With collaborators
+        across Physics, Art, English, Biology, Philosophy, and Libraries.
+      </p>
+      <div class="pf-badges">
+        <span class="badge">W&amp;M Pathfinder</span>
+        <span class="badge">Deep Time</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- iRays -->
-      <article class="project-card project-featured" data-type="science">
-        <div class="project-glow"></div>
-        <div class="project-header">
-          <div class="project-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M16 2v4M16 26v4M2 16h4M26 16h4M6.34 6.34l2.83 2.83M22.83 22.83l2.83 2.83M6.34 25.66l2.83-2.83M22.83 9.17l2.83-2.83" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="project-status mono">
-            <span class="status-dot status-active"></span>PI · 2024–Present
-          </div>
-        </div>
-        <h3 class="project-title">iRays</h3>
-        <p class="project-tagline">Dual-spectrum pupillometry for prehospital neuro-triage</p>
-        <p class="project-desc">
-          A patent-pending device that reads the language of the human pupil — in two spectra simultaneously — 
-          to detect traumatic brain injury in the critical window before a hospital. Built with the City of Hampton 
-          Fire &amp; Rescue. Funded by NIH Mid-South REACH and AI4Health.
+  <!-- ── IMPACT ─────────────────────────────────────────────── -->
+  <section class="impact">
+    <p class="impact-note label">A life in numbers</p>
+    <div class="impact-row">
+      <div class="impact-item">
+        <span class="inum">20<sup>+</sup></span>
+        <span class="ilabel">Grants</span>
+      </div>
+      <div class="impact-item">
+        <span class="inum">50<sup>+</sup></span>
+        <span class="ilabel">Invited talks</span>
+      </div>
+      <div class="impact-item">
+        <span class="inum">100<sup>+</sup></span>
+        <span class="ilabel">Projects supervised</span>
+      </div>
+      <div class="impact-item">
+        <span class="inum">50<sup>+</sup></span>
+        <span class="ilabel">Theses advised</span>
+      </div>
+      <div class="impact-item">
+        <span class="inum">5k<sup>+</sup></span>
+        <span class="ilabel">Students taught</span>
+      </div>
+      <div class="impact-item">
+        <span class="inum">1</span>
+        <span class="ilabel">PhD — ongoing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIER 2: MCP + WAVEFORM ─────────────────────────────── -->
+  <section class="tier2">
+    <div class="t2-rule-row">
+      <div class="t2-rule"></div>
+      <span class="label">Also in motion</span>
+      <div class="t2-rule"></div>
+    </div>
+
+    <div class="t2-grid">
+      <article class="t2-card">
+        <span class="label">MCP · 2021</span>
+        <h3 class="t2-title">Mentoring for Careers in Physics</h3>
+        <p class="t2-body">
+          A mentorship infrastructure bridging women in physics to academia and industry.
+          Won all five stages of Vision 2026 Faculty Innovators. NSF and Society of 1918 funded.
         </p>
-        <div class="project-footer">
-          <span class="project-tag mono">NIH · AI4Health</span>
-          <span class="project-tag mono">Patent Pending</span>
-        </div>
+        <a href="https://mcp.physics.wm.edu" class="t2-link" target="_blank" rel="noopener">mcp.physics.wm.edu ↗</a>
       </article>
 
-      <!-- Waveform.ai -->
-      <article class="project-card" data-type="art">
-        <div class="project-header">
-          <div class="project-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M2 16 Q6 8 10 16 Q14 24 18 16 Q22 8 26 16 Q28 20 30 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="project-status mono">
-            <span class="status-dot status-active"></span>PI & Producer · 2024–Present
-          </div>
-        </div>
-        <h3 class="project-title">Waveform.ai</h3>
-        <p class="project-tagline">Where AI composes and the stage listens</p>
-        <p class="project-desc">
-          An AI music installation that premiered at PBK Theater for W&M's Art &amp; Science Exchange. 
-          Sound meets algorithm meets live performance. Collaboration with Melody Chua (Music). Funded by the Office of the Provost.
+      <article class="t2-card">
+        <span class="label">Waveform.ai · 2024</span>
+        <h3 class="t2-title">Where AI Composes and the Stage Listens</h3>
+        <p class="t2-body">
+          An AI music installation premiered at PBK Theater. Algorithm, sound, and live
+          performance — inseparable. Collaboration with Melody Chua (Music).
         </p>
-        <div class="project-footer">
-          <a href="https://waveformai.wm.edu" class="project-link mono" target="_blank" rel="noopener">waveformai.wm.edu ↗</a>
-        </div>
+        <a href="https://waveformai.wm.edu" class="t2-link" target="_blank" rel="noopener">waveformai.wm.edu ↗</a>
       </article>
-
-      <!-- MCP -->
-      <article class="project-card" data-type="human">
-        <div class="project-header">
-          <div class="project-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="6" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="26" cy="24" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M12 13.5L7.5 21.5M20 13.5L24.5 21.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="project-status mono">
-            <span class="status-dot status-active"></span>PI & Director · 2021–Present
-          </div>
-        </div>
-        <h3 class="project-title">MCP Program</h3>
-        <p class="project-tagline">Mentoring for Careers in Physics — women in STEM, bridged</p>
-        <p class="project-desc">
-          A personalized mentorship infrastructure connecting women in physics to both academia and industry. 
-          Won all 5 stages of Vision 2026 Faculty Innovators. Funded by NSF, Society of 1918. Featured in W&M News.
-        </p>
-        <div class="project-footer">
-          <a href="https://mcp.physics.wm.edu" class="project-link mono" target="_blank" rel="noopener">mcp.physics.wm.edu ↗</a>
-          <span class="project-tag mono">NSF · Vision 2026</span>
-        </div>
-      </article>
-
-      <!-- Quantum Dot Bandage -->
-      <article class="project-card" data-type="science">
-        <div class="project-header">
-          <div class="project-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect x="10" y="4" width="12" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M10 12h12M10 20h12" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="16" cy="16" r="2" fill="currentColor" opacity="0.6"/>
-            </svg>
-          </div>
-          <div class="project-status mono">
-            <span class="status-dot status-active"></span>PI · 2025–Present
-          </div>
-        </div>
-        <h3 class="project-title">Quantum Dot Bandage</h3>
-        <p class="project-tagline">Non-invasive skin cancer screening via carbon quantum dots</p>
-        <p class="project-desc">
-          A carbon-based quantum dot bandage that screens for skin cancer without a blade. 
-          Funded by the Charles Center Summer Grant. Collaboration with the W&M Entrepreneurship Hub.
-        </p>
-        <div class="project-footer">
-          <span class="project-tag mono">Charles Center</span>
-          <span class="project-tag mono">Emerging 2025</span>
-        </div>
-      </article>
-
-      <!-- BriteScope -->
-      <article class="project-card" data-type="science">
-        <div class="project-header">
-          <div class="project-icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M4 28L28 4M4 4l24 24" stroke="currentColor" stroke-width="0.75" opacity="0.3"/>
-              <circle cx="16" cy="16" r="8" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.4"/>
-            </svg>
-          </div>
-          <div class="project-status mono">
-            <span class="status-dot status-complete"></span>Sole PI · 2020–2025
-          </div>
-        </div>
-        <h3 class="project-title">BriteScope / MedChai</h3>
-        <p class="project-tagline">AI-powered video laryngoscopy</p>
-        <p class="project-desc">
-          An AI-powered video laryngoscopy solution. Funded by VIPC Commonwealth Commercialization Fund 
-          and NSF National I-Corps. Earned 2nd Place &amp; Audience Favorite at Rocket Pitch.
-        </p>
-        <div class="project-footer">
-          <span class="project-tag mono">VIPC · NSF I-Corps</span>
-          <span class="project-tag mono">🏆 Rocket Pitch</span>
-        </div>
-      </article>
-
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       TEACHING
-  ═══════════════════════════════════════════════════ -->
-  <section class="teaching-section" id="teaching">
-    <div class="section-header">
-      <span class="section-number mono">02</span>
-      <h2 class="section-title">Teaching</h2>
-      <p class="section-sub">Where microcontrollers meet human-centric design.</p>
+  <!-- ── TIER 3: EVERYTHING ELSE ───────────────────────────── -->
+  <section class="tier3">
+    <p class="label tier3-label">Earlier work &amp; recognition</p>
+    <ul class="tier3-list">
+      <li><span class="t3y label">2025</span><span class="t3n">Quantum Dot Bandage</span><span class="t3d">Carbon quantum dot bandage for non-invasive skin cancer screening. Charles Center funded.</span></li>
+      <li><span class="t3y label">2020</span><span class="t3n">BriteScope / MedChai</span><span class="t3d">AI-powered video laryngoscopy. VIPC CCF &amp; NSF I-Corps. Rocket Pitch 2nd Place.</span></li>
+      <li><span class="t3y label">2025</span><span class="t3n">European Conference on Education, London</span><span class="t3d">Invited talk &amp; session chair presenting the MCP model.</span></li>
+      <li><span class="t3y label">2023</span><span class="t3n">Vision 2026 Faculty Innovator &amp; Career Influencer Awards</span><span class="t3d">Won all five stages. Physics Graduation Keynote.</span></li>
+      <li><span class="t3y label">2024</span><span class="t3n">CATAPULT Commercialization Fellow</span><span class="t3d">George Mason University CCI+A.</span></li>
+      <li><span class="t3y label">2022</span><span class="t3n">AHFE Conference, New York</span><span class="t3d">Co-Chair &amp; Invited Talk, Applied Human Factors and Ergonomics.</span></li>
+    </ul>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <div class="contact-left">
+      <h2 class="contact-title">Say hello.</h2>
+      <a href="mailto:rxyan2@wm.edu" class="contact-email">rxyan2@wm.edu</a>
+      <a href="https://wm.edu/peopleofwm/creative-critical-thinkers/yang-r/"
+         target="_blank" rel="noopener" class="contact-profile label">Faculty profile ↗</a>
     </div>
-
-    <div class="teaching-grid">
-      <div class="course-card course-featured">
-        <div class="course-code mono">PHYS 351</div>
-        <h3 class="course-title">Advanced Scientific Instrumentation</h3>
-        <p class="course-desc">Protocols. Sensors. Measurement at the edge of what's knowable. Students build the instruments that build knowledge.</p>
-        <span class="course-years mono">2019 – Present</span>
-      </div>
-
-      <div class="course-card course-featured">
-        <div class="course-code mono">PHYS 252</div>
-        <h3 class="course-title">Electronics</h3>
-        <p class="course-desc">Microcontrollers and circuit logic — taught through the lens of human-centered purpose. The lab as a proving ground for ideas that matter.</p>
-        <span class="course-years mono">2020 – Present</span>
-      </div>
-
-      <div class="course-card">
-        <div class="course-code mono">PHYS 471/472</div>
-        <h3 class="course-title">Capstone EPAD Projects</h3>
-        <p class="course-desc">The summit. Students deploy real solutions to real problems.</p>
-        <span class="course-years mono">2020 – Present</span>
-      </div>
-
-      <div class="course-card">
-        <div class="course-code mono">EPAD 495/496</div>
-        <h3 class="course-title">Honors Thesis</h3>
-        <p class="course-desc">Original research. Advisor and architect.</p>
-        <span class="course-years mono">2021 – Present</span>
-      </div>
-
-      <div class="course-card">
-        <div class="course-code mono">PHYS 101/107</div>
-        <h3 class="course-title">General Physics / Life Sciences</h3>
-        <p class="course-desc">First contact with the laws of the universe.</p>
-        <span class="course-years mono">2019 – 2022</span>
-      </div>
-    </div>
-
-    <div class="mentorship-banner">
-      <div class="mentorship-stat">
-        <span class="ms-num">40+</span>
-        <span class="ms-label">Undergraduates supervised across Physics, EPAD, Neuroscience &amp; CS</span>
-      </div>
-      <div class="mentorship-stat">
-        <span class="ms-num">15+</span>
-        <span class="ms-label">Ph.D. graduate teaching assistants mentored in lab instruction</span>
-      </div>
-      <div class="mentorship-stat">
-        <span class="ms-num">∞</span>
-        <span class="ms-label">Monroe Scholars, grant recipients, future scientists</span>
-      </div>
+    <div class="contact-right">
+      <p class="wu" aria-label="Wu Wei">無為</p>
+      <p class="wu-gloss label">Wu Wei · effortless action</p>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       TIMELINE / HONORS
-  ═══════════════════════════════════════════════════ -->
-  <section class="timeline-section" id="honors">
-    <div class="section-header">
-      <span class="section-number mono">03</span>
-      <h2 class="section-title">Recognition &amp; Grants</h2>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2025</span>
-        <div class="tl-content">
-          <div class="tl-title">Invited Talk — European Conference on Education, London</div>
-          <div class="tl-sub mono">MCP Model · Session Chair</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2025</span>
-        <div class="tl-content">
-          <div class="tl-title">Waveform.ai World Premiere</div>
-          <div class="tl-sub mono">PBK Theater · Art &amp; Science Exchange</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2025</span>
-        <div class="tl-content">
-          <div class="tl-title">NIH Mid-South REACH — Invited Full Proposal (Pending)</div>
-          <div class="tl-sub mono">PI · iRays</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2024</span>
-        <div class="tl-content">
-          <div class="tl-title">NSF National I-Corps Team Grant — Awarded</div>
-          <div class="tl-sub mono">Sole PI</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2024</span>
-        <div class="tl-content">
-          <div class="tl-title">AAPT Summer National Conference — Invited Talk</div>
-          <div class="tl-sub mono">Sacramento, CA</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2023</span>
-        <div class="tl-content">
-          <div class="tl-title">Vision 2026 Faculty Innovator Award · Career Influencer Award</div>
-          <div class="tl-sub mono">Won all 5 stages · Provost Office</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2023</span>
-        <div class="tl-content">
-          <div class="tl-title">Physics Department Graduation — Keynote Speaker</div>
-          <div class="tl-sub mono">William &amp; Mary</div>
-        </div>
-      </div>
-      <div class="timeline-item reveal-left">
-        <span class="tl-year mono">2022</span>
-        <div class="tl-content">
-          <div class="tl-title">VIPC Commonwealth Commercialization Fund — Awarded</div>
-          <div class="tl-sub mono">Sole PI · BriteScope/MedChai</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════
-       THE VESSEL — DEEP TIME
-  ═══════════════════════════════════════════════════ -->
-  <section class="vessel-section" id="vessel">
-    <div class="vessel-bg-text">TIME</div>
-    <div class="vessel-content">
-      <div class="section-header">
-        <span class="section-number mono">04</span>
-        <h2 class="section-title">Untitled Time</h2>
-        <p class="section-sub">The Space Where the Tree Outlives the Rocket</p>
-      </div>
-
-      <div class="vessel-body">
-        <div class="vessel-text">
-          <p class="vessel-intro">
-            On a launch pad in Florida, a rocket waits to leave Earth. In a Norwegian forest, 
-            1,000 spruce saplings planted in 2014 will not be harvested until 2114 — 
-            to become paper for books no one alive today will ever read.
-          </p>
-          <p>
-            Dr. Yang leads an interdisciplinary W&M Pathfinder exploring this tension: 
-            the mandate to escape versus the discipline to stay and plant. 
-            In a post-labor world where algorithms replace production, she asks — 
-            what specific human value remains?
-          </p>
-          <p>
-            Her answer, rooted in Taoist philosophy: <strong>stillness itself</strong>. 
-            Wu Wei. The void. The only state the machine cannot replicate.
-          </p>
-          <div class="vessel-collaborators mono">
-            Ran Yang (Physics) · Elizabeth Mead (Art) · Jon Pineda (English) · 
-            Harmony Dalgleish (Biology) · Monica Seger (Italian Studies) · 
-            Jonah Goldwater (Philosophy) · Camille Andrews (Libraries)
-          </div>
-        </div>
-
-        <div class="vessel-visual">
-          <div class="vessel-ring ring-1"></div>
-          <div class="vessel-ring ring-2"></div>
-          <div class="vessel-ring ring-3"></div>
-          <div class="vessel-core">
-            <span class="vessel-year">2026</span>
-            <span class="vessel-arrow">↓</span>
-            <span class="vessel-year">2126</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════
-       EDUCATION / BACKGROUND
-  ═══════════════════════════════════════════════════ -->
-  <section class="education-section" id="education">
-    <div class="section-header">
-      <span class="section-number mono">05</span>
-      <h2 class="section-title">Formation</h2>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-year mono">2008</div>
-        <h3 class="edu-degree">Ph.D. in Applied Physics</h3>
-        <div class="edu-school">William &amp; Mary · Williamsburg, VA</div>
-        <p class="edu-thesis mono">Dissertation: HTS thin films and conductor design</p>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year mono">2003</div>
-        <h3 class="edu-degree">B.E. in Material Science &amp; Engineering</h3>
-        <div class="edu-school">East China University of Science &amp; Technology · Shanghai</div>
-        <p class="edu-thesis mono">Minor: Finance</p>
-      </div>
-      <div class="edu-card edu-cert">
-        <div class="edu-year mono">2021–24</div>
-        <h3 class="edu-degree">Professional Certifications</h3>
-        <div class="edu-school">NSF I-Corps · NIA Entrepreneurship · CATAPULT/GMU · W&amp;M Academic Leadership</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════
-       CONTACT
-  ═══════════════════════════════════════════════════ -->
-  <section class="contact-section" id="contact">
-    <div class="contact-content">
-      <h2 class="contact-title">
-        Let's build something<br/>
-        <em>worth remembering.</em>
-      </h2>
-      <div class="contact-info">
-        <a href="mailto:rxyan2@wm.edu" class="contact-link">
-          <span class="mono">rxyan2@wm.edu</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a href="tel:7575619842" class="contact-link">
-          <span class="mono">(757) 561-9842</span>
-        </a>
-        <a href="https://wm.edu/peopleofwm/creative-critical-thinkers/yang-r/" class="contact-link" target="_blank" rel="noopener">
-          <span class="mono">W&amp;M Faculty Profile ↗</span>
-        </a>
-      </div>
-      <div class="contact-address mono">
-        Department of Physics · William &amp; Mary<br/>
-        300 Ukrop Way · Williamsburg, VA 23185
-      </div>
-    </div>
-
-    <div class="contact-signature">
-      <div class="sig-line"></div>
-      <span class="sig-text">RAN YANG · PH.D.</span>
-      <div class="sig-line"></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
-    <span class="mono">© 2026 Ran Yang · yangran.org</span>
-    <span class="footer-sep">·</span>
-    <span class="mono">William &amp; Mary · Department of Physics</span>
+    <span class="label">© 2026 Ran Yang · yangran.org</span>
   </footer>
 
   <script src="main.js"></script>
