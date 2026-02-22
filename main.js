@@ -318,3 +318,17 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+// ── SCROLL REVEAL (Works site-wide) ───────────────────────────
+(function initReveal() {
+  const cards = document.querySelectorAll('[data-reveal]');
+  if (!cards.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  cards.forEach(card => observer.observe(card));
+})();

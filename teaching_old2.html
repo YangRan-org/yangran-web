@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching — Ran Yang</title>
+  <meta name="description" content="Teaching at William & Mary — PHYS 351, PHYS 252, EPAD Capstone, and Honors Thesis under Dr. Ran Yang." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       TEACHING PAGE
+       Order: 351 → 252 → 471/472 → 495/496
+    ═══════════════════════════════════════════════════════ */
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .t-hero {
+      padding: clamp(8rem, 14vw, 12rem) clamp(2rem, 6vw, 6rem) clamp(4rem, 7vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .t-hero::before {
+      content: 'λ';
+      position: absolute;
+      right: -0.05em;
+      bottom: -0.15em;
+      font-family: var(--ff-display);
+      font-size: clamp(12rem, 25vw, 20rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--rule);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+    .t-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 3.5rem;
+      transition: color 0.25s;
+    }
+    .t-back:hover { color: var(--celadon); }
+    .t-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+    .t-hero-title em { color: var(--celadon); }
+    .t-hero-body {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+
+    /* ── STICKY COURSE NAV ───────────────────────────────── */
+    .course-nav {
+      position: sticky;
+      top: 58px; /* below main nav */
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--ground);
+      border-bottom: 1px solid var(--rule);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .course-nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--rule);
+    }
+    .cn-link {
+      flex: 1;
+      min-width: max-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 1rem 1.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-right: 1px solid var(--rule);
+      transition: color 0.25s, background 0.25s;
+      text-align: center;
+      cursor: pointer;
+    }
+    .cn-link:last-child { border-right: none; }
+    .cn-link:hover { color: var(--celadon); background: var(--ground-lift); }
+    .cn-link.active { color: var(--celadon); border-bottom: 2px solid var(--celadon); }
+    .cn-code { font-size: 0.68rem; letter-spacing: 0.16em; font-weight: 400; }
+    .cn-name { font-family: var(--ff-body); font-size: 0.72rem; letter-spacing: 0.02em; text-transform: none; color: var(--ink-mid); }
+
+    /* ── PHILOSOPHY BANNER ───────────────────────────────── */
+    .phil-banner {
+      padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .phil-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      max-width: 1100px;
+    }
+    .phil-col h3 {
+      font-family: var(--ff-display);
+      font-size: 1.35rem;
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .phil-col h3 em { color: var(--celadon); }
+    .phil-col p {
+      font-size: 0.92rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+    .phil-col .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .pill {
+      font-family: var(--ff-mono);
+      font-size: 0.48rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3em 0.7em;
+      border: 1px solid var(--rule-mid);
+      color: var(--ink-soft);
+    }
+    .pill-hl { border-color: rgba(107,144,128,0.35); color: var(--celadon); }
+
+    /* ── SECTION HEADER (shared) ─────────────────────────── */
+    .sec-head {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .sec-head::after {
+      content: attr(data-ghost);
+      position: absolute;
+      right: clamp(2rem, 6vw, 6rem);
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--ff-mono);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      color: var(--rule);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    .sec-name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .sec-desc {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      max-width: 620px;
+      line-height: 1.8;
+    }
+    .sec-desc em { font-style: italic; color: var(--ink); }
+    .sec-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .sec-link {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--celadon);
+      border-bottom: 1px solid var(--celadon-dim);
+      padding-bottom: 2px;
+      transition: opacity 0.25s;
+    }
+    .sec-link:hover { opacity: 0.6; }
+
+    /* ── EXPERIENTIAL LEARNING CALLOUT ────────────────────── */
+    .exp-callout {
+      padding: clamp(2rem, 3vw, 3rem) clamp(2rem, 6vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .exp-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--celadon-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--celadon);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .exp-text {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+    .exp-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       PROJECT TIMELINE (351 Final Projects)
+    ═══════════════════════════════════════════════════════ */
+    .five-years-intro {
+      padding: clamp(3.5rem, 6vw, 5rem) clamp(2rem, 6vw, 6rem) clamp(2rem, 3vw, 2.5rem);
+    }
+    .five-years-label {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      margin-bottom: 1.5rem;
+    }
+    .five-years-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .five-years-heading em { color: var(--celadon); font-style: italic; }
+    .five-years-body {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .project-timeline {
+      padding: 0 clamp(2rem, 6vw, 6rem) clamp(4rem, 6vw, 5rem);
+      display: flex;
+      flex-direction: column;
+    }
+    .pt-card {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      border: 1px solid var(--rule);
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .pt-card:last-child { border-bottom: 1px solid var(--rule); }
+    .pt-card.visible { opacity: 1; transform: translateY(0); }
+    .pt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--celadon);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .pt-card:hover::before { transform: scaleY(1); }
+
+    .pt-year-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 0.75rem;
+      border-right: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .pt-year {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .pt-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      margin-top: 1rem;
+      position: relative;
+    }
+    .pt-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      opacity: 0.3;
+    }
+
+    .pt-content {
+      padding: clamp(1.75rem, 2.5vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .pt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      width: fit-content;
+      padding: 0.25em 0.7em;
+      border: 1px solid var(--rule-mid);
+      background: var(--ground-deep);
+    }
+    .pt-badge .flag { font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
+    .pt-name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    .pt-tagline {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--celadon);
+      line-height: 1.4;
+    }
+    .pt-desc {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    .pt-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+    .pt-spec {
+      font-family: var(--ff-mono);
+      font-size: 0.48rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25em 0.6em;
+      border: 1px solid var(--rule);
+      color: var(--ink-soft);
+    }
+    .pt-spec-hl { border-color: rgba(107,144,128,0.35); color: var(--celadon); }
+    .pt-teams {
+      font-family: var(--ff-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-ghost);
+      line-height: 1.7;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── LAB CURRICULUM GRID ─────────────────────────────── */
+    .lab-section {
+      padding: clamp(2.5rem, 4vw, 4rem) clamp(2rem, 6vw, 6rem);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .lab-section-label {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.5rem;
+    }
+    .lab-section-desc {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 2rem;
+    }
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .lab-cell {
+      background: var(--ground);
+      padding: 1.15rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: background 0.3s;
+    }
+    .lab-cell:hover { background: var(--ground-lift); }
+    .lab-week {
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+    }
+    .lab-title {
+      font-family: var(--ff-display);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .lab-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+    }
+    .lab-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.44rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-ghost);
+      padding: 0.12em 0.45em;
+      border: 1px solid var(--rule);
+    }
+
+    /* ── EVOLUTION NOTE ──────────────────────────────────── */
+    .evo-note {
+      padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2rem, 6vw, 6rem);
+      background: var(--ground-deep);
+      border-bottom: 1px solid var(--rule);
+    }
+    .evo-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      max-width: 700px;
+    }
+    .evo-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      opacity: 0.35;
+      color: var(--celadon);
+      padding-top: 0.15rem;
+    }
+    .evo-note p {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+    .evo-note em { color: var(--ink); font-style: italic; }
+
+    /* ── 252 PROJECT LIST ────────────────────────────────── */
+    .proj-list { list-style: none; padding: 0 clamp(2rem, 6vw, 6rem); }
+    .proj-item {
+      display: grid;
+      grid-template-columns: 44px 1fr 180px;
+      gap: 0 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+      transition: opacity 0.2s;
+    }
+    .proj-item:hover { opacity: 0.75; }
+    .pi-num {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      color: var(--ink-ghost);
+      letter-spacing: 0.1em;
+      padding-top: 0.4rem;
+    }
+    .pi-title {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .pi-authors {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: var(--celadon-mid);
+      margin-bottom: 0.7rem;
+    }
+    .pi-desc {
+      font-size: 0.92rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+    .pi-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-end;
+      padding-top: 0.3rem;
+    }
+    .pi-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 0.25em 0.7em;
+      border: 1px solid var(--rule-mid);
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+    .pi-tag-hl { border-color: rgba(107,144,128,0.3); color: var(--celadon); }
+
+    /* ── CAPSTONE & HONORS SECTIONS ──────────────────────── */
+    .capstone-section {
+      padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 6vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+    }
+    .capstone-section:nth-child(even) { background: var(--ground-deep); }
+    .cap-body {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      max-width: 660px;
+      margin-top: 1rem;
+    }
+
+    /* ── CAPSTONE STATS ──────────────────────────────────── */
+    .cap-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .cap-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.15rem;
+      padding: clamp(2rem, 3.5vw, 3rem) 1.5rem;
+      border-right: 1px solid var(--rule);
+    }
+    .cap-stat:last-child { border-right: none; }
+    .cap-stat-num {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .cap-stat-num sup {
+      font-family: var(--ff-body);
+      font-size: 0.4em;
+      color: var(--celadon);
+    }
+    .cap-stat-unit {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon);
+    }
+    .cap-stat-label {
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 160px;
+    }
+
+    /* ── CLOSING ─────────────────────────────────────────── */
+    .t-closing {
+      padding: clamp(5rem, 10vw, 8rem) clamp(2rem, 6vw, 6rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .t-closing blockquote {
+      font-family: var(--ff-display);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink-mid);
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    .t-closing cite {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      font-style: normal;
+    }
+    .t-footer-links {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .t-footer-link {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      border-bottom: 1px solid var(--celadon-dim);
+      padding-bottom: 2px;
+      transition: color 0.25s;
+    }
+    .t-footer-link:hover { color: var(--celadon); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .phil-inner { grid-template-columns: 1fr; }
+      .sec-head { grid-template-columns: 1fr; gap: 1rem; }
+      .sec-head::after { display: none; }
+      .proj-item { grid-template-columns: 36px 1fr; }
+      .pi-tags { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+      .pt-card { grid-template-columns: 1fr; }
+      .pt-year-col {
+        flex-direction: row;
+        padding: 0.75rem 1.25rem;
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+        gap: 0.75rem;
+      }
+      .pt-year { writing-mode: horizontal-tb; transform: none; }
+      .pt-dot { margin-top: 0; }
+      .evo-inner { grid-template-columns: 1fr; }
+      .evo-icon { display: none; }
+      .exp-callout { grid-template-columns: 1fr; }
+      .exp-icon { display: none; }
+      .cn-link { padding: 0.75rem 1rem; }
+      .cap-stats { grid-template-columns: 1fr 1fr; }
+      .cap-stat:nth-child(2) { border-right: none; }
+      .cap-stat:nth-child(1), .cap-stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+    }
+    @media (max-width: 500px) {
+      .course-nav { gap: 0; }
+      .cn-name { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP NAV ─────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <a href="index.html#irays"  class="nav-item">iRays</a>
+    <a href="index.html#vessel" class="nav-item">The Vessel</a>
+    <a href="teaching.html"     class="nav-item" style="color:var(--ink); border-bottom:1px solid var(--celadon);">Teaching</a>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <section class="t-hero">
+    <a href="index.html" class="t-back">&larr; yangran.org</a>
+    <h1 class="t-hero-title">
+      What students<br/>built in the <em>lab</em>.
+    </h1>
+    <p class="t-hero-body">
+      Dr.&nbsp;Yang teaches the courses where physics leaves the textbook.
+      In every class, students don&rsquo;t just learn theory &mdash; they
+      <em>design</em>, <em>build</em>, <em>break</em>, <em>debug</em>, and <em>ship</em>
+      working instruments as teams, developing the hard technical skills and the
+      soft collaborative skills that define real-world engineering careers.
+    </p>
+  </section>
+
+  <!-- ── STICKY COURSE NAV ───────────────────────────────── -->
+  <nav class="course-nav" id="course-nav">
+    <a href="#phys351" class="cn-link active">
+      <span class="cn-code">PHYS 351</span>
+      <span class="cn-name">Advanced Instrumentation</span>
+    </a>
+    <a href="#phys252" class="cn-link">
+      <span class="cn-code">PHYS 252</span>
+      <span class="cn-name">Electronics</span>
+    </a>
+    <a href="#capstone" class="cn-link">
+      <span class="cn-code">EPAD Capstone</span>
+      <span class="cn-name">471/472 &amp; Honors 495/496</span>
+    </a>
+  </nav>
+
+  <!-- ── TEACHING PHILOSOPHY ─────────────────────────────── -->
+  <div class="phil-banner">
+    <div class="phil-inner">
+      <div class="phil-col">
+        <h3><em>Experiential</em> learning</h3>
+        <p>
+          Every lab is a design challenge, not a recipe. Students choose components,
+          architect circuits, write firmware, test under real conditions, and present
+          results. They learn by doing &mdash; and by failing, debugging, and iterating
+          until the instrument works.
+        </p>
+      </div>
+      <div class="phil-col">
+        <h3>Hard skills meet <em>soft</em> skills</h3>
+        <p>
+          Teams rotate roles each week &mdash; Circuit Architect, Resource Manager,
+          Hardware Specialist, Software Engineer, QA Lead. This mirrors real industry teams.
+          Technical mastery alone is not enough; communication, delegation, risk management,
+          and documentation are graded with equal weight.
+        </p>
+        <div class="pill-row">
+          <span class="pill pill-hl">Teamwork</span>
+          <span class="pill pill-hl">Communication</span>
+          <span class="pill">Risk Management</span>
+          <span class="pill">Documentation</span>
+          <span class="pill">Peer Review</span>
+          <span class="pill">Project Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PHYS 351 — ADVANCED SCIENTIFIC INSTRUMENTATION
+  ═══════════════════════════════════════════════════════ -->
+  <section id="phys351">
+
+    <div class="sec-head" data-ghost="351">
+      <span class="label">PHYS 351</span>
+      <div>
+        <h2 class="sec-name">Advanced Scientific Instrumentation</h2>
+        <p class="sec-desc">
+          Building on PHYS&nbsp;252, this course takes students into the domain of
+          <em>real measurement</em> &mdash; Raspberry&nbsp;Pi microprocessors, communication
+          protocols (UART, SPI, I&sup2;C), sensor integration, motor control, and
+          Python-driven data acquisition. Eight weeks of progressive labs lead to a
+          final group project where everything converges into a single working instrument.
+        </p>
+        <div class="sec-links">
+          <a href="#351-projects" class="sec-link">Final Projects &darr;</a>
+          <a href="#351-labs" class="sec-link">Weekly Labs &darr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-callout">
+      <div class="exp-icon">&#9881;</div>
+      <p class="exp-text">
+        <strong>How students experience PHYS 351:</strong>
+        Every Monday, teams gather in Small&nbsp;230 for hands-on build sessions. Each student
+        rotates through roles &mdash; Circuit Architect, Firmware Lead, QA Specialist &mdash;
+        so nobody hides behind a single skill. Weekly peer evaluations keep accountability high.
+        Progress is documented through photos, video clips, Git commits, and written reports
+        with named task owners. By semester&rsquo;s end, each team has produced not just a
+        working instrument, but a professional user&rsquo;s manual, a live demo, and a
+        technical presentation &mdash; the complete experience of bringing a product from
+        concept to delivery.
+      </p>
+    </div>
+
+    <!-- ── 351 FINAL PROJECTS ────────────────────────────── -->
+    <div class="five-years-intro" id="351-projects">
+      <div class="five-years-label">Final Projects &middot; 2021&ndash;2025</div>
+      <h3 class="five-years-heading">
+        Five years. Five cultures.<br/>
+        One question: <em>what can an instrument do for the human heart?</em>
+      </h3>
+      <p class="five-years-body">
+        Each fall, Dr.&nbsp;Yang designs a themed final project drawing from a different
+        culture &mdash; Italy, Japan, the Netherlands, Tibet &mdash; broadening perspective
+        as part of a holistic undergraduate education. She provides the concept, the
+        technical specifications, and the philosophical framing. Teams of two to three
+        students then spend approximately three months designing, building, and documenting
+        their own unique interpretation, bringing the same theme to life in ways that are
+        always different and always their own.
+      </p>
+    </div>
+
+    <div class="project-timeline">
+
+      <!-- 2025: MINDFULNESS WHEEL -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025</span>
+          <span class="pt-dot" style="color:#C0392B;background:#C0392B;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag">&#127464;&#127475;</span> Cultural Theme &mdash; Tibet / China</span>
+          <h4 class="pt-name">Mindfulness Wheel</h4>
+          <p class="pt-tagline">What turns here is not a plea; it is attention itself, returning to where it begins.</p>
+          <p class="pt-desc">
+            The most philosophically integrated project to date. Inspired by the Tibetan
+            <em>Zhu&#462;n J&#299;ng L&uacute;n</em> and the Mah&#257;y&#257;na tradition
+            of returning attention to the heart, students built a secular, dual-rotor instrument
+            that listens for a human cue &mdash; a spoken phrase, a clap cadence, a breath
+            pattern, a gesture &mdash; and transforms it into balanced, meditative motion.
+            Features extracted from the input deterministically seed rotation direction,
+            speed profiles, and counts for both rotors. At session&rsquo;s end, the same seed
+            selects one of at least six mindfulness-aligned affirmations. Fully self-powered.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Dual Concentric Rotors</span>
+            <span class="pt-spec">Creative Input</span>
+            <span class="pt-spec">Deterministic Seed</span>
+            <span class="pt-spec">Affirmations</span>
+            <span class="pt-spec">Self-Contained Power</span>
+            <span class="pt-spec">E-Stop</span>
+            <span class="pt-spec">CSV Logging</span>
+          </div>
+          <p class="pt-teams">Teams of 3 &middot; ~3 months &middot; Each team chose their own target user group, input modality, and affirmation medium</p>
+        </div>
+      </div>
+
+      <!-- 2024: SOLARZAAN -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2024</span>
+          <span class="pt-dot" style="color:#E67E22;background:#E67E22;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag">&#127475;&#127473;</span> Cultural Theme &mdash; The Netherlands</span>
+          <h4 class="pt-name">SolarZaan</h4>
+          <p class="pt-tagline">Dutch heritage touches the sun.</p>
+          <p class="pt-desc">
+            Named for the windmills along the Zaan River at Zaanse Schans, this project
+            challenged students to engineer a modern interpretation of a traditional Dutch
+            windmill &mdash; powered entirely by solar energy. Each team built bidirectional
+            blade rotation, variable speed control, and a translational mechanism (grinding,
+            pulling, or alternative energy transformation), functioning under both artificial
+            and natural light with full software control, emergency stop, and status monitoring.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Solar Powered</span>
+            <span class="pt-spec">Bidirectional Blades</span>
+            <span class="pt-spec">Translational Mechanism</span>
+            <span class="pt-spec">Voltage Regulation</span>
+            <span class="pt-spec">GUI / CLI</span>
+            <span class="pt-spec">E-Stop</span>
+          </div>
+          <p class="pt-teams">7 teams of 3 &middot; ~3 months &middot; Unique blade assemblies, grinding mechanisms, decorative finishes</p>
+        </div>
+      </div>
+
+      <!-- 2023: KALEIDOMNEME -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2023</span>
+          <span class="pt-dot" style="color:#7B2D8E;background:#7B2D8E;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag">&#127471;&#127477;</span> Cultural Theme &mdash; Japan</span>
+          <h4 class="pt-name">KaleidoMneme</h4>
+          <p class="pt-tagline">Memory in light. Symmetry in motion.</p>
+          <p class="pt-desc">
+            Inspired by the Japanese aesthetic of beauty in transient patterns, KaleidoMneme
+            challenged teams to build a Raspberry Pi&ndash;controlled kaleidoscope with at
+            least three motor-driven rotating mirrors, multi-colored LED light sources,
+            and an integrated Pi camera capturing 20-second video clips and still snapshots.
+            A user interface let viewers pause the rotation and photograph the exact moment
+            of beauty they wished to keep.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Raspberry Pi</span>
+            <span class="pt-spec">3+ Rotating Mirrors</span>
+            <span class="pt-spec">RGB LEDs</span>
+            <span class="pt-spec">Pi Camera</span>
+            <span class="pt-spec">Motor Control</span>
+            <span class="pt-spec">UI Interaction</span>
+          </div>
+          <p class="pt-teams">Teams of 3 &middot; ~3 months &middot; Each team chose their own mirror geometry, light palette, and enclosure</p>
+        </div>
+      </div>
+
+      <!-- 2022: VENICE GONDOLA -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2022</span>
+          <span class="pt-dot" style="color:#8B6914;background:#8B6914;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag">&#127470;&#127481;</span> Cultural Theme &mdash; Venice, Italy</span>
+          <h4 class="pt-name">Venice Gondola</h4>
+          <p class="pt-tagline">Navigating the canals with code and current.</p>
+          <p class="pt-desc">
+            Each team engineered a motorized gondola with bidirectional propulsion, steering
+            control, and environmental sensing. The challenge was not just movement but grace:
+            smooth acceleration curves, obstacle avoidance, and a user interface that felt
+            as fluid as the waterways that inspired it.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Raspberry Pi</span>
+            <span class="pt-spec">Bidirectional Motor</span>
+            <span class="pt-spec">Steering Servo</span>
+            <span class="pt-spec">Distance Sensor</span>
+            <span class="pt-spec">GUI / CLI</span>
+          </div>
+          <p class="pt-teams">Teams of 3 &middot; ~3 months &middot; Unique hull designs, propulsion systems, navigation logic</p>
+        </div>
+      </div>
+
+      <!-- 2021: CAROUSEL -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2021</span>
+          <span class="pt-dot" style="color:#4A7C59;background:#4A7C59;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag">&#127470;&#127481;</span> Cultural Theme &mdash; Italy</span>
+          <h4 class="pt-name">Carousel</h4>
+          <p class="pt-tagline">Where circuitry meets the piazza.</p>
+          <p class="pt-desc">
+            The inaugural themed project: a motorized miniature Italian piazza carousel
+            controlled by Raspberry Pi, with variable speed, directional control, and
+            sensor-driven interaction. Teams designed their own structural forms, lighting
+            sequences, and mechanical linkages.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Raspberry Pi</span>
+            <span class="pt-spec">DC Motor</span>
+            <span class="pt-spec">PWM Control</span>
+            <span class="pt-spec">LED Lighting</span>
+            <span class="pt-spec">Sensor Integration</span>
+          </div>
+          <p class="pt-teams">Teams of 3 &middot; ~3 months &middot; Each carousel mechanically and aesthetically unique</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EVOLUTION NOTE -->
+    <div class="evo-note">
+      <div class="evo-inner">
+        <span class="evo-icon" aria-hidden="true">&#8734;</span>
+        <p>
+          Across five years, the final project evolved from a mechanical demonstration into
+          a fully integrated design experience &mdash; encompassing power architecture, firmware
+          state machines, user-centered interaction design, cultural research, and professional
+          documentation. By 2025, every specification connects: the <em>input modality</em>
+          shapes the <em>motion</em>, the motion shapes the <em>message</em>, and the message
+          returns to the <em>human</em> who began it. The instrument has become coherent.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 351 LAB CURRICULUM ────────────────────────────── -->
+    <div class="lab-section" id="351-labs">
+      <div class="lab-section-label">Weekly Lab Progression &middot; 8 Labs</div>
+      <p class="lab-section-desc">
+        Before the final project begins, students complete eight progressive labs &mdash;
+        each building on the last &mdash; mastering the specific protocols, sensors, and
+        actuators they will need. Every lab is hands-on, team-based, and documented through
+        formal reports with circuit diagrams, error analysis, and conclusions.
+      </p>
+      <div class="lab-grid">
+        <div class="lab-cell">
+          <span class="lab-week">Lab 1</span>
+          <span class="lab-title">Advanced Analog I &mdash; Light Detection</span>
+          <div class="lab-tags"><span class="lab-tag">Photodetector</span><span class="lab-tag">Analog</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 2</span>
+          <span class="lab-title">Raspberry Pi Intro &amp; LED Control</span>
+          <div class="lab-tags"><span class="lab-tag">GPIO</span><span class="lab-tag">Python</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 3</span>
+          <span class="lab-title">Advanced Analog II &mdash; Frequency Mixing</span>
+          <div class="lab-tags"><span class="lab-tag">Modulation</span><span class="lab-tag">Signal Processing</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 4</span>
+          <span class="lab-title">Light Detection &amp; DC Motor</span>
+          <div class="lab-tags"><span class="lab-tag">Motor Driver</span><span class="lab-tag">PWM</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 5</span>
+          <span class="lab-title">Sensor Communications &mdash; I&sup2;C</span>
+          <div class="lab-tags"><span class="lab-tag">I&sup2;C</span><span class="lab-tag">Protocol</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 6</span>
+          <span class="lab-title">Servo &amp; Stepper Motor Control</span>
+          <div class="lab-tags"><span class="lab-tag">Stepper</span><span class="lab-tag">Servo</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 7</span>
+          <span class="lab-title">Distance Sensor &amp; Accelerometer</span>
+          <div class="lab-tags"><span class="lab-tag">Ultrasonic</span><span class="lab-tag">IMU</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 8</span>
+          <span class="lab-title">ADC with SPI &amp; Remote Access</span>
+          <div class="lab-tags"><span class="lab-tag">SPI</span><span class="lab-tag">ADC</span><span class="lab-tag">SSH</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PHYS 252 — ELECTRONICS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="phys252">
+
+    <div class="sec-head" data-ghost="252">
+      <span class="label">PHYS 252</span>
+      <div>
+        <h2 class="sec-name">Electronics</h2>
+        <p class="sec-desc">
+          The foundation. Required for every physics major, this is the very first
+          electrical engineering course most students will ever take &mdash; typically
+          in sophomore year. Op-amps, filters, transistors, comparators, oscillators,
+          and analog signal chains &mdash; designed, simulated in Multisim, soldered,
+          and debugged from first principles on a breadboard. Nine progressive labs
+          build fluency in analog electronics. Then, in the final two weeks, comes
+          the real test: <em>can you design something that works, entirely on your own?</em>
+        </p>
+        <div class="sec-links">
+          <a href="#252-projects" class="sec-link">Final Projects &darr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-callout">
+      <div class="exp-icon">&#9889;</div>
+      <p class="exp-text">
+        <strong>How students experience PHYS 252:</strong>
+        Working in pairs during Week&nbsp;1, students design their circuit on paper,
+        simulate in Multisim, and submit a schematic with a bill of materials. In
+        Week&nbsp;2, they build <em>alone</em> &mdash; nobody may touch their circuit
+        but them. No help from peers or TAs on debugging. They have three hours and an
+        oscilloscope. If it works, an instructor signs off. If it doesn&rsquo;t, they
+        learn something more valuable: how to face a problem that has no answer key.
+        This deliberate move from collaborative design to independent construction is
+        the first step in Dr.&nbsp;Yang&rsquo;s pipeline &mdash; teaching students to
+        trust their own hands before they learn to trust a team.
+      </p>
+    </div>
+
+    <!-- ── 252 FINAL PROJECTS — REAL DATA ────────────────── -->
+    <div class="proj-intro" id="252-projects">
+      <div class="proj-intro-label">Final Projects &middot; 2022&ndash;2025</div>
+      <h3 class="proj-intro-heading">
+        Four years. Four instruments.<br/>
+        One question: <em>what human problem can this circuit solve?</em>
+      </h3>
+      <p class="proj-intro-body">
+        Every spring, Dr.&nbsp;Yang designs a new final project that requires students
+        to synthesize everything from the semester &mdash; op-amp topologies, filter
+        design, signal conditioning, comparators &mdash; into a single working circuit.
+        The project changes every year. The constraint never does: it must be built on
+        one breadboard, with parts from the course inventory, in a single afternoon.
+      </p>
+    </div>
+
+    <div class="proj-252-grid">
+
+      <!-- 2025: MixSense -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2025</span>
+        <h4 class="p2-title">MixSense</h4>
+        <p class="p2-desc">
+          A stereo audio mixer combining two sources &mdash; background music and vocal
+          track &mdash; with independent volume control, 2-band active tone shaping
+          (bass at 100&thinsp;Hz, treble at 10&thinsp;kHz), and three logic-driven
+          LED indicators showing channel presence and active mixing state.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">Stereo Mixer</span>
+          <span class="p2-spec">Tone Control</span>
+          <span class="p2-spec">LED Logic</span>
+          <span class="p2-spec">LM358P</span>
+          <span class="p2-spec">&plusmn;12 dB</span>
+        </div>
+      </div>
+
+      <!-- 2024: SonicGlow -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2024</span>
+        <h4 class="p2-title">SonicGlow</h4>
+        <p class="p2-desc">
+          An audio volume visualizer driving 12+ LEDs across four color-coded
+          threshold levels. Compatible with function generator, microphone, and
+          3.5mm audio jack. Features adjustable sensitivity, preamplifier with
+          variable gain, and a low-pass filter for noise reduction.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">LED VU Meter</span>
+          <span class="p2-spec">Comparator</span>
+          <span class="p2-spec">Preamp</span>
+          <span class="p2-spec">3 Input Sources</span>
+        </div>
+      </div>
+
+      <!-- 2023: Audio Equalizer -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2023</span>
+        <h4 class="p2-title">Audio Equalizer</h4>
+        <p class="p2-desc">
+          A multi-band analog equalizer with at least three adjustable frequency
+          bands (from sub-bass to upper treble), variable gain per band
+          (&plusmn;12&thinsp;dB), and color-coded LED brightness indicators
+          reflecting the gain level of each band in real time.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">Multi-Band EQ</span>
+          <span class="p2-spec">Bandpass Filters</span>
+          <span class="p2-spec">LED Indicators</span>
+          <span class="p2-spec">&plusmn;12 dB Range</span>
+        </div>
+      </div>
+
+      <!-- 2022: Capacitance Meter -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2022</span>
+        <h4 class="p2-title">Capacitance Meter</h4>
+        <p class="p2-desc">
+          A C-to-V converter measuring capacitance from 10&thinsp;nF to 100&thinsp;nF
+          using only discrete components &mdash; no oscilloscope, no function generator,
+          no capacitance setting on the multimeter. Just analog ingenuity, a calibration
+          curve, and five mystery capacitors to identify within 10%.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">C-to-V Converter</span>
+          <span class="p2-spec">Calibration</span>
+          <span class="p2-spec">DC Only</span>
+          <span class="p2-spec">No Test Equipment</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 252 LAB CURRICULUM ────────────────────────────── -->
+    <div class="lab-section" id="252-labs">
+      <div class="lab-section-label">Weekly Lab Progression &middot; 9 Labs</div>
+      <p class="lab-section-desc">
+        Before the final project, students complete nine progressive labs &mdash;
+        each building the specific analog skills they will need. Every lab includes
+        a written report with circuit photographs, oscilloscope captures, error
+        analysis, and reflections on debugging.
+      </p>
+      <div class="lab-grid">
+        <div class="lab-cell">
+          <span class="lab-week">Lab 1</span>
+          <span class="lab-title">Electronic Tools &amp; Power Distribution</span>
+          <div class="lab-tags"><span class="lab-tag">Multimeter</span><span class="lab-tag">Breadboard</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 2</span>
+          <span class="lab-title">Thévenin&rsquo;s Theorem &amp; Impedance Matching</span>
+          <div class="lab-tags"><span class="lab-tag">Thévenin</span><span class="lab-tag">Impedance</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 3</span>
+          <span class="lab-title">RC Filters &amp; Frequency Analysis</span>
+          <div class="lab-tags"><span class="lab-tag">RC Filter</span><span class="lab-tag">Bode Plot</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 4</span>
+          <span class="lab-title">Diodes &amp; Rectifier Circuits</span>
+          <div class="lab-tags"><span class="lab-tag">Diode</span><span class="lab-tag">Rectifier</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 5</span>
+          <span class="lab-title">Transistor Bias &amp; Amplifier</span>
+          <div class="lab-tags"><span class="lab-tag">BJT</span><span class="lab-tag">Amplifier</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 6</span>
+          <span class="lab-title">Op-Amp Characteristics</span>
+          <div class="lab-tags"><span class="lab-tag">Op-Amp</span><span class="lab-tag">Gain</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 7</span>
+          <span class="lab-title">Linear Op-Amp Circuits</span>
+          <div class="lab-tags"><span class="lab-tag">Summing Amp</span><span class="lab-tag">Diff Amp</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 8</span>
+          <span class="lab-title">Active Filters</span>
+          <div class="lab-tags"><span class="lab-tag">Sallen-Key</span><span class="lab-tag">Bandpass</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 9</span>
+          <span class="lab-title">Comparators &amp; Oscillators</span>
+          <div class="lab-tags"><span class="lab-tag">Comparator</span><span class="lab-tag">Schmitt Trigger</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       EPAD CAPSTONE — 471/472 & HONORS 495/496
+  ═══════════════════════════════════════════════════════ -->
+  <section id="capstone">
+
+    <div class="sec-head" data-ghost="EPAD">
+      <span class="label">PHYS 471/472 &amp; EPAD 495/496</span>
+      <div>
+        <h2 class="sec-name">Capstone EPAD &amp; Honors Thesis</h2>
+        <p class="sec-desc">
+          The summit. Students from Physics, Computer Science, Biology, and Neuroscience
+          form interdisciplinary teams around a real problem &mdash; clinical, environmental,
+          humanitarian &mdash; and spend <em>a full year</em> building something deployable.
+          Honors thesis students (EPAD&nbsp;495/496) go further: each one owns an individual
+          deliverable within the team, conducts original research, and publicly defends
+          their thesis before an interdisciplinary faculty committee to earn an Honors degree.
+        </p>
+        <div class="sec-links">
+          <a href="index.html#irays" class="sec-link">iRays Project &nearr;</a>
+          <a href="https://waveformai.wm.edu" class="sec-link" target="_blank" rel="noopener">Waveform.ai &nearr;</a>
+          <a href="https://mcp.physics.wm.edu" class="sec-link" target="_blank" rel="noopener">MCP Program &nearr;</a>
+          <a href="mailto:rxyan2@wm.edu" class="sec-link">Contact Dr.&nbsp;Yang</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-callout">
+      <div class="exp-icon">&#127919;</div>
+      <p class="exp-text">
+        <strong>How students experience EPAD Capstone:</strong>
+        This is where everything converges. Dr.&nbsp;Yang advises simultaneously on circuit
+        design, measurement uncertainty, user research, and the ethics of what students are
+        building. Teams write proposals, manage budgets, present at milestones, and deliver
+        a working prototype with full documentation. Honors students go deeper still &mdash;
+        defining an individual research question, reviewing literature, designing experiments,
+        collecting and analyzing data, and defending their thesis before a faculty committee.
+        Several capstone projects have become the seed of funded research, filed patents, and
+        graduate-level work. Past advisees have gone on to programs at institutions including
+        the University of Rochester. The yearlong format teaches project management, stakeholder
+        communication, and the patience required to ship something that works in the real world.
+      </p>
+    </div>
+
+    <!-- ── PIPELINE OVERVIEW ──────────────────────────────── -->
+    <div class="five-years-intro" id="capstone-pipeline">
+      <div class="five-years-label">A Department-Wide Pipeline &middot; 2018&ndash;2026</div>
+      <h3 class="five-years-heading">
+        Where advanced physics becomes<br/><em>working systems</em>.
+      </h3>
+      <p class="five-years-body">
+        EPAD Capstone is a department-wide pipeline where students turn advanced physics
+        into working systems &mdash; spanning quantum and photonics hardware, bioengineering
+        and medical devices, AI-driven measurement and analysis, computational imaging,
+        plasma and high-energy-adjacent simulation, robotics and autonomy, and public-facing
+        installation art. Dr.&nbsp;Yang has directed this capstone since 2020, building on a
+        program launched in 2018 with core curriculum and dedicated faculty established in 2019.
+      </p>
+    </div>
+
+    <!-- ── IMPACT STATS ───────────────────────────────────── -->
+    <div class="cap-stats">
+      <div class="cap-stat">
+        <span class="cap-stat-num">6.5</span>
+        <span class="cap-stat-unit">years</span>
+        <span class="cap-stat-label">of cumulative impact by 2026</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">120<sup>+</sup></span>
+        <span class="cap-stat-unit">students</span>
+        <span class="cap-stat-label">~17 per year through the pipeline</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">~30</span>
+        <span class="cap-stat-unit">projects</span>
+        <span class="cap-stat-label">shipped as working prototypes</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">~50</span>
+        <span class="cap-stat-unit">collaborations</span>
+        <span class="cap-stat-label">across departments &amp; external partners</span>
+      </div>
+    </div>
+
+    <!-- ── 2025–2026 COHORT ───────────────────────────────── -->
+    <div class="five-years-intro" id="capstone-cohort">
+      <div class="five-years-label">Current Cohort &middot; 2025&ndash;2026</div>
+      <h3 class="five-years-heading">
+        Eight projects. Eight advisors.<br/>One question: <em>what can physics build for the world?</em>
+      </h3>
+      <p class="five-years-body">
+        This year&rsquo;s cohort spans the full breadth of applied physics &mdash; from clinical
+        neurology to electromagnetic manipulation, from bioengineered tissue models to
+        high-performance rocketry, from optical assembly at the nanoscale to electroacoustic
+        performance art. Two of these projects connect directly to Dr.&nbsp;Yang&rsquo;s own
+        research programs.
+      </p>
+    </div>
+
+    <div class="project-timeline">
+
+      <!-- iRays -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Primary Advisor</span>
+          <h4 class="pt-name">iRays</h4>
+          <p class="pt-tagline">A device that reads the eye before the hospital can.</p>
+          <p class="pt-desc">
+            Dual-spectrum pupillometry for prehospital neuro-triage. iRays combines specialized
+            optical design, infrared imaging, and AI-driven computer vision to deliver quantitative,
+            objective pupil measurements with the speed and portability demanded by ambulance crews
+            and field medics. Patent pending. Built with the City of Hampton Fire&nbsp;&amp;&nbsp;Rescue.
+            Funded by NIH Mid-South REACH and the AI4Health Initiative.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Dual-Spectrum Optics</span>
+            <span class="pt-spec pt-spec-hl">AI Computer Vision</span>
+            <span class="pt-spec">Infrared Imaging</span>
+            <span class="pt-spec">Patent Pending</span>
+            <span class="pt-spec">NIH Funded</span>
+          </div>
+          <p class="pt-teams">
+            Advisors: Prof.&nbsp;Ran Yang (Physics) &amp; Prof.&nbsp;Gunter Luepke (Applied Science)
+            &middot; <a href="index.html#irays" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">View iRays on main site &rarr;</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Sensor-Augmented Acoustic Instruments -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Co-Advisor</span>
+          <h4 class="pt-name">Sensor-Augmented Acoustic Instruments</h4>
+          <p class="pt-tagline">Where the performer&rsquo;s body becomes the controller.</p>
+          <p class="pt-desc">
+            Traditional methods of integrating acoustic instruments into electronic music are
+            half a century old and leave performers disconnected from the electroacoustic sound
+            world they influence. Building on prior work with the Chaos&shy;fl&ouml;te and
+            Melody&nbsp;Chua, this project develops a compact, multi-sensor device &mdash;
+            measuring breath, embouchure, and motion &mdash; that attaches ergonomically to a
+            range of instruments and feeds real-time data into digital audio workflows. The
+            sequential engineering piece of Dr.&nbsp;Yang&rsquo;s Waveform.ai program.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Multi-Sensor Array</span>
+            <span class="pt-spec pt-spec-hl">Real-Time DSP</span>
+            <span class="pt-spec">Breath &amp; Embouchure</span>
+            <span class="pt-spec">Ergonomic Design</span>
+            <span class="pt-spec">Cross-Instrument</span>
+          </div>
+          <p class="pt-teams">
+            Advisors: Prof.&nbsp;Benjamin Whiting (Music) &amp; Prof.&nbsp;Ran Yang (Physics)
+            &middot; <a href="https://waveformai.wm.edu" target="_blank" rel="noopener" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">Waveform.ai &nearr;</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- High-Performance Rocket -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#E67E22;background:#E67E22;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Aerospace &amp; Controls</span>
+          <h4 class="pt-name">High-Performance Rocket with Real-Time Trajectory Control</h4>
+          <p class="pt-tagline">Adjustable fins. Live telemetry. Precision altitude.</p>
+          <p class="pt-desc">
+            A rocket engineered for a national university competition, featuring adjustable fins
+            for precise altitude control, an onboard computer processing real-time data from
+            accelerometers, gyroscopes, magnetometer, and GPS, plus live video and telemetry
+            downlink to mission control. Dynamic fin adjustment algorithms are refined through
+            extensive simulation and iterative flight testing under FAA regulations.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Active Aero Control</span>
+            <span class="pt-spec">Live Telemetry</span>
+            <span class="pt-spec">IMU + GPS</span>
+            <span class="pt-spec">Onboard Video</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Race Boat -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#2980B9;background:#2980B9;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Naval Engineering &amp; Autonomy</span>
+          <h4 class="pt-name">Active Aerodynamic Control of a High-Speed Electric Race Boat</h4>
+          <p class="pt-tagline">Unmanned. Electric. Aerodynamically steered at speed.</p>
+          <p class="pt-desc">
+            Utilizing the race platform from the 2024&ndash;25 season, this team creates, modifies,
+            and optimizes actively controlled aerodynamic structures for a high-speed unmanned
+            electric surface vehicle. The project bridges naval architecture, control systems,
+            and competitive engineering.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Active Aerodynamics</span>
+            <span class="pt-spec">Electric Propulsion</span>
+            <span class="pt-spec">Unmanned</span>
+            <span class="pt-spec">Competition</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science) &middot; Partners: ASNE, ONR</p>
+        </div>
+      </div>
+
+      <!-- Microwave Tweezers -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#8E44AD;background:#8E44AD;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Electromagnetic Manipulation</span>
+          <h4 class="pt-name">Microwave Tweezers for Manipulation of Small Particles</h4>
+          <p class="pt-tagline">Electromagnetic force as a precision instrument.</p>
+          <p class="pt-desc">
+            High-power microwave fields (6&ndash;18&nbsp;GHz, up to 20&nbsp;W) confined within narrow
+            microstrip transmission lines create steep amplitude gradients capable of displacing
+            and steering small dielectric spheres. Electromagnetic simulations (HFSS/FEKO) model
+            the field; physical experiments test qualitative manipulation and routing along
+            microstrip-defined paths &mdash; a potential gateway to microfluidic material transport.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Microwave 6&ndash;18 GHz</span>
+            <span class="pt-spec">Microstrip Design</span>
+            <span class="pt-spec">EM Simulation</span>
+            <span class="pt-spec">Microfluidics</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Seth Aubin (Physics)</p>
+        </div>
+      </div>
+
+      <!-- Optical Tweezers -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#D4AC0D;background:#D4AC0D;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Photonics &amp; Nanofabrication</span>
+          <h4 class="pt-name">Particle Assembly Guided by Optical Tweezers</h4>
+          <p class="pt-tagline">Pick, place, build &mdash; one microparticle at a time.</p>
+          <p class="pt-desc">
+            Advanced architected materials require structural features spanning nanometers to
+            centimeters. This project builds a &ldquo;pick and place&rdquo; assembly system using
+            focused laser beams (optical tweezers) to capture individual microparticles from
+            suspension and position them precisely on a substrate. Surface engineering ensures
+            adhesion; automation and coding bring repeatability.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Optical Tweezers</span>
+            <span class="pt-spec">Micro-Manipulation</span>
+            <span class="pt-spec">Surface Chemistry</span>
+            <span class="pt-spec">Automation</span>
+          </div>
+          <p class="pt-teams">Advisors: Prof.&nbsp;Bjorg Larson (Physics) &amp; Prof.&nbsp;Hannes C. Schniepp (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Bone-on-Chip -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#C0392B;background:#C0392B;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Bioengineering &amp; Microfluidics</span>
+          <h4 class="pt-name">Bone-on-Chip Microfluidic Device</h4>
+          <p class="pt-tagline">A platform the size of a coin that models human bone.</p>
+          <p class="pt-desc">
+            Diabetes impairs communication between bone and cartilage cells. This project designs
+            and fabricates a compact microfluidic device &mdash; tiny channels and compartments
+            where cells are grown and studied under controlled glucose levels. Fabricated via soft
+            lithography or 3D printing, with fluid flow simulations ensuring proper nutrient delivery.
+            A bridge between engineering, physics, and biology.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Microfluidics</span>
+            <span class="pt-spec">Soft Lithography</span>
+            <span class="pt-spec">CAD &amp; Simulation</span>
+            <span class="pt-spec">Biomedical</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Indranath Mitra (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Variable Temperature Probe -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#4A7C59;background:#4A7C59;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Materials &amp; Cryogenics</span>
+          <h4 class="pt-name">Variable Temperature Probe for Magnetic Susceptibility</h4>
+          <p class="pt-tagline">Measuring magnetism from 4&nbsp;K to 400&nbsp;K.</p>
+          <p class="pt-desc">
+            Design and construct a probe using AC magnetometry to measure the magnetic
+            susceptibility of materials across a sweeping temperature range &mdash; from liquid
+            helium to above room temperature. A small oscillating current generates an AC magnetic
+            field; a pickup coil with lock-in detection measures the induced response. Precision
+            mechanical and electromagnetic design for extreme conditions.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">AC Magnetometry</span>
+            <span class="pt-spec">Cryogenic &mdash; 4 K</span>
+            <span class="pt-spec">Lock-In Detection</span>
+            <span class="pt-spec">Probe Design</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Mumtaz Qazilbash (Physics)</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       CLOSING
+  ═══════════════════════════════════════════════════════ -->
+  <section class="t-closing">
+  <blockquote style="text-align: center;">
+          <span style="font-family: 'Noto Serif SC', serif; font-size: 1.2rem; color: var(--celadon); font-weight: 300; display: block; margin-bottom: 1rem; letter-spacing: 0.2em;">埏埴以為器，當其無，有器之用。</span>
+          &ldquo;We shape clay into a vessel;<br>
+          but it is the space within that gives it purpose.&rdquo;
+        </blockquote>
+        <cite>Tao Te Ching &middot; Chapter 11</cite>
+    <div class="t-footer-links">
+      <a href="index.html" class="t-footer-link">&larr; Back to yangran.org</a>
+      <a href="mailto:rxyan2@wm.edu" class="t-footer-link">rxyan2@wm.edu</a>
+      <a href="https://iraysvision.com" class="t-footer-link" target="_blank" rel="noopener">iRays</a>
+      <a href="https://mcp.physics.wm.edu" class="t-footer-link" target="_blank" rel="noopener">MCP Program</a>
+      <a href="https://waveformai.wm.edu" class="t-footer-link" target="_blank" rel="noopener">Waveform.ai</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="mono-sm">&copy; 2026 Ran Yang &middot; yangran.org</span>
+  </footer>
+
+
+  <!-- ── SCRIPTS ─────────────────────────────────────────── -->
+  <script>
+    /* Scroll-triggered reveal for project cards */
+    (function() {
+      var cards = document.querySelectorAll('[data-reveal]');
+      if (!cards.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      cards.forEach(function(card) { observer.observe(card); });
+    })();
+
+    /* Sticky course nav — highlight active section on scroll */
+    (function() {
+      var links = document.querySelectorAll('.cn-link');
+      var sections = [];
+      links.forEach(function(link) {
+        var id = link.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: link });
+      });
+      if (!sections.length) return;
+
+      function update() {
+        var scrollY = window.scrollY + 180;
+        var active = sections[0];
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el.offsetTop <= scrollY) active = sections[i];
+        }
+        links.forEach(function(l) { l.classList.remove('active'); });
+        active.link.classList.add('active');
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+
+      /* Smooth scroll for course nav links */
+      links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var id = this.getAttribute('href').replace('#', '');
+          var target = document.getElementById(id);
+          if (target) {
+            var offset = target.offsetTop - 120;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
