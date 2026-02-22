@@ -39,8 +39,8 @@
   // Auto-spawn ripples at a quiet, irregular pace
   let nextSpawn = 0;
   function scheduleSpawn() {
-    // 1.8–4s between spontaneous ripples — unhurried
-    nextSpawn = Date.now() + 1800 + Math.random() * 2200;
+    // 2.5–5s between spontaneous ripples — more contemplative
+    nextSpawn = Date.now() + 2500 + Math.random() * 2500;
   }
   scheduleSpawn();
 
@@ -72,9 +72,9 @@
       const rp = ripples[i];
       rp.r += rp.speed;
 
-      // Fade out as it expands
+      // Fade out as it expands — quadratic for graceful dissolution
       const progress = rp.r / rp.maxR;
-      const alpha = rp.alpha * (1 - progress);
+      const alpha = rp.alpha * (1 - progress) * (1 - progress);
 
       if (alpha <= 0 || rp.r >= rp.maxR) {
         ripples.splice(i, 1);
@@ -276,9 +276,11 @@
   // Subtle background shift when scrolled past hero
   window.addEventListener('scroll', () => {
     const past = window.scrollY > window.innerHeight * 0.7;
-    nav.style.borderBottomColor = past
-      ? 'rgba(26,20,16,0.16)'
-      : 'rgba(26,20,16,0.1)';
+    if (past) {
+      nav.classList.add('nav--scrolled');
+    } else {
+      nav.classList.remove('nav--scrolled');
+    }
   }, { passive: true });
 
   // Active section highlight

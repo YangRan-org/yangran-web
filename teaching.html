@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ═══════════════════════════════════════════════════════
-       TEACHING PAGE
-       Order: 351 → 252 → 471/472 → 495/496
+       TEACHING PAGE — v3
+       Pipeline: 252 → 351 → Capstone → Honors
     ═══════════════════════════════════════════════════════ */
 
     /* ── HERO ────────────────────────────────────────────── */
@@ -69,7 +69,7 @@
     /* ── STICKY COURSE NAV ───────────────────────────────── */
     .course-nav {
       position: sticky;
-      top: 58px; /* below main nav */
+      top: 58px;
       z-index: 50;
       display: flex;
       align-items: center;
@@ -78,15 +78,6 @@
       border-bottom: 1px solid var(--rule);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-    }
-    .course-nav::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--rule);
     }
     .cn-link {
       flex: 1;
@@ -112,11 +103,110 @@
     .cn-code { font-size: 0.68rem; letter-spacing: 0.16em; font-weight: 400; }
     .cn-name { font-family: var(--ff-body); font-size: 0.72rem; letter-spacing: 0.02em; text-transform: none; color: var(--ink-mid); }
 
+    /* ── PIPELINE SECTION ────────────────────────────────── */
+    .pipeline-banner {
+      padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 6vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .pipeline-label {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      margin-bottom: 1.5rem;
+    }
+    .pipeline-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+    .pipeline-heading em { color: var(--celadon); font-style: italic; }
+    .pipeline-body {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      max-width: 660px;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+    }
+
+    .pipeline-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .pipeline-stage {
+      background: var(--ground);
+      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .pipeline-stage:hover { background: var(--ground-lift); }
+    .pipeline-stage::after {
+      content: '→';
+      position: absolute;
+      right: -0.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--ff-mono);
+      font-size: 0.9rem;
+      color: var(--celadon-mid);
+      z-index: 2;
+    }
+    .pipeline-stage:last-child::after { display: none; }
+    .ps-year {
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+    }
+    .ps-code {
+      font-family: var(--ff-display);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    .ps-name {
+      font-family: var(--ff-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .ps-desc {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      margin-top: auto;
+    }
+    .ps-tag {
+      display: inline-block;
+      font-family: var(--ff-mono);
+      font-size: 0.44rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2em 0.55em;
+      border: 1px solid var(--rule-mid);
+      color: var(--ink-soft);
+      margin-right: 0.3rem;
+      margin-top: 0.3rem;
+    }
+    .ps-tag-hl { border-color: rgba(107,144,128,0.35); color: var(--celadon); }
+
     /* ── PHILOSOPHY BANNER ───────────────────────────────── */
     .phil-banner {
       padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 6vw, 6rem);
       border-bottom: 1px solid var(--rule);
-      background: var(--ground-deep);
     }
     .phil-inner {
       display: grid;
@@ -245,7 +335,105 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       PROJECT TIMELINE (351 Final Projects)
+       252 FINAL PROJECTS — REAL DATA
+    ═══════════════════════════════════════════════════════ */
+    .proj-intro {
+      padding: clamp(3.5rem, 6vw, 5rem) clamp(2rem, 6vw, 6rem) clamp(2rem, 3vw, 2.5rem);
+    }
+    .proj-intro-label {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      margin-bottom: 1.5rem;
+    }
+    .proj-intro-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .proj-intro-heading em { color: var(--celadon); font-style: italic; }
+    .proj-intro-body {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    /* 252 project cards — horizontal timeline feel */
+    .proj-252-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin: 0 clamp(2rem, 6vw, 6rem) clamp(3rem, 5vw, 4rem);
+    }
+    .proj-252-card {
+      background: var(--ground);
+      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      transition: background 0.3s;
+      position: relative;
+    }
+    .proj-252-card:hover { background: var(--ground-lift); }
+    .proj-252-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--celadon);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .proj-252-card:hover::before { transform: scaleX(1); }
+    .p2-year {
+      font-family: var(--ff-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+    }
+    .p2-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .p2-desc {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .p2-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: auto;
+    }
+    .p2-spec {
+      font-family: var(--ff-mono);
+      font-size: 0.44rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2em 0.5em;
+      border: 1px solid var(--rule);
+      color: var(--ink-soft);
+    }
+    .p2-spec-hl { border-color: rgba(107,144,128,0.35); color: var(--celadon); }
+
+    /* ═══════════════════════════════════════════════════════
+       351 PROJECT TIMELINE
     ═══════════════════════════════════════════════════════ */
     .five-years-intro {
       padding: clamp(3.5rem, 6vw, 5rem) clamp(2rem, 6vw, 6rem) clamp(2rem, 3vw, 2.5rem);
@@ -497,124 +685,12 @@
     }
     .evo-note em { color: var(--ink); font-style: italic; }
 
-    /* ── 252 PROJECT LIST ────────────────────────────────── */
-    .proj-list { list-style: none; padding: 0 clamp(2rem, 6vw, 6rem); }
-    .proj-item {
-      display: grid;
-      grid-template-columns: 44px 1fr 180px;
-      gap: 0 2.5rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--rule);
-      align-items: start;
-      transition: opacity 0.2s;
-    }
-    .proj-item:hover { opacity: 0.75; }
-    .pi-num {
-      font-family: var(--ff-mono);
-      font-size: 0.58rem;
-      color: var(--ink-ghost);
-      letter-spacing: 0.1em;
-      padding-top: 0.4rem;
-    }
-    .pi-title {
-      font-family: var(--ff-display);
-      font-size: 1.3rem;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 0.4rem;
-    }
-    .pi-authors {
-      font-family: var(--ff-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.08em;
-      color: var(--celadon-mid);
-      margin-bottom: 0.7rem;
-    }
-    .pi-desc {
-      font-size: 0.92rem;
-      color: var(--ink-mid);
-      line-height: 1.7;
-    }
-    .pi-tags {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      align-items: flex-end;
-      padding-top: 0.3rem;
-    }
-    .pi-tag {
-      font-family: var(--ff-mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      padding: 0.25em 0.7em;
-      border: 1px solid var(--rule-mid);
-      color: var(--ink-soft);
-      white-space: nowrap;
-    }
-    .pi-tag-hl { border-color: rgba(107,144,128,0.3); color: var(--celadon); }
-
     /* ── CAPSTONE & HONORS SECTIONS ──────────────────────── */
     .capstone-section {
       padding: clamp(4rem, 7vw, 6rem) clamp(2rem, 6vw, 6rem);
       border-bottom: 1px solid var(--rule);
     }
     .capstone-section:nth-child(even) { background: var(--ground-deep); }
-    .cap-body {
-      font-size: 0.97rem;
-      color: var(--ink-mid);
-      line-height: 1.8;
-      max-width: 660px;
-      margin-top: 1rem;
-    }
-
-    /* ── CAPSTONE STATS ──────────────────────────────────── */
-    .cap-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      background: var(--ground-deep);
-    }
-    .cap-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.15rem;
-      padding: clamp(2rem, 3.5vw, 3rem) 1.5rem;
-      border-right: 1px solid var(--rule);
-    }
-    .cap-stat:last-child { border-right: none; }
-    .cap-stat-num {
-      font-family: var(--ff-display);
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 300;
-      line-height: 1;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-    }
-    .cap-stat-num sup {
-      font-family: var(--ff-body);
-      font-size: 0.4em;
-      color: var(--celadon);
-    }
-    .cap-stat-unit {
-      font-family: var(--ff-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--celadon);
-    }
-    .cap-stat-label {
-      font-family: var(--ff-mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.06em;
-      color: var(--ink-soft);
-      line-height: 1.5;
-      max-width: 160px;
-    }
 
     /* ── CLOSING ─────────────────────────────────────────── */
     .t-closing {
@@ -658,12 +734,15 @@
     .t-footer-link:hover { color: var(--celadon); }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .pipeline-track { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-stage:nth-child(2)::after { display: none; }
+      .proj-252-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 820px) {
       .phil-inner { grid-template-columns: 1fr; }
       .sec-head { grid-template-columns: 1fr; gap: 1rem; }
       .sec-head::after { display: none; }
-      .proj-item { grid-template-columns: 36px 1fr; }
-      .pi-tags { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
       .pt-card { grid-template-columns: 1fr; }
       .pt-year-col {
         flex-direction: row;
@@ -679,9 +758,11 @@
       .exp-callout { grid-template-columns: 1fr; }
       .exp-icon { display: none; }
       .cn-link { padding: 0.75rem 1rem; }
-      .cap-stats { grid-template-columns: 1fr 1fr; }
-      .cap-stat:nth-child(2) { border-right: none; }
-      .cap-stat:nth-child(1), .cap-stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+    }
+    @media (max-width: 600px) {
+      .pipeline-track { grid-template-columns: 1fr; }
+      .pipeline-stage::after { display: none; }
+      .proj-252-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 500px) {
       .course-nav { gap: 0; }
@@ -715,19 +796,88 @@
 
   <!-- ── STICKY COURSE NAV ───────────────────────────────── -->
   <nav class="course-nav" id="course-nav">
-    <a href="#phys351" class="cn-link active">
-      <span class="cn-code">PHYS 351</span>
-      <span class="cn-name">Advanced Instrumentation</span>
-    </a>
-    <a href="#phys252" class="cn-link">
+    <a href="#phys252" class="cn-link active">
       <span class="cn-code">PHYS 252</span>
       <span class="cn-name">Electronics</span>
     </a>
-    <a href="#capstone" class="cn-link">
-      <span class="cn-code">EPAD Capstone</span>
-      <span class="cn-name">471/472 &amp; Honors 495/496</span>
+    <a href="#phys351" class="cn-link">
+      <span class="cn-code">PHYS 351</span>
+      <span class="cn-name">Advanced Instrumentation</span>
+    </a>
+    <a href="#phys471" class="cn-link">
+      <span class="cn-code">PHYS 471/472</span>
+      <span class="cn-name">Capstone EPAD</span>
+    </a>
+    <a href="#epad495" class="cn-link">
+      <span class="cn-code">EPAD 495/496</span>
+      <span class="cn-name">Honors Thesis</span>
     </a>
   </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       THE PIPELINE — Teaching Philosophy as Architecture
+  ═══════════════════════════════════════════════════════ -->
+  <section class="pipeline-banner" id="pipeline">
+    <div class="pipeline-label">A Four-Year Engineering Pipeline</div>
+    <h2 class="pipeline-heading">
+      Philosophy is only philosophy<br/>until you build <em>the roadmap</em>.
+    </h2>
+    <p class="pipeline-body">
+      Dr.&nbsp;Yang doesn&rsquo;t just believe in experiential learning &mdash; she
+      has engineered a concrete, four-course progression that takes a sophomore who
+      has never touched a breadboard and, over three years, transforms them into an
+      engineer capable of leading a year-long product development cycle. Each stage
+      builds on the last. Nothing is repeated. Nothing is skipped. The skills compound.
+    </p>
+
+    <div class="pipeline-track">
+      <div class="pipeline-stage">
+        <span class="ps-year">Sophomore</span>
+        <h3 class="ps-code">PHYS 252</h3>
+        <span class="ps-name">Electronics</span>
+        <p class="ps-desc">First EE course. Design in pairs, build alone. One breadboard, two weeks, one working circuit. Learn to trust your own hands.</p>
+        <div>
+          <span class="ps-tag ps-tag-hl">Individual Build</span>
+          <span class="ps-tag">Op-Amps</span>
+          <span class="ps-tag">Filters</span>
+          <span class="ps-tag">Analog</span>
+        </div>
+      </div>
+      <div class="pipeline-stage">
+        <span class="ps-year">Junior</span>
+        <h3 class="ps-code">PHYS 351</h3>
+        <span class="ps-name">Advanced Instrumentation</span>
+        <p class="ps-desc">Teams of three, three months. Raspberry Pi, sensors, motors, firmware, cultural research, professional documentation. Build a complete instrument.</p>
+        <div>
+          <span class="ps-tag ps-tag-hl">Team Project</span>
+          <span class="ps-tag">Pi</span>
+          <span class="ps-tag">I²C / SPI</span>
+          <span class="ps-tag">Python</span>
+        </div>
+      </div>
+      <div class="pipeline-stage">
+        <span class="ps-year">Senior</span>
+        <h3 class="ps-code">PHYS 471/472</h3>
+        <span class="ps-name">Capstone EPAD</span>
+        <p class="ps-desc">Interdisciplinary teams, one full year. A real problem, a real stakeholder, a deployable prototype. Budget, ethics, milestones, defense.</p>
+        <div>
+          <span class="ps-tag ps-tag-hl">Year-Long</span>
+          <span class="ps-tag">Entrepreneurial</span>
+          <span class="ps-tag">Real-World</span>
+        </div>
+      </div>
+      <div class="pipeline-stage">
+        <span class="ps-year">Senior / Post</span>
+        <h3 class="ps-code">EPAD 495/496</h3>
+        <span class="ps-name">Honors Thesis</span>
+        <p class="ps-desc">One student, one question, one year. Original research contributing to funded programs. The closest thing to graduate work an undergraduate can do.</p>
+        <div>
+          <span class="ps-tag ps-tag-hl">Independent Research</span>
+          <span class="ps-tag">Publication</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── TEACHING PHILOSOPHY ─────────────────────────────── -->
   <div class="phil-banner">
@@ -763,6 +913,200 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
+       PHYS 252 — ELECTRONICS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="phys252">
+
+    <div class="sec-head" data-ghost="252">
+      <span class="label">PHYS 252</span>
+      <div>
+        <h2 class="sec-name">Electronics</h2>
+        <p class="sec-desc">
+          The foundation. Required for every physics major, this is the very first
+          electrical engineering course most students will ever take &mdash; typically
+          in sophomore year. Op-amps, filters, transistors, comparators, oscillators,
+          and analog signal chains &mdash; designed, simulated in Multisim, soldered,
+          and debugged from first principles on a breadboard. Nine progressive labs
+          build fluency in analog electronics. Then, in the final two weeks, comes
+          the real test: <em>can you design something that works, entirely on your own?</em>
+        </p>
+        <div class="sec-links">
+          <a href="#252-projects" class="sec-link">Final Projects &darr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-callout">
+      <div class="exp-icon">&#9889;</div>
+      <p class="exp-text">
+        <strong>How students experience PHYS 252:</strong>
+        Working in pairs during Week&nbsp;1, students design their circuit on paper,
+        simulate in Multisim, and submit a schematic with a bill of materials. In
+        Week&nbsp;2, they build <em>alone</em> &mdash; nobody may touch their circuit
+        but them. No help from peers or TAs on debugging. They have three hours and an
+        oscilloscope. If it works, an instructor signs off. If it doesn&rsquo;t, they
+        learn something more valuable: how to face a problem that has no answer key.
+        This deliberate move from collaborative design to independent construction is
+        the first step in Dr.&nbsp;Yang&rsquo;s pipeline &mdash; teaching students to
+        trust their own hands before they learn to trust a team.
+      </p>
+    </div>
+
+    <!-- ── 252 FINAL PROJECTS — REAL DATA ────────────────── -->
+    <div class="proj-intro" id="252-projects">
+      <div class="proj-intro-label">Final Projects &middot; 2022&ndash;2025</div>
+      <h3 class="proj-intro-heading">
+        Four years. Four instruments.<br/>
+        One question: <em>what human problem can this circuit solve?</em>
+      </h3>
+      <p class="proj-intro-body">
+        Every spring, Dr.&nbsp;Yang designs a new final project that requires students
+        to synthesize everything from the semester &mdash; op-amp topologies, filter
+        design, signal conditioning, comparators &mdash; into a single working circuit.
+        The project changes every year. The constraint never does: it must be built on
+        one breadboard, with parts from the course inventory, in a single afternoon.
+      </p>
+    </div>
+
+    <div class="proj-252-grid">
+
+      <!-- 2025: MixSense -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2025</span>
+        <h4 class="p2-title">MixSense</h4>
+        <p class="p2-desc">
+          A stereo audio mixer combining two sources &mdash; background music and vocal
+          track &mdash; with independent volume control, 2-band active tone shaping
+          (bass at 100&thinsp;Hz, treble at 10&thinsp;kHz), and three logic-driven
+          LED indicators showing channel presence and active mixing state.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">Stereo Mixer</span>
+          <span class="p2-spec">Tone Control</span>
+          <span class="p2-spec">LED Logic</span>
+          <span class="p2-spec">LM358P</span>
+          <span class="p2-spec">&plusmn;12 dB</span>
+        </div>
+      </div>
+
+      <!-- 2024: SonicGlow -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2024</span>
+        <h4 class="p2-title">SonicGlow</h4>
+        <p class="p2-desc">
+          An audio volume visualizer driving 12+ LEDs across four color-coded
+          threshold levels. Compatible with function generator, microphone, and
+          3.5mm audio jack. Features adjustable sensitivity, preamplifier with
+          variable gain, and a low-pass filter for noise reduction.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">LED VU Meter</span>
+          <span class="p2-spec">Comparator</span>
+          <span class="p2-spec">Preamp</span>
+          <span class="p2-spec">3 Input Sources</span>
+        </div>
+      </div>
+
+      <!-- 2023: Audio Equalizer -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2023</span>
+        <h4 class="p2-title">Audio Equalizer</h4>
+        <p class="p2-desc">
+          A multi-band analog equalizer with at least three adjustable frequency
+          bands (from sub-bass to upper treble), variable gain per band
+          (&plusmn;12&thinsp;dB), and color-coded LED brightness indicators
+          reflecting the gain level of each band in real time.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">Multi-Band EQ</span>
+          <span class="p2-spec">Bandpass Filters</span>
+          <span class="p2-spec">LED Indicators</span>
+          <span class="p2-spec">&plusmn;12 dB Range</span>
+        </div>
+      </div>
+
+      <!-- 2022: Capacitance Meter -->
+      <div class="proj-252-card" data-reveal>
+        <span class="p2-year">Spring 2022</span>
+        <h4 class="p2-title">Capacitance Meter</h4>
+        <p class="p2-desc">
+          A C-to-V converter measuring capacitance from 10&thinsp;nF to 100&thinsp;nF
+          using only discrete components &mdash; no oscilloscope, no function generator,
+          no capacitance setting on the multimeter. Just analog ingenuity, a calibration
+          curve, and five mystery capacitors to identify within 10%.
+        </p>
+        <div class="p2-specs">
+          <span class="p2-spec p2-spec-hl">C-to-V Converter</span>
+          <span class="p2-spec">Calibration</span>
+          <span class="p2-spec">DC Only</span>
+          <span class="p2-spec">No Test Equipment</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 252 LAB CURRICULUM ────────────────────────────── -->
+    <div class="lab-section" id="252-labs">
+      <div class="lab-section-label">Weekly Lab Progression &middot; 9 Labs</div>
+      <p class="lab-section-desc">
+        Before the final project, students complete nine progressive labs &mdash;
+        each building the specific analog skills they will need. Every lab includes
+        a written report with circuit photographs, oscilloscope captures, error
+        analysis, and reflections on debugging.
+      </p>
+      <div class="lab-grid">
+        <div class="lab-cell">
+          <span class="lab-week">Lab 1</span>
+          <span class="lab-title">Electronic Tools &amp; Power Distribution</span>
+          <div class="lab-tags"><span class="lab-tag">Multimeter</span><span class="lab-tag">Breadboard</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 2</span>
+          <span class="lab-title">Thévenin&rsquo;s Theorem &amp; Impedance Matching</span>
+          <div class="lab-tags"><span class="lab-tag">Thévenin</span><span class="lab-tag">Impedance</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 3</span>
+          <span class="lab-title">RC Filters &amp; Frequency Analysis</span>
+          <div class="lab-tags"><span class="lab-tag">RC Filter</span><span class="lab-tag">Bode Plot</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 4</span>
+          <span class="lab-title">Diodes &amp; Rectifier Circuits</span>
+          <div class="lab-tags"><span class="lab-tag">Diode</span><span class="lab-tag">Rectifier</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 5</span>
+          <span class="lab-title">Transistor Bias &amp; Amplifier</span>
+          <div class="lab-tags"><span class="lab-tag">BJT</span><span class="lab-tag">Amplifier</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 6</span>
+          <span class="lab-title">Op-Amp Characteristics</span>
+          <div class="lab-tags"><span class="lab-tag">Op-Amp</span><span class="lab-tag">Gain</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 7</span>
+          <span class="lab-title">Linear Op-Amp Circuits</span>
+          <div class="lab-tags"><span class="lab-tag">Summing Amp</span><span class="lab-tag">Diff Amp</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 8</span>
+          <span class="lab-title">Active Filters</span>
+          <div class="lab-tags"><span class="lab-tag">Sallen-Key</span><span class="lab-tag">Bandpass</span></div>
+        </div>
+        <div class="lab-cell">
+          <span class="lab-week">Lab 9</span>
+          <span class="lab-title">Comparators &amp; Oscillators</span>
+          <div class="lab-tags"><span class="lab-tag">Comparator</span><span class="lab-tag">Schmitt Trigger</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
        PHYS 351 — ADVANCED SCIENTIFIC INSTRUMENTATION
   ═══════════════════════════════════════════════════════ -->
   <section id="phys351">
@@ -772,11 +1116,14 @@
       <div>
         <h2 class="sec-name">Advanced Scientific Instrumentation</h2>
         <p class="sec-desc">
-          Building on PHYS&nbsp;252, this course takes students into the domain of
-          <em>real measurement</em> &mdash; Raspberry&nbsp;Pi microprocessors, communication
-          protocols (UART, SPI, I&sup2;C), sensor integration, motor control, and
-          Python-driven data acquisition. Eight weeks of progressive labs lead to a
-          final group project where everything converges into a single working instrument.
+          Where 252 taught students to build a circuit alone, 351 teaches them to
+          build a <em>system</em> as a team. Raspberry&nbsp;Pi microprocessors,
+          communication protocols (UART, SPI, I&sup2;C), sensor integration, motor
+          control, Python-driven data acquisition, and professional documentation.
+          Eight weeks of progressive labs lead to a three-month final group project
+          where everything converges into a single working instrument &mdash;
+          one that requires hardware, firmware, software, cultural research, and
+          user-centered design to all work in concert.
         </p>
         <div class="sec-links">
           <a href="#351-projects" class="sec-link">Final Projects &darr;</a>
@@ -789,13 +1136,14 @@
       <div class="exp-icon">&#9881;</div>
       <p class="exp-text">
         <strong>How students experience PHYS 351:</strong>
-        Every Monday, teams gather in Small&nbsp;230 for hands-on build sessions. Each student
-        rotates through roles &mdash; Circuit Architect, Firmware Lead, QA Specialist &mdash;
-        so nobody hides behind a single skill. Weekly peer evaluations keep accountability high.
-        Progress is documented through photos, video clips, Git commits, and written reports
-        with named task owners. By semester&rsquo;s end, each team has produced not just a
-        working instrument, but a professional user&rsquo;s manual, a live demo, and a
-        technical presentation &mdash; the complete experience of bringing a product from
+        Every Monday, teams of three gather in Small&nbsp;230 for hands-on build sessions.
+        Each student rotates through roles &mdash; Circuit Architect, Firmware Lead,
+        QA Specialist &mdash; so nobody hides behind a single skill. Weekly peer
+        evaluations keep accountability high. Progress is documented through photos,
+        video clips, Git commits, and written reports with named task owners. By
+        semester&rsquo;s end, each team has produced not just a working instrument,
+        but a professional user&rsquo;s manual, a live demo, and a technical
+        presentation &mdash; the complete experience of bringing a product from
         concept to delivery.
       </p>
     </div>
@@ -809,12 +1157,12 @@
       </h3>
       <p class="five-years-body">
         Each fall, Dr.&nbsp;Yang designs a themed final project drawing from a different
-        culture &mdash; Italy, Japan, the Netherlands, Tibet &mdash; broadening perspective
-        as part of a holistic undergraduate education. She provides the concept, the
-        technical specifications, and the philosophical framing. Teams of two to three
-        students then spend approximately three months designing, building, and documenting
-        their own unique interpretation, bringing the same theme to life in ways that are
-        always different and always their own.
+        culture &mdash; the United States, Italy, Japan, the Netherlands, Tibet &mdash;
+        broadening perspective as part of a holistic undergraduate education. She provides
+        the concept, the technical specifications, and the philosophical framing. Teams
+        of two to three students then spend approximately three months designing, building,
+        and documenting their own unique interpretation, bringing the same theme to life
+        in ways that are always different and always their own.
       </p>
     </div>
 
@@ -827,7 +1175,7 @@
           <span class="pt-dot" style="color:#C0392B;background:#C0392B;"></span>
         </div>
         <div class="pt-content">
-          <span class="pt-badge"><span class="flag">&#127464;&#127475;</span> Cultural Theme &mdash; Tibet / China</span>
+          <span class="pt-badge"><span class="flag">&#127464;&#127475;</span> Cultural Theme &mdash; Tibet, China</span>
           <h4 class="pt-name">Mindfulness Wheel</h4>
           <p class="pt-tagline">What turns here is not a plea; it is attention itself, returning to where it begins.</p>
           <p class="pt-desc">
@@ -940,21 +1288,23 @@
         </div>
       </div>
 
-      <!-- 2021: CAROUSEL -->
+      <!-- 2021: FESTIVAL CAROUSEL -->
       <div class="pt-card" data-reveal>
         <div class="pt-year-col">
           <span class="pt-year">2021</span>
-          <span class="pt-dot" style="color:#4A7C59;background:#4A7C59;"></span>
+          <span class="pt-dot" style="color:#2E6B8A;background:#2E6B8A;"></span>
         </div>
         <div class="pt-content">
-          <span class="pt-badge"><span class="flag">&#127470;&#127481;</span> Cultural Theme &mdash; Italy</span>
-          <h4 class="pt-name">Carousel</h4>
-          <p class="pt-tagline">Where circuitry meets the piazza.</p>
+          <span class="pt-badge"><span class="flag">&#127482;&#127480;</span> Cultural Theme &mdash; United States</span>
+          <h4 class="pt-name">Festival Carousel</h4>
+          <p class="pt-tagline">Where circuitry meets the county fair.</p>
           <p class="pt-desc">
-            The inaugural themed project: a motorized miniature Italian piazza carousel
-            controlled by Raspberry Pi, with variable speed, directional control, and
+            The inaugural themed project: a motorized miniature carousel inspired by the
+            American festival tradition &mdash; county fairs, boardwalks, traveling carnivals &mdash;
+            controlled by Raspberry Pi with variable speed, directional control, and
             sensor-driven interaction. Teams designed their own structural forms, lighting
-            sequences, and mechanical linkages.
+            sequences, and mechanical linkages, capturing the kinetic joy and nostalgic
+            warmth of a uniquely American cultural experience.
           </p>
           <div class="pt-specs">
             <span class="pt-spec pt-spec-hl">Raspberry Pi</span>
@@ -1041,121 +1391,25 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       PHYS 252 — ELECTRONICS
+       PHYS 471/472 — CAPSTONE EPAD
   ═══════════════════════════════════════════════════════ -->
-  <section id="phys252">
+  <section id="phys471" class="capstone-section">
 
-    <div class="sec-head" data-ghost="252">
-      <span class="label">PHYS 252</span>
+    <div class="sec-head" data-ghost="471">
+      <span class="label">PHYS 471/472</span>
       <div>
-        <h2 class="sec-name">Electronics</h2>
-        <p class="sec-desc">
-          Op-amps, filters, transistors, microcontrollers, and analog signal chains &mdash;
-          designed, soldered, and debugged from first principles. The final question
-          is always the same: <em>what human problem can this circuit solve?</em>
-          This is the prerequisite to PHYS&nbsp;351 and the foundation for every instrument
-          students will ever build.
-        </p>
-        <div class="sec-links">
-          <a href="#252-projects" class="sec-link">Student Projects &darr;</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-callout">
-      <div class="exp-icon">&#9889;</div>
-      <p class="exp-text">
-        <strong>How students experience PHYS 252:</strong>
-        Working in pairs, students design circuits on paper, source components, build on
-        breadboards, test with oscilloscopes and multimeters, and iterate until the circuit
-        meets spec. Lab reports require circuit photographs, error analyses, and reflections
-        on what went wrong and how they fixed it. By semester&rsquo;s end, they have built
-        amplifiers, filters, oscillators, microcontroller projects, and a final open-ended
-        design &mdash; assembling a toolkit of skills they carry into 351 and beyond.
-      </p>
-    </div>
-
-    <div class="notice" id="252-projects" style="margin: 2.5rem clamp(2rem,6vw,6rem);">
-      <p>
-        &#9881; PLACEHOLDER PROJECTS &mdash; Replace with real student names and semesters.
-      </p>
-    </div>
-
-    <ul class="proj-list">
-      <li class="proj-item">
-        <span class="pi-num">01</span>
-        <div class="pi-body">
-          <h3 class="pi-title">Wearable Pulse Oximeter with Analog Front-End</h3>
-          <p class="pi-authors">[ Student Name(s) ] &middot; Spring 20XX</p>
-          <p class="pi-desc">Custom transimpedance amplifier, bandpass filter, and threshold detector for PPG signal capture via IR LED&ndash;photodetector pair. Validated against a clinical reference device.</p>
-        </div>
-        <div class="pi-tags">
-          <span class="pi-tag pi-tag-hl">Biomedical</span>
-          <span class="pi-tag">Op-Amp</span>
-          <span class="pi-tag">Analog</span>
-        </div>
-      </li>
-      <li class="proj-item">
-        <span class="pi-num">02</span>
-        <div class="pi-body">
-          <h3 class="pi-title">Soil Moisture Network for Precision Agriculture</h3>
-          <p class="pi-authors">[ Student Name(s) ] &middot; Fall 20XX</p>
-          <p class="pi-desc">Resistive sensor array, multiplexed ADC, custom PCB, low-power sleep scheduling, and wireless logging to a base station. Field-tested on campus.</p>
-        </div>
-        <div class="pi-tags">
-          <span class="pi-tag">IoT</span>
-          <span class="pi-tag">PCB Design</span>
-        </div>
-      </li>
-      <li class="proj-item">
-        <span class="pi-num">03</span>
-        <div class="pi-body">
-          <h3 class="pi-title">Gesture-Controlled MIDI Synthesizer</h3>
-          <p class="pi-authors">[ Student Name(s) ] &middot; Spring 20XX</p>
-          <p class="pi-desc">IR proximity sensors driving a VCO through a DAC interface, outputting MIDI over USB. Continuous analog gesture mapped to musical expression &mdash; no contact required.</p>
-        </div>
-        <div class="pi-tags">
-          <span class="pi-tag">Music Tech</span>
-          <span class="pi-tag">Creative</span>
-        </div>
-      </li>
-      <li class="proj-item">
-        <span class="pi-num">04</span>
-        <div class="pi-body">
-          <h3 class="pi-title">Real-Time Audio Spectrum Analyzer</h3>
-          <p class="pi-authors">[ Student Name(s) ] &middot; Spring 20XX</p>
-          <p class="pi-desc">STM32 microcontroller running a fixed-point FFT algorithm, with Sallen-Key anti-aliasing filter and LED bar-graph frequency display.</p>
-        </div>
-        <div class="pi-tags">
-          <span class="pi-tag">DSP</span>
-          <span class="pi-tag">Embedded</span>
-        </div>
-      </li>
-    </ul>
-
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       EPAD CAPSTONE — 471/472 & HONORS 495/496
-  ═══════════════════════════════════════════════════════ -->
-  <section id="capstone">
-
-    <div class="sec-head" data-ghost="EPAD">
-      <span class="label">PHYS 471/472 &amp; EPAD 495/496</span>
-      <div>
-        <h2 class="sec-name">Capstone EPAD &amp; Honors Thesis</h2>
+        <h2 class="sec-name">Capstone EPAD Projects</h2>
         <p class="sec-desc">
           The summit. Students from Physics, Computer Science, Biology, and Neuroscience
           form interdisciplinary teams around a real problem &mdash; clinical, environmental,
           humanitarian &mdash; and spend <em>a full year</em> building something deployable.
-          Honors thesis students (EPAD&nbsp;495/496) go further: each one owns an individual
-          deliverable within the team, conducts original research, and publicly defends
-          their thesis before an interdisciplinary faculty committee to earn an Honors degree.
+          Where 252 taught individual craftsmanship and 351 taught team-based instrument
+          design, the capstone demands everything at once: budget management, stakeholder
+          communication, ethical review, milestone presentations, and the patience required
+          to ship something that works in the real world. Several capstone projects have
+          become the seed of funded research, filed patents, and graduate-level work.
         </p>
         <div class="sec-links">
-          <a href="index.html#irays" class="sec-link">iRays Project &nearr;</a>
-          <a href="https://waveformai.wm.edu" class="sec-link" target="_blank" rel="noopener">Waveform.ai &nearr;</a>
           <a href="https://mcp.physics.wm.edu" class="sec-link" target="_blank" rel="noopener">MCP Program &nearr;</a>
           <a href="mailto:rxyan2@wm.edu" class="sec-link">Contact Dr.&nbsp;Yang</a>
         </div>
@@ -1165,302 +1419,54 @@
     <div class="exp-callout">
       <div class="exp-icon">&#127919;</div>
       <p class="exp-text">
-        <strong>How students experience EPAD Capstone:</strong>
+        <strong>How students experience Capstone EPAD:</strong>
         This is where everything converges. Dr.&nbsp;Yang advises simultaneously on circuit
         design, measurement uncertainty, user research, and the ethics of what students are
         building. Teams write proposals, manage budgets, present at milestones, and deliver
-        a working prototype with full documentation. Honors students go deeper still &mdash;
-        defining an individual research question, reviewing literature, designing experiments,
-        collecting and analyzing data, and defending their thesis before a faculty committee.
-        Several capstone projects have become the seed of funded research, filed patents, and
-        graduate-level work. Past advisees have gone on to programs at institutions including
-        the University of Rochester. The yearlong format teaches project management, stakeholder
-        communication, and the patience required to ship something that works in the real world.
+        a working prototype with full documentation.
+        The yearlong format teaches project management, stakeholder communication, and the
+        patience required to ship something that works in the real world &mdash; the
+        entrepreneurial mindset that 252 and 351 have been quietly building toward.
       </p>
     </div>
 
-    <!-- ── PIPELINE OVERVIEW ──────────────────────────────── -->
-    <div class="five-years-intro" id="capstone-pipeline">
-      <div class="five-years-label">A Department-Wide Pipeline &middot; 2018&ndash;2026</div>
-      <h3 class="five-years-heading">
-        Where advanced physics becomes<br/><em>working systems</em>.
-      </h3>
-      <p class="five-years-body">
-        EPAD Capstone is a department-wide pipeline where students turn advanced physics
-        into working systems &mdash; spanning quantum and photonics hardware, bioengineering
-        and medical devices, AI-driven measurement and analysis, computational imaging,
-        plasma and high-energy-adjacent simulation, robotics and autonomy, and public-facing
-        installation art. Dr.&nbsp;Yang has directed this capstone since 2020, building on a
-        program launched in 2018 with core curriculum and dedicated faculty established in 2019.
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       EPAD 495/496 — HONORS THESIS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="epad495" class="capstone-section" style="background:var(--ground-deep);">
+
+    <div class="sec-head" data-ghost="495">
+      <span class="label">EPAD 495/496</span>
+      <div>
+        <h2 class="sec-name">Honors Thesis</h2>
+        <p class="sec-desc">
+          Original research. One student, one question, one year of independent work
+          under Dr.&nbsp;Yang&rsquo;s mentorship. Honors thesis students often contribute
+          directly to her funded research programs &mdash; iRays, BriteScope, MCP &mdash;
+          bridging the line between coursework and genuine scientific discovery.
+        </p>
+        <div class="sec-links">
+          <a href="index.html#irays" class="sec-link">iRays Project &nearr;</a>
+          <a href="https://waveformai.wm.edu" class="sec-link" target="_blank" rel="noopener">Waveform.ai &nearr;</a>
+          <a href="https://mcp.physics.wm.edu" class="sec-link" target="_blank" rel="noopener">MCP Program &nearr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-callout">
+      <div class="exp-icon">&#128300;</div>
+      <p class="exp-text">
+        <strong>How students experience the Honors Thesis:</strong>
+        This is the closest approximation to graduate-level research available to undergraduates.
+        Students define a research question, review literature, design experiments, collect and
+        analyze data, and defend their thesis before a faculty committee. Dr.&nbsp;Yang currently
+        advises honors students in EPAD whose work spans dual-spectrum pupillometry, AI-assisted
+        instrumentation, and mentorship program design. Past advisees have gone on to graduate
+        programs at institutions including the University of Rochester.
       </p>
-    </div>
-
-    <!-- ── IMPACT STATS ───────────────────────────────────── -->
-    <div class="cap-stats">
-      <div class="cap-stat">
-        <span class="cap-stat-num">6.5</span>
-        <span class="cap-stat-unit">years</span>
-        <span class="cap-stat-label">of cumulative impact by 2026</span>
-      </div>
-      <div class="cap-stat">
-        <span class="cap-stat-num">120<sup>+</sup></span>
-        <span class="cap-stat-unit">students</span>
-        <span class="cap-stat-label">~17 per year through the pipeline</span>
-      </div>
-      <div class="cap-stat">
-        <span class="cap-stat-num">~30</span>
-        <span class="cap-stat-unit">projects</span>
-        <span class="cap-stat-label">shipped as working prototypes</span>
-      </div>
-      <div class="cap-stat">
-        <span class="cap-stat-num">~50</span>
-        <span class="cap-stat-unit">collaborations</span>
-        <span class="cap-stat-label">across departments &amp; external partners</span>
-      </div>
-    </div>
-
-    <!-- ── 2025–2026 COHORT ───────────────────────────────── -->
-    <div class="five-years-intro" id="capstone-cohort">
-      <div class="five-years-label">Current Cohort &middot; 2025&ndash;2026</div>
-      <h3 class="five-years-heading">
-        Eight projects. Eight advisors.<br/>One question: <em>what can physics build for the world?</em>
-      </h3>
-      <p class="five-years-body">
-        This year&rsquo;s cohort spans the full breadth of applied physics &mdash; from clinical
-        neurology to electromagnetic manipulation, from bioengineered tissue models to
-        high-performance rocketry, from optical assembly at the nanoscale to electroacoustic
-        performance art. Two of these projects connect directly to Dr.&nbsp;Yang&rsquo;s own
-        research programs.
-      </p>
-    </div>
-
-    <div class="project-timeline">
-
-      <!-- iRays -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Primary Advisor</span>
-          <h4 class="pt-name">iRays</h4>
-          <p class="pt-tagline">A device that reads the eye before the hospital can.</p>
-          <p class="pt-desc">
-            Dual-spectrum pupillometry for prehospital neuro-triage. iRays combines specialized
-            optical design, infrared imaging, and AI-driven computer vision to deliver quantitative,
-            objective pupil measurements with the speed and portability demanded by ambulance crews
-            and field medics. Patent pending. Built with the City of Hampton Fire&nbsp;&amp;&nbsp;Rescue.
-            Funded by NIH Mid-South REACH and the AI4Health Initiative.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Dual-Spectrum Optics</span>
-            <span class="pt-spec pt-spec-hl">AI Computer Vision</span>
-            <span class="pt-spec">Infrared Imaging</span>
-            <span class="pt-spec">Patent Pending</span>
-            <span class="pt-spec">NIH Funded</span>
-          </div>
-          <p class="pt-teams">
-            Advisors: Prof.&nbsp;Ran Yang (Physics) &amp; Prof.&nbsp;Gunter Luepke (Applied Science)
-            &middot; <a href="index.html#irays" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">View iRays on main site &rarr;</a>
-          </p>
-        </div>
-      </div>
-
-      <!-- Sensor-Augmented Acoustic Instruments -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Co-Advisor</span>
-          <h4 class="pt-name">Sensor-Augmented Acoustic Instruments</h4>
-          <p class="pt-tagline">Where the performer&rsquo;s body becomes the controller.</p>
-          <p class="pt-desc">
-            Traditional methods of integrating acoustic instruments into electronic music are
-            half a century old and leave performers disconnected from the electroacoustic sound
-            world they influence. Building on prior work with the Chaos&shy;fl&ouml;te and
-            Melody&nbsp;Chua, this project develops a compact, multi-sensor device &mdash;
-            measuring breath, embouchure, and motion &mdash; that attaches ergonomically to a
-            range of instruments and feeds real-time data into digital audio workflows. The
-            sequential engineering piece of Dr.&nbsp;Yang&rsquo;s Waveform.ai program.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Multi-Sensor Array</span>
-            <span class="pt-spec pt-spec-hl">Real-Time DSP</span>
-            <span class="pt-spec">Breath &amp; Embouchure</span>
-            <span class="pt-spec">Ergonomic Design</span>
-            <span class="pt-spec">Cross-Instrument</span>
-          </div>
-          <p class="pt-teams">
-            Advisors: Prof.&nbsp;Benjamin Whiting (Music) &amp; Prof.&nbsp;Ran Yang (Physics)
-            &middot; <a href="https://waveformai.wm.edu" target="_blank" rel="noopener" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">Waveform.ai &nearr;</a>
-          </p>
-        </div>
-      </div>
-
-      <!-- High-Performance Rocket -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#E67E22;background:#E67E22;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Aerospace &amp; Controls</span>
-          <h4 class="pt-name">High-Performance Rocket with Real-Time Trajectory Control</h4>
-          <p class="pt-tagline">Adjustable fins. Live telemetry. Precision altitude.</p>
-          <p class="pt-desc">
-            A rocket engineered for a national university competition, featuring adjustable fins
-            for precise altitude control, an onboard computer processing real-time data from
-            accelerometers, gyroscopes, magnetometer, and GPS, plus live video and telemetry
-            downlink to mission control. Dynamic fin adjustment algorithms are refined through
-            extensive simulation and iterative flight testing under FAA regulations.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Active Aero Control</span>
-            <span class="pt-spec">Live Telemetry</span>
-            <span class="pt-spec">IMU + GPS</span>
-            <span class="pt-spec">Onboard Video</span>
-          </div>
-          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science)</p>
-        </div>
-      </div>
-
-      <!-- Race Boat -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#2980B9;background:#2980B9;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Naval Engineering &amp; Autonomy</span>
-          <h4 class="pt-name">Active Aerodynamic Control of a High-Speed Electric Race Boat</h4>
-          <p class="pt-tagline">Unmanned. Electric. Aerodynamically steered at speed.</p>
-          <p class="pt-desc">
-            Utilizing the race platform from the 2024&ndash;25 season, this team creates, modifies,
-            and optimizes actively controlled aerodynamic structures for a high-speed unmanned
-            electric surface vehicle. The project bridges naval architecture, control systems,
-            and competitive engineering.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Active Aerodynamics</span>
-            <span class="pt-spec">Electric Propulsion</span>
-            <span class="pt-spec">Unmanned</span>
-            <span class="pt-spec">Competition</span>
-          </div>
-          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science) &middot; Partners: ASNE, ONR</p>
-        </div>
-      </div>
-
-      <!-- Microwave Tweezers -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#8E44AD;background:#8E44AD;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Electromagnetic Manipulation</span>
-          <h4 class="pt-name">Microwave Tweezers for Manipulation of Small Particles</h4>
-          <p class="pt-tagline">Electromagnetic force as a precision instrument.</p>
-          <p class="pt-desc">
-            High-power microwave fields (6&ndash;18&nbsp;GHz, up to 20&nbsp;W) confined within narrow
-            microstrip transmission lines create steep amplitude gradients capable of displacing
-            and steering small dielectric spheres. Electromagnetic simulations (HFSS/FEKO) model
-            the field; physical experiments test qualitative manipulation and routing along
-            microstrip-defined paths &mdash; a potential gateway to microfluidic material transport.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Microwave 6&ndash;18 GHz</span>
-            <span class="pt-spec">Microstrip Design</span>
-            <span class="pt-spec">EM Simulation</span>
-            <span class="pt-spec">Microfluidics</span>
-          </div>
-          <p class="pt-teams">Advisor: Prof.&nbsp;Seth Aubin (Physics)</p>
-        </div>
-      </div>
-
-      <!-- Optical Tweezers -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#D4AC0D;background:#D4AC0D;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Photonics &amp; Nanofabrication</span>
-          <h4 class="pt-name">Particle Assembly Guided by Optical Tweezers</h4>
-          <p class="pt-tagline">Pick, place, build &mdash; one microparticle at a time.</p>
-          <p class="pt-desc">
-            Advanced architected materials require structural features spanning nanometers to
-            centimeters. This project builds a &ldquo;pick and place&rdquo; assembly system using
-            focused laser beams (optical tweezers) to capture individual microparticles from
-            suspension and position them precisely on a substrate. Surface engineering ensures
-            adhesion; automation and coding bring repeatability.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Optical Tweezers</span>
-            <span class="pt-spec">Micro-Manipulation</span>
-            <span class="pt-spec">Surface Chemistry</span>
-            <span class="pt-spec">Automation</span>
-          </div>
-          <p class="pt-teams">Advisors: Prof.&nbsp;Bjorg Larson (Physics) &amp; Prof.&nbsp;Hannes C. Schniepp (Applied Science)</p>
-        </div>
-      </div>
-
-      <!-- Bone-on-Chip -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#C0392B;background:#C0392B;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Bioengineering &amp; Microfluidics</span>
-          <h4 class="pt-name">Bone-on-Chip Microfluidic Device</h4>
-          <p class="pt-tagline">A platform the size of a coin that models human bone.</p>
-          <p class="pt-desc">
-            Diabetes impairs communication between bone and cartilage cells. This project designs
-            and fabricates a compact microfluidic device &mdash; tiny channels and compartments
-            where cells are grown and studied under controlled glucose levels. Fabricated via soft
-            lithography or 3D printing, with fluid flow simulations ensuring proper nutrient delivery.
-            A bridge between engineering, physics, and biology.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">Microfluidics</span>
-            <span class="pt-spec">Soft Lithography</span>
-            <span class="pt-spec">CAD &amp; Simulation</span>
-            <span class="pt-spec">Biomedical</span>
-          </div>
-          <p class="pt-teams">Advisor: Prof.&nbsp;Indranath Mitra (Applied Science)</p>
-        </div>
-      </div>
-
-      <!-- Variable Temperature Probe -->
-      <div class="pt-card" data-reveal>
-        <div class="pt-year-col">
-          <span class="pt-year">2025&ndash;26</span>
-          <span class="pt-dot" style="color:#4A7C59;background:#4A7C59;"></span>
-        </div>
-        <div class="pt-content">
-          <span class="pt-badge">Materials &amp; Cryogenics</span>
-          <h4 class="pt-name">Variable Temperature Probe for Magnetic Susceptibility</h4>
-          <p class="pt-tagline">Measuring magnetism from 4&nbsp;K to 400&nbsp;K.</p>
-          <p class="pt-desc">
-            Design and construct a probe using AC magnetometry to measure the magnetic
-            susceptibility of materials across a sweeping temperature range &mdash; from liquid
-            helium to above room temperature. A small oscillating current generates an AC magnetic
-            field; a pickup coil with lock-in detection measures the induced response. Precision
-            mechanical and electromagnetic design for extreme conditions.
-          </p>
-          <div class="pt-specs">
-            <span class="pt-spec pt-spec-hl">AC Magnetometry</span>
-            <span class="pt-spec">Cryogenic &mdash; 4 K</span>
-            <span class="pt-spec">Lock-In Detection</span>
-            <span class="pt-spec">Probe Design</span>
-          </div>
-          <p class="pt-teams">Advisor: Prof.&nbsp;Mumtaz Qazilbash (Physics)</p>
-        </div>
-      </div>
-
     </div>
 
   </section>
@@ -1491,7 +1497,7 @@
 
   <!-- ── SCRIPTS ─────────────────────────────────────────── -->
   <script>
-    /* Scroll-triggered reveal for project cards */
+    /* Scroll-triggered reveal for project cards and 252 cards */
     (function() {
       var cards = document.querySelectorAll('[data-reveal]');
       if (!cards.length) return;
