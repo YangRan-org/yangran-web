@@ -568,6 +568,54 @@
       margin-top: 1rem;
     }
 
+    /* ── CAPSTONE STATS ──────────────────────────────────── */
+    .cap-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ground-deep);
+    }
+    .cap-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.15rem;
+      padding: clamp(2rem, 3.5vw, 3rem) 1.5rem;
+      border-right: 1px solid var(--rule);
+    }
+    .cap-stat:last-child { border-right: none; }
+    .cap-stat-num {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .cap-stat-num sup {
+      font-family: var(--ff-body);
+      font-size: 0.4em;
+      color: var(--celadon);
+    }
+    .cap-stat-unit {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon);
+    }
+    .cap-stat-label {
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 160px;
+    }
+
     /* ── CLOSING ─────────────────────────────────────────── */
     .t-closing {
       padding: clamp(5rem, 10vw, 8rem) clamp(2rem, 6vw, 6rem);
@@ -631,6 +679,9 @@
       .exp-callout { grid-template-columns: 1fr; }
       .exp-icon { display: none; }
       .cn-link { padding: 0.75rem 1rem; }
+      .cap-stats { grid-template-columns: 1fr 1fr; }
+      .cap-stat:nth-child(2) { border-right: none; }
+      .cap-stat:nth-child(1), .cap-stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
     }
     @media (max-width: 500px) {
       .course-nav { gap: 0; }
@@ -672,13 +723,9 @@
       <span class="cn-code">PHYS 252</span>
       <span class="cn-name">Electronics</span>
     </a>
-    <a href="#phys471" class="cn-link">
-      <span class="cn-code">PHYS 471/472</span>
-      <span class="cn-name">Capstone EPAD</span>
-    </a>
-    <a href="#epad495" class="cn-link">
-      <span class="cn-code">EPAD 495/496</span>
-      <span class="cn-name">Honors Thesis</span>
+    <a href="#capstone" class="cn-link">
+      <span class="cn-code">EPAD Capstone</span>
+      <span class="cn-name">471/472 &amp; Honors 495/496</span>
     </a>
   </nav>
 
@@ -1090,20 +1137,25 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       PHYS 471/472 — CAPSTONE EPAD
+       EPAD CAPSTONE — 471/472 & HONORS 495/496
   ═══════════════════════════════════════════════════════ -->
-  <section id="phys471" class="capstone-section">
+  <section id="capstone">
 
-    <div class="sec-head" data-ghost="471">
-      <span class="label">PHYS 471/472</span>
+    <div class="sec-head" data-ghost="EPAD">
+      <span class="label">PHYS 471/472 &amp; EPAD 495/496</span>
       <div>
-        <h2 class="sec-name">Capstone EPAD Projects</h2>
+        <h2 class="sec-name">Capstone EPAD &amp; Honors Thesis</h2>
         <p class="sec-desc">
           The summit. Students from Physics, Computer Science, Biology, and Neuroscience
           form interdisciplinary teams around a real problem &mdash; clinical, environmental,
           humanitarian &mdash; and spend <em>a full year</em> building something deployable.
+          Honors thesis students (EPAD&nbsp;495/496) go further: each one owns an individual
+          deliverable within the team, conducts original research, and publicly defends
+          their thesis before an interdisciplinary faculty committee to earn an Honors degree.
         </p>
         <div class="sec-links">
+          <a href="index.html#irays" class="sec-link">iRays Project &nearr;</a>
+          <a href="https://waveformai.wm.edu" class="sec-link" target="_blank" rel="noopener">Waveform.ai &nearr;</a>
           <a href="https://mcp.physics.wm.edu" class="sec-link" target="_blank" rel="noopener">MCP Program &nearr;</a>
           <a href="mailto:rxyan2@wm.edu" class="sec-link">Contact Dr.&nbsp;Yang</a>
         </div>
@@ -1113,67 +1165,302 @@
     <div class="exp-callout">
       <div class="exp-icon">&#127919;</div>
       <p class="exp-text">
-        <strong>How students experience Capstone EPAD:</strong>
+        <strong>How students experience EPAD Capstone:</strong>
         This is where everything converges. Dr.&nbsp;Yang advises simultaneously on circuit
         design, measurement uncertainty, user research, and the ethics of what students are
         building. Teams write proposals, manage budgets, present at milestones, and deliver
-        a working prototype with full documentation. Several capstone projects have become
-        the seed of funded research, filed patents, and graduate-level work.
-        The yearlong format teaches project management, stakeholder communication, and the
-        patience required to ship something that works in the real world.
+        a working prototype with full documentation. Honors students go deeper still &mdash;
+        defining an individual research question, reviewing literature, designing experiments,
+        collecting and analyzing data, and defending their thesis before a faculty committee.
+        Several capstone projects have become the seed of funded research, filed patents, and
+        graduate-level work. Past advisees have gone on to programs at institutions including
+        the University of Rochester. The yearlong format teaches project management, stakeholder
+        communication, and the patience required to ship something that works in the real world.
       </p>
     </div>
 
-    <div class="notice" style="margin: 2.5rem clamp(2rem,6vw,6rem);">
-      <p>
-        &#9881; PLACEHOLDER &mdash; Add selected capstone project entries here.
-        Each follows the same grid pattern as the 252 projects above.
+    <!-- ── PIPELINE OVERVIEW ──────────────────────────────── -->
+    <div class="five-years-intro" id="capstone-pipeline">
+      <div class="five-years-label">A Department-Wide Pipeline &middot; 2018&ndash;2026</div>
+      <h3 class="five-years-heading">
+        Where advanced physics becomes<br/><em>working systems</em>.
+      </h3>
+      <p class="five-years-body">
+        EPAD Capstone is a department-wide pipeline where students turn advanced physics
+        into working systems &mdash; spanning quantum and photonics hardware, bioengineering
+        and medical devices, AI-driven measurement and analysis, computational imaging,
+        plasma and high-energy-adjacent simulation, robotics and autonomy, and public-facing
+        installation art. Dr.&nbsp;Yang has directed this capstone since 2020, building on a
+        program launched in 2018 with core curriculum and dedicated faculty established in 2019.
       </p>
     </div>
 
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       EPAD 495/496 — HONORS THESIS
-  ═══════════════════════════════════════════════════════ -->
-  <section id="epad495" class="capstone-section" style="background:var(--ground-deep);">
-
-    <div class="sec-head" data-ghost="495">
-      <span class="label">EPAD 495/496</span>
-      <div>
-        <h2 class="sec-name">Honors Thesis</h2>
-        <p class="sec-desc">
-          Original research. One student, one question, one year of independent work
-          under Dr.&nbsp;Yang&rsquo;s mentorship. Honors thesis students often contribute
-          directly to her funded research programs &mdash; iRays, BriteScope, MCP &mdash;
-          bridging the line between coursework and genuine scientific discovery.
-        </p>
-        <div class="sec-links">
-          <a href="index.html#irays" class="sec-link">iRays Project &nearr;</a>
-          <a href="https://waveformai.wm.edu" class="sec-link" target="_blank" rel="noopener">Waveform.ai &nearr;</a>
-          <a href="https://mcp.physics.wm.edu" class="sec-link" target="_blank" rel="noopener">MCP Program &nearr;</a>
-        </div>
+    <!-- ── IMPACT STATS ───────────────────────────────────── -->
+    <div class="cap-stats">
+      <div class="cap-stat">
+        <span class="cap-stat-num">6.5</span>
+        <span class="cap-stat-unit">years</span>
+        <span class="cap-stat-label">of cumulative impact by 2026</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">120<sup>+</sup></span>
+        <span class="cap-stat-unit">students</span>
+        <span class="cap-stat-label">~17 per year through the pipeline</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">~30</span>
+        <span class="cap-stat-unit">projects</span>
+        <span class="cap-stat-label">shipped as working prototypes</span>
+      </div>
+      <div class="cap-stat">
+        <span class="cap-stat-num">~50</span>
+        <span class="cap-stat-unit">collaborations</span>
+        <span class="cap-stat-label">across departments &amp; external partners</span>
       </div>
     </div>
 
-    <div class="exp-callout">
-      <div class="exp-icon">&#128300;</div>
-      <p class="exp-text">
-        <strong>How students experience the Honors Thesis:</strong>
-        This is the closest approximation to graduate-level research available to undergraduates.
-        Students define a research question, review literature, design experiments, collect and
-        analyze data, and defend their thesis before a faculty committee. Dr.&nbsp;Yang currently
-        advises honors students in EPAD whose work spans dual-spectrum pupillometry, AI-assisted
-        instrumentation, and mentorship program design. Past advisees have gone on to graduate
-        programs at institutions including the University of Rochester.
+    <!-- ── 2025–2026 COHORT ───────────────────────────────── -->
+    <div class="five-years-intro" id="capstone-cohort">
+      <div class="five-years-label">Current Cohort &middot; 2025&ndash;2026</div>
+      <h3 class="five-years-heading">
+        Eight projects. Eight advisors.<br/>One question: <em>what can physics build for the world?</em>
+      </h3>
+      <p class="five-years-body">
+        This year&rsquo;s cohort spans the full breadth of applied physics &mdash; from clinical
+        neurology to electromagnetic manipulation, from bioengineered tissue models to
+        high-performance rocketry, from optical assembly at the nanoscale to electroacoustic
+        performance art. Two of these projects connect directly to Dr.&nbsp;Yang&rsquo;s own
+        research programs.
       </p>
     </div>
 
-    <div class="notice" style="margin: 2.5rem clamp(2rem,6vw,6rem);">
-      <p>
-        &#9881; PLACEHOLDER &mdash; Add selected honors thesis entries here.
-      </p>
+    <div class="project-timeline">
+
+      <!-- iRays -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Primary Advisor</span>
+          <h4 class="pt-name">iRays</h4>
+          <p class="pt-tagline">A device that reads the eye before the hospital can.</p>
+          <p class="pt-desc">
+            Dual-spectrum pupillometry for prehospital neuro-triage. iRays combines specialized
+            optical design, infrared imaging, and AI-driven computer vision to deliver quantitative,
+            objective pupil measurements with the speed and portability demanded by ambulance crews
+            and field medics. Patent pending. Built with the City of Hampton Fire&nbsp;&amp;&nbsp;Rescue.
+            Funded by NIH Mid-South REACH and the AI4Health Initiative.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Dual-Spectrum Optics</span>
+            <span class="pt-spec pt-spec-hl">AI Computer Vision</span>
+            <span class="pt-spec">Infrared Imaging</span>
+            <span class="pt-spec">Patent Pending</span>
+            <span class="pt-spec">NIH Funded</span>
+          </div>
+          <p class="pt-teams">
+            Advisors: Prof.&nbsp;Ran Yang (Physics) &amp; Prof.&nbsp;Gunter Luepke (Applied Science)
+            &middot; <a href="index.html#irays" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">View iRays on main site &rarr;</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Sensor-Augmented Acoustic Instruments -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:var(--celadon);background:var(--celadon);"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge"><span class="flag" style="font-size:0.65rem;">&#9733;</span> Dr.&nbsp;Yang &mdash; Co-Advisor</span>
+          <h4 class="pt-name">Sensor-Augmented Acoustic Instruments</h4>
+          <p class="pt-tagline">Where the performer&rsquo;s body becomes the controller.</p>
+          <p class="pt-desc">
+            Traditional methods of integrating acoustic instruments into electronic music are
+            half a century old and leave performers disconnected from the electroacoustic sound
+            world they influence. Building on prior work with the Chaos&shy;fl&ouml;te and
+            Melody&nbsp;Chua, this project develops a compact, multi-sensor device &mdash;
+            measuring breath, embouchure, and motion &mdash; that attaches ergonomically to a
+            range of instruments and feeds real-time data into digital audio workflows. The
+            sequential engineering piece of Dr.&nbsp;Yang&rsquo;s Waveform.ai program.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Multi-Sensor Array</span>
+            <span class="pt-spec pt-spec-hl">Real-Time DSP</span>
+            <span class="pt-spec">Breath &amp; Embouchure</span>
+            <span class="pt-spec">Ergonomic Design</span>
+            <span class="pt-spec">Cross-Instrument</span>
+          </div>
+          <p class="pt-teams">
+            Advisors: Prof.&nbsp;Benjamin Whiting (Music) &amp; Prof.&nbsp;Ran Yang (Physics)
+            &middot; <a href="https://waveformai.wm.edu" target="_blank" rel="noopener" style="color:var(--celadon);border-bottom:1px solid var(--celadon-dim);">Waveform.ai &nearr;</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- High-Performance Rocket -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#E67E22;background:#E67E22;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Aerospace &amp; Controls</span>
+          <h4 class="pt-name">High-Performance Rocket with Real-Time Trajectory Control</h4>
+          <p class="pt-tagline">Adjustable fins. Live telemetry. Precision altitude.</p>
+          <p class="pt-desc">
+            A rocket engineered for a national university competition, featuring adjustable fins
+            for precise altitude control, an onboard computer processing real-time data from
+            accelerometers, gyroscopes, magnetometer, and GPS, plus live video and telemetry
+            downlink to mission control. Dynamic fin adjustment algorithms are refined through
+            extensive simulation and iterative flight testing under FAA regulations.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Active Aero Control</span>
+            <span class="pt-spec">Live Telemetry</span>
+            <span class="pt-spec">IMU + GPS</span>
+            <span class="pt-spec">Onboard Video</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Race Boat -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#2980B9;background:#2980B9;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Naval Engineering &amp; Autonomy</span>
+          <h4 class="pt-name">Active Aerodynamic Control of a High-Speed Electric Race Boat</h4>
+          <p class="pt-tagline">Unmanned. Electric. Aerodynamically steered at speed.</p>
+          <p class="pt-desc">
+            Utilizing the race platform from the 2024&ndash;25 season, this team creates, modifies,
+            and optimizes actively controlled aerodynamic structures for a high-speed unmanned
+            electric surface vehicle. The project bridges naval architecture, control systems,
+            and competitive engineering.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Active Aerodynamics</span>
+            <span class="pt-spec">Electric Propulsion</span>
+            <span class="pt-spec">Unmanned</span>
+            <span class="pt-spec">Competition</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Jonathan Frey (Applied Science) &middot; Partners: ASNE, ONR</p>
+        </div>
+      </div>
+
+      <!-- Microwave Tweezers -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#8E44AD;background:#8E44AD;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Electromagnetic Manipulation</span>
+          <h4 class="pt-name">Microwave Tweezers for Manipulation of Small Particles</h4>
+          <p class="pt-tagline">Electromagnetic force as a precision instrument.</p>
+          <p class="pt-desc">
+            High-power microwave fields (6&ndash;18&nbsp;GHz, up to 20&nbsp;W) confined within narrow
+            microstrip transmission lines create steep amplitude gradients capable of displacing
+            and steering small dielectric spheres. Electromagnetic simulations (HFSS/FEKO) model
+            the field; physical experiments test qualitative manipulation and routing along
+            microstrip-defined paths &mdash; a potential gateway to microfluidic material transport.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Microwave 6&ndash;18 GHz</span>
+            <span class="pt-spec">Microstrip Design</span>
+            <span class="pt-spec">EM Simulation</span>
+            <span class="pt-spec">Microfluidics</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Seth Aubin (Physics)</p>
+        </div>
+      </div>
+
+      <!-- Optical Tweezers -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#D4AC0D;background:#D4AC0D;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Photonics &amp; Nanofabrication</span>
+          <h4 class="pt-name">Particle Assembly Guided by Optical Tweezers</h4>
+          <p class="pt-tagline">Pick, place, build &mdash; one microparticle at a time.</p>
+          <p class="pt-desc">
+            Advanced architected materials require structural features spanning nanometers to
+            centimeters. This project builds a &ldquo;pick and place&rdquo; assembly system using
+            focused laser beams (optical tweezers) to capture individual microparticles from
+            suspension and position them precisely on a substrate. Surface engineering ensures
+            adhesion; automation and coding bring repeatability.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Optical Tweezers</span>
+            <span class="pt-spec">Micro-Manipulation</span>
+            <span class="pt-spec">Surface Chemistry</span>
+            <span class="pt-spec">Automation</span>
+          </div>
+          <p class="pt-teams">Advisors: Prof.&nbsp;Bjorg Larson (Physics) &amp; Prof.&nbsp;Hannes C. Schniepp (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Bone-on-Chip -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#C0392B;background:#C0392B;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Bioengineering &amp; Microfluidics</span>
+          <h4 class="pt-name">Bone-on-Chip Microfluidic Device</h4>
+          <p class="pt-tagline">A platform the size of a coin that models human bone.</p>
+          <p class="pt-desc">
+            Diabetes impairs communication between bone and cartilage cells. This project designs
+            and fabricates a compact microfluidic device &mdash; tiny channels and compartments
+            where cells are grown and studied under controlled glucose levels. Fabricated via soft
+            lithography or 3D printing, with fluid flow simulations ensuring proper nutrient delivery.
+            A bridge between engineering, physics, and biology.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">Microfluidics</span>
+            <span class="pt-spec">Soft Lithography</span>
+            <span class="pt-spec">CAD &amp; Simulation</span>
+            <span class="pt-spec">Biomedical</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Indranath Mitra (Applied Science)</p>
+        </div>
+      </div>
+
+      <!-- Variable Temperature Probe -->
+      <div class="pt-card" data-reveal>
+        <div class="pt-year-col">
+          <span class="pt-year">2025&ndash;26</span>
+          <span class="pt-dot" style="color:#4A7C59;background:#4A7C59;"></span>
+        </div>
+        <div class="pt-content">
+          <span class="pt-badge">Materials &amp; Cryogenics</span>
+          <h4 class="pt-name">Variable Temperature Probe for Magnetic Susceptibility</h4>
+          <p class="pt-tagline">Measuring magnetism from 4&nbsp;K to 400&nbsp;K.</p>
+          <p class="pt-desc">
+            Design and construct a probe using AC magnetometry to measure the magnetic
+            susceptibility of materials across a sweeping temperature range &mdash; from liquid
+            helium to above room temperature. A small oscillating current generates an AC magnetic
+            field; a pickup coil with lock-in detection measures the induced response. Precision
+            mechanical and electromagnetic design for extreme conditions.
+          </p>
+          <div class="pt-specs">
+            <span class="pt-spec pt-spec-hl">AC Magnetometry</span>
+            <span class="pt-spec">Cryogenic &mdash; 4 K</span>
+            <span class="pt-spec">Lock-In Detection</span>
+            <span class="pt-spec">Probe Design</span>
+          </div>
+          <p class="pt-teams">Advisor: Prof.&nbsp;Mumtaz Qazilbash (Physics)</p>
+        </div>
+      </div>
+
     </div>
 
   </section>
