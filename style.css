@@ -721,6 +721,7 @@ sup { font-size: 0.5em; vertical-align: super; }
   line-height: 1.05;
   letter-spacing: -0.02em;
   max-width: 700px;
+  animation: riseIn 1.6s var(--rise) both;
 }
 
 .t-hero-title em { color: var(--celadon); }
@@ -731,6 +732,33 @@ sup { font-size: 0.5em; vertical-align: super; }
   color: var(--ink-mid);
   max-width: 620px;
   line-height: 1.8;
+  animation: riseIn 1.6s var(--rise) 0.25s both;
+}
+/* ── Course quick-nav (teaching hero) ──────────────── */
+.course-nav {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: riseIn 1.6s var(--rise) 0.4s both; /* <-- Added this */
+}
+
+.course-nav-item {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-ghost);
+  transition: color 0.3s var(--ease);
+  padding: 0.2em 0;
+}
+
+.course-nav-item:hover { color: var(--celadon); }
+
+.course-nav-dot {
+  color: var(--ink-ghost);
+  font-size: 0.5rem;
+  opacity: 0.5;
+  user-select: none;
 }
 
 
@@ -908,7 +936,7 @@ sup { font-size: 0.5em; vertical-align: super; }
   font-style: normal;
 }
 
-/* ── EXPERIENCE CALLOUT (replaces 器 icon blocks) ──── */
+/* ── EXPERIENCE CALLOUT  ──── */
 .exp-callout {
   display: flex;
   gap: 0;
@@ -1198,31 +1226,7 @@ sup { font-size: 0.5em; vertical-align: super; }
   line-height: 1.5;
   max-width: 200px;
 }
-/* ── Course quick-nav (teaching hero) ──────────────── */
-.course-nav {
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
 
-.course-nav-item {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  color: var(--ink-ghost);
-  transition: color 0.3s var(--ease);
-  padding: 0.2em 0;
-}
-
-.course-nav-item:hover { color: var(--celadon); }
-
-.course-nav-dot {
-  color: var(--ink-ghost);
-  font-size: 0.5rem;
-  opacity: 0.5;
-  user-select: none;
-}
 
 
 /* ══════════════════════════════════════════════════════════
