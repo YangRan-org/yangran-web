@@ -9,13 +9,122 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+SC:wght@300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Course sub-nav ─────────────────────────────────────────── */
+    .course-nav {
+      position: sticky;
+      top: 0;
+      z-index: 98; /* sits just below main .nav (z-index 100) */
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: var(--ground-deep);
+      border-bottom: 1px solid var(--rule-mid);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .course-nav::-webkit-scrollbar { display: none; }
+
+    .cn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      position: relative;
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+      white-space: nowrap;
+    }
+
+    /* Flow arrow between items */
+    .cn-item:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -0.55rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      color: var(--ink-ghost);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cn-item:hover {
+      background: var(--celadon-wash);
+      border-bottom-color: var(--celadon-mid);
+    }
+
+    .cn-item.active {
+      border-bottom-color: var(--celadon);
+      background: var(--celadon-wash);
+    }
+
+    .cn-code {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon);
+      font-weight: 400;
+    }
+
+    .cn-label {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* Give pipeline stages a generous scroll-margin so neither sticky
+       nav clips the heading when jumping via the sub-nav */
+    .pipeline-stage {
+      scroll-margin-top: 110px;
+    }
+
+    /* Subtle highlight ring on :target */
+    .pipeline-stage:target {
+      box-shadow: inset 0 3px 0 var(--celadon);
+    }
+
+    @media (max-width: 700px) {
+      .cn-item { padding: 0.65rem 1rem; }
+      .cn-item:not(:last-child)::after { display: none; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Primary nav -->
   <nav class="nav" id="nav">
     <a href="index.html#irays" class="nav-item">iRays</a>
     <a href="index.html#vessel" class="nav-item">The Vessel</a>
     <a href="teaching.html" class="nav-item active">Teaching</a>
+  </nav>
+
+  <!-- Course quick-jump sub-nav: always visible on landing, no scroll required -->
+  <nav class="course-nav" id="course-nav" aria-label="Jump to course">
+    <a href="#phys252" class="cn-item" data-course="phys252">
+      <span class="cn-code">PHYS 252</span>
+      <span class="cn-label">Electronics</span>
+    </a>
+    <a href="#phys351" class="cn-item" data-course="phys351">
+      <span class="cn-code">PHYS 351</span>
+      <span class="cn-label">Instrumentation</span>
+    </a>
+    <a href="#phys471" class="cn-item" data-course="phys471">
+      <span class="cn-code">PHYS 471/472</span>
+      <span class="cn-label">Capstone</span>
+    </a>
+    <a href="#epad495" class="cn-item" data-course="epad495">
+      <span class="cn-code">EPAD 495/496</span>
+      <span class="cn-label">Honors Thesis</span>
+    </a>
   </nav>
 
   <section class="t-hero">
@@ -46,25 +155,26 @@
     </p>
 
     <div class="pipeline-track">
-      <a href="phys252.html" class="pipeline-stage">
+      <!-- id anchors match the sub-nav href targets -->
+      <a href="phys252.html" class="pipeline-stage" id="phys252">
         <span class="ps-year">Sophomore</span>
         <h3 class="ps-code">PHYS 252</h3>
         <span class="ps-name">Electronics</span>
         <p class="ps-desc">First EE course. Design in pairs, build alone. One breadboard, two weeks, one working circuit. Learn to trust your own hands.</p>
       </a>
-      <a href="phys351.html" class="pipeline-stage">
+      <a href="phys351.html" class="pipeline-stage" id="phys351">
         <span class="ps-year">Junior</span>
         <h3 class="ps-code">PHYS 351</h3>
         <span class="ps-name">Advanced Instrumentation</span>
         <p class="ps-desc">Teams of three, three months. Raspberry Pi, sensors, motors, firmware, cultural research, professional documentation. Build a complete instrument.</p>
       </a>
-      <a href="engineering-physics.html#capstone" class="pipeline-stage">
+      <a href="engineering-physics.html#capstone" class="pipeline-stage" id="phys471">
         <span class="ps-year">Senior</span>
         <h3 class="ps-code">PHYS 471/472</h3>
         <span class="ps-name">Capstone Projects</span>
         <p class="ps-desc">Interdisciplinary teams, one full year. A real problem, a real stakeholder, a deployable prototype. Budget, ethics, milestones, defense.</p>
       </a>
-      <a href="engineering-physics.html#honors" class="pipeline-stage">
+      <a href="engineering-physics.html#honors" class="pipeline-stage" id="epad495">
         <span class="ps-year">Senior / Post</span>
         <h3 class="ps-code">EPAD 495/496</h3>
         <span class="ps-name">Honors Thesis</span>
@@ -95,5 +205,42 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    // ── Course sub-nav: smooth scroll + scroll-spy active state ──
+    (function () {
+      'use strict';
+
+      const cnItems = document.querySelectorAll('.cn-item[data-course]');
+      const stageIds = ['phys252', 'phys351', 'phys471', 'epad495'];
+      const stages = stageIds.map(id => document.getElementById(id)).filter(Boolean);
+
+      // Smooth scroll accounting for both sticky bars (~58 + ~52px)
+      const NAV_OFFSET = 120;
+      cnItems.forEach(link => {
+        link.addEventListener('click', e => {
+          const href = link.getAttribute('href');
+          if (!href.startsWith('#')) return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (!target) return;
+          const top = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      });
+
+      // Scroll-spy: highlight whichever course is scrolled into view
+      function setActive(id) {
+        cnItems.forEach(el => el.classList.toggle('active', el.dataset.course === id));
+      }
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+      stages.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
 </html>
