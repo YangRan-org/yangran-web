@@ -908,10 +908,6 @@ sup { font-size: 0.5em; vertical-align: super; }
   font-style: normal;
 }
 
-/* Legacy class alias */
-.tao-quote { /* redirected to page-quote styles in HTML */ }
-
-
 /* ── EXPERIENCE CALLOUT (replaces 器 icon blocks) ──── */
 .exp-callout {
   display: flex;
