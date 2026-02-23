@@ -13,18 +13,26 @@
     /* ── Course sub-nav ─────────────────────────────────────────── */
     .course-nav {
       position: sticky;
-      top: 0;
-      z-index: 98; /* sits just below main .nav (z-index 100) */
+      top: 58px; /* sits directly below main nav */
+      z-index: 98;
       display: flex;
       align-items: stretch;
       justify-content: center;
-      background: var(--ground-deep);
+      background: rgba(228,225,220,0.92);
+      backdrop-filter: blur(16px) saturate(1.3);
+      -webkit-backdrop-filter: blur(16px) saturate(1.3);
       border-bottom: 1px solid var(--rule-mid);
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      transition: box-shadow 0.4s var(--ease);
     }
     .course-nav::-webkit-scrollbar { display: none; }
+
+    /* When stuck, add a subtle shadow */
+    .course-nav--stuck {
+      box-shadow: 0 2px 12px rgba(26,29,33,0.06);
+    }
 
     .cn-item {
       display: flex;
@@ -81,10 +89,83 @@
       color: var(--ink-soft);
     }
 
-    /* Give pipeline stages a generous scroll-margin so neither sticky
-       nav clips the heading when jumping via the sub-nav */
+    /* ── Compact hero ──────────────────────────────────────────── */
+    .t-hero--compact {
+      padding: clamp(6rem, 10vw, 8rem) clamp(2rem, 6vw, 6rem) clamp(2rem, 4vw, 3rem);
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .t-hero--compact::before {
+      content: 'λ';
+      position: absolute;
+      right: -0.05em;
+      bottom: -0.35em;
+      font-family: var(--ff-display);
+      font-size: clamp(10rem, 22vw, 16rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--rule);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .t-hero--compact .t-hero-title {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .t-hero--compact .t-hero-body {
+      margin-top: 0;
+      font-size: 0.95rem;
+      max-width: 580px;
+    }
+
+    /* ── Pipeline intro strip (compact, integrated) ────────────── */
+    .pipeline-strip {
+      padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 6vw, 6rem);
+      background: var(--ground-deep);
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .pipeline-strip-label {
+      font-family: var(--ff-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--celadon-mid);
+      flex-shrink: 0;
+    }
+
+    .pipeline-strip-text {
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 300;
+      line-height: 1.45;
+      color: var(--ink-mid);
+      max-width: 720px;
+    }
+
+    .pipeline-strip-text em { color: var(--celadon); font-style: italic; }
+
+    /* ── Pipeline cards — immediately visible ───────────────────── */
+    .pipeline-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    /* Give pipeline stages a generous scroll-margin for both sticky bars */
     .pipeline-stage {
-      scroll-margin-top: 110px;
+      scroll-margin-top: 130px;
     }
 
     /* Subtle highlight ring on :target */
@@ -92,9 +173,40 @@
       box-shadow: inset 0 3px 0 var(--celadon);
     }
 
+    /* ── Expanded pipeline detail section ───────────────────────── */
+    .pipeline-detail {
+      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 6vw, 6rem);
+      background: var(--ground-lift);
+      border-top: 1px solid var(--rule);
+    }
+
+    .pipeline-detail-inner {
+      max-width: 700px;
+    }
+
+    .pipeline-detail-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+
+    .pipeline-detail-heading em { color: var(--celadon); font-style: italic; }
+
+    .pipeline-detail-body {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+
     @media (max-width: 700px) {
       .cn-item { padding: 0.65rem 1rem; }
       .cn-item:not(:last-child)::after { display: none; }
+    }
+
+    @media (max-width: 500px) {
+      .course-nav { top: 48px; }
     }
   </style>
 </head>
@@ -107,7 +219,7 @@
     <a href="teaching.html" class="nav-item active">Teaching</a>
   </nav>
 
-  <!-- Course quick-jump sub-nav: always visible on landing, no scroll required -->
+  <!-- Course quick-jump sub-nav -->
   <nav class="course-nav" id="course-nav" aria-label="Jump to course">
     <a href="#phys252" class="cn-item" data-course="phys252">
       <span class="cn-code">PHYS 252</span>
@@ -127,35 +239,32 @@
     </a>
   </nav>
 
-  <section class="t-hero">
+  <!-- Compact hero — just the headline + one-liner, no sprawl -->
+  <section class="t-hero t-hero--compact">
     <a href="index.html" class="t-back">&larr; yangran.org</a>
     <h1 class="t-hero-title">
       What students<br/>build in the <em>lab</em>.
     </h1>
     <p class="t-hero-body">
       Dr.&nbsp;Yang teaches the courses where physics leaves the textbook.
-      In every class, students don&rsquo;t just learn theory &mdash; they
-      <em>design</em>, <em>build</em>, <em>break</em>, <em>debug</em>, and <em>ship</em>
-      working instruments as teams, developing the hard technical skills and the
-      soft collaborative skills that define real-world engineering careers.
+      Students <em>design</em>, <em>build</em>, <em>break</em>, <em>debug</em>,
+      and <em>ship</em> working instruments &mdash; developing the hard technical
+      skills and collaborative instincts that define engineering careers.
     </p>
   </section>
 
-  <section class="pipeline-banner">
-    <div class="pipeline-label">A Multi-Year Engineering Pipeline</div>
-    <h2 class="pipeline-heading">
-      Engineering Physics: Moving from educational theory to engineering reality with <em>Multi-Years of Experiential Learning</em> in Dr. Yang's lab
-    </h2>
-    <p class="pipeline-body">
-      Dr.&nbsp;Yang doesn&rsquo;t just believe in experiential learning &mdash; she
-      has engineered a concrete, multi-course progression that takes a sophomore who
-      has never touched a breadboard and, over three years, transforms them into an
-      engineer capable of leading a year-long product development cycle. Each stage
-      builds on the last. Nothing is repeated. Nothing is skipped. The skills compound.
+  <!-- Tight pipeline intro strip -->
+  <div class="pipeline-strip">
+    <span class="pipeline-strip-label">The Pipeline</span>
+    <p class="pipeline-strip-text">
+      A four-course progression: from a sophomore who has never touched a breadboard
+      to a senior leading a <em>year-long product development cycle</em>.
     </p>
+  </div>
 
+  <!-- Course cards — now immediately visible after a compact hero -->
+  <section class="pipeline-banner" style="padding-top: 0; background: var(--ground-deep);">
     <div class="pipeline-track">
-      <!-- id anchors match the sub-nav href targets -->
       <a href="phys252.html" class="pipeline-stage" id="phys252">
         <span class="ps-year">Sophomore</span>
         <h3 class="ps-code">PHYS 252</h3>
@@ -180,6 +289,22 @@
         <span class="ps-name">Honors Thesis</span>
         <p class="ps-desc">One student, one question, one year. Original research contributing to funded programs. The closest thing to graduate work and high pay industry jobs an undergraduate can do.</p>
       </a>
+    </div>
+  </section>
+
+  <!-- Deeper pipeline philosophy — now *below* the cards, not blocking them -->
+  <section class="pipeline-detail">
+    <div class="pipeline-detail-inner">
+      <h2 class="pipeline-detail-heading">
+        Each stage builds on the last. Nothing is repeated.<br/>
+        Nothing is skipped. <em>The skills compound.</em>
+      </h2>
+      <p class="pipeline-detail-body">
+        Dr.&nbsp;Yang doesn&rsquo;t just believe in experiential learning &mdash; she
+        has engineered a concrete, multi-course progression that takes a sophomore who
+        has never touched a breadboard and, over three years, transforms them into an
+        engineer capable of leading a year-long product development cycle.
+      </p>
     </div>
   </section>
 
@@ -210,12 +335,13 @@
     (function () {
       'use strict';
 
+      const courseNav = document.getElementById('course-nav');
       const cnItems = document.querySelectorAll('.cn-item[data-course]');
       const stageIds = ['phys252', 'phys351', 'phys471', 'epad495'];
       const stages = stageIds.map(id => document.getElementById(id)).filter(Boolean);
 
-      // Smooth scroll accounting for both sticky bars (~58 + ~52px)
-      const NAV_OFFSET = 120;
+      // Smooth scroll accounting for both sticky bars
+      const NAV_OFFSET = 130;
       cnItems.forEach(link => {
         link.addEventListener('click', e => {
           const href = link.getAttribute('href');
@@ -240,6 +366,18 @@
       }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
 
       stages.forEach(el => io.observe(el));
+
+      // Add stuck class for subtle shadow when scrolled
+      const stickyObserver = new IntersectionObserver(
+        ([entry]) => {
+          courseNav.classList.toggle('course-nav--stuck', !entry.isIntersecting);
+        },
+        { threshold: 1.0, rootMargin: '-59px 0px 0px 0px' }
+      );
+
+      // Observe sentinel (the hero section acts as our sentinel)
+      const hero = document.querySelector('.t-hero');
+      if (hero) stickyObserver.observe(hero);
     })();
   </script>
 </body>
