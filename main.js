@@ -1,13 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════
-   YANGRAN.ORG — v3 main.js
-   Ripples on still water. Not oscilloscope — Wu Wei.
+   YANGRAN.ORG — v4 main.js
+   Morning Lab. Sediment, not popcorn.
    ═══════════════════════════════════════════════════════════════ */
 
 'use strict';
 
-// ── RIPPLE CANVAS ─────────────────────────────────────────────
-// Concentric circles expanding from random points — like rain
-// on a still pond. Barely visible. Almost not there.
+// ── RIPPLE CANVAS (Hero) ──────────────────────────────────────
 (function initRipples() {
   const canvas = document.getElementById('rippleCanvas');
   if (!canvas) return;
@@ -23,36 +21,31 @@
   window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  // Spawn a ripple at a random point
   function spawn(x, y) {
     ripples.push({
       x: x ?? Math.random() * W,
       y: y ?? Math.random() * H,
       r: 0,
       maxR: 80 + Math.random() * 120,
-      alpha: 0.22 + Math.random() * 0.1,
-      speed: 0.6 + Math.random() * 0.5,
+      alpha: 0.20 + Math.random() * 0.08,
+      speed: 0.5 + Math.random() * 0.4,
       lineWidth: 0.5 + Math.random() * 0.5,
     });
   }
 
-  // Auto-spawn ripples at a quiet, irregular pace
   let nextSpawn = 0;
   function scheduleSpawn() {
-    // 2.5–5s between spontaneous ripples — more contemplative
     nextSpawn = Date.now() + 2500 + Math.random() * 2500;
   }
   scheduleSpawn();
 
-  // Mouse touch spawns a ripple exactly where cursor lands
   canvas.parentElement.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
     spawn(e.clientX - rect.left, e.clientY - rect.top);
   });
 
-  // Very rare, very soft mouse-move ripple (1-in-60 chance per move)
   canvas.parentElement.addEventListener('mousemove', (e) => {
-    if (Math.random() < 0.015) {
+    if (Math.random() < 0.012) {
       const rect = canvas.getBoundingClientRect();
       spawn(e.clientX - rect.left, e.clientY - rect.top);
     }
@@ -61,18 +54,15 @@
   function frame() {
     ctx.clearRect(0, 0, W, H);
 
-    // Auto-spawn
     if (Date.now() > nextSpawn) {
       spawn();
       scheduleSpawn();
     }
 
-    // Draw and age each ripple
     for (let i = ripples.length - 1; i >= 0; i--) {
       const rp = ripples[i];
       rp.r += rp.speed;
 
-      // Fade out as it expands — quadratic for graceful dissolution
       const progress = rp.r / rp.maxR;
       const alpha = rp.alpha * (1 - progress) * (1 - progress);
 
@@ -81,19 +71,16 @@
         continue;
       }
 
-      // Draw the ring — ink color on light ground
       ctx.beginPath();
       ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(107, 144, 128, ${alpha})`; // celadon
+      ctx.strokeStyle = `rgba(94, 138, 120, ${alpha})`;
       ctx.lineWidth = rp.lineWidth;
       ctx.stroke();
 
-      // Occasionally draw a second, slightly larger ghost ring
-      // (like the secondary wave that follows a real water ripple)
       if (rp.r > 25) {
         ctx.beginPath();
         ctx.arc(rp.x, rp.y, rp.r * 0.72, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(26, 20, 16, ${alpha * 0.3})`; // ink ghost
+        ctx.strokeStyle = `rgba(26, 29, 33, ${alpha * 0.25})`;
         ctx.lineWidth = rp.lineWidth * 0.5;
         ctx.stroke();
       }
@@ -103,14 +90,130 @@
   }
 
   frame();
-
-  // Seed 2 initial ripples so the page isn't blank
   setTimeout(() => spawn(W * 0.38, H * 0.52), 400);
   setTimeout(() => spawn(W * 0.65, H * 0.35), 1100);
 })();
 
+
+// ── DAO DE JING RIPPLE CANVAS ─────────────────────────────────
+(function initDaoRipples() {
+  const canvas = document.getElementById('daoCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const section = canvas.parentElement;
+
+  let W, H;
+  const ripples = [];
+
+  const verses = Array.from(section.querySelectorAll('.dao-verse'));
+  const seeds = verses.map(v => ({
+    nx: parseFloat(v.dataset.rippleX || 0.5),
+    ny: parseFloat(v.dataset.rippleY || 0.5),
+  }));
+
+  function resize() {
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  function spawnAt(nx, ny, big) {
+    ripples.push({
+      x:     nx * W,
+      y:     ny * H,
+      r:     0,
+      maxR:  big ? 160 + Math.random() * 100 : 80 + Math.random() * 80,
+      alpha: big ? 0.16 : 0.11,
+      speed: big ? 0.4  : 0.55,
+      lw:    big ? 0.7  : 0.5,
+    });
+  }
+
+  const intervals = seeds.map((seed, i) => {
+    const base = 3500 + i * 1200;
+    return {
+      seed,
+      next: Date.now() + base + Math.random() * 2000,
+      delay: base + Math.random() * 2000,
+    };
+  });
+
+  section.addEventListener('click', (e) => {
+    const rect = section.getBoundingClientRect();
+    spawnAt(
+      (e.clientX - rect.left) / rect.width,
+      (e.clientY - rect.top)  / rect.height,
+      true
+    );
+  });
+
+  verses.forEach((v, i) => {
+    v.addEventListener('mouseenter', () => {
+      spawnAt(seeds[i].nx, seeds[i].ny, true);
+    });
+  });
+
+  function frame() {
+    const now = Date.now();
+
+    intervals.forEach(iv => {
+      if (now > iv.next) {
+        spawnAt(iv.seed.nx, iv.seed.ny);
+        iv.next = now + iv.delay + Math.random() * 1500;
+      }
+    });
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rp = ripples[i];
+      rp.r += rp.speed;
+
+      const progress = rp.r / rp.maxR;
+      const alpha = rp.alpha * (1 - progress) * (1 - progress);
+
+      if (alpha <= 0.005 || rp.r >= rp.maxR) {
+        ripples.splice(i, 1);
+        continue;
+      }
+
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(94, 138, 120, ${alpha})`;
+      ctx.lineWidth   = rp.lw;
+      ctx.stroke();
+
+      if (rp.r > 20) {
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r * 0.65, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(26, 29, 33, ${alpha * 0.22})`;
+        ctx.lineWidth   = rp.lw * 0.5;
+        ctx.stroke();
+      }
+
+      if (rp.r > 50 && rp.maxR > 120) {
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r * 1.3, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(94, 138, 120, ${alpha * 0.12})`;
+        ctx.lineWidth   = 0.4;
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  frame();
+  setTimeout(() => seeds.forEach((s, i) =>
+    setTimeout(() => spawnAt(s.nx, s.ny, true), i * 700)
+  ), 300);
+})();
+
+
 // ── SCROLL REVEAL ─────────────────────────────────────────────
 (function initReveal() {
+  // Index page elements
   const targets = [
     '.opening-text',
     '.pf-left', '.pf-right',
@@ -124,7 +227,6 @@
   targets.forEach(sel => {
     document.querySelectorAll(sel).forEach((el, i) => {
       el.classList.add('reveal');
-      // Stagger siblings
       el.style.transitionDelay = `${i * 0.06}s`;
     });
   });
@@ -141,152 +243,42 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
-// ── DAO DE JING RIPPLE CANVAS ─────────────────────────────────
-// Ripples here are wider, slower, more meditative than the hero.
-// They emanate from the positions of the Chinese characters —
-// as if the words themselves are stones dropped into water.
-(function initDaoRipples() {
-  const canvas = document.getElementById('daoCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const section = canvas.parentElement;
 
-  let W, H;
-  const ripples = [];
+// ── DATA-REVEAL (subpages) ────────────────────────────────────
+(function initDataReveal() {
+  const cards = document.querySelectorAll('[data-reveal]');
+  if (!cards.length) return;
 
-  // Seed positions from the data-ripple-x/y on each verse
-  const verses = Array.from(section.querySelectorAll('.dao-verse'));
-  const seeds = verses.map(v => ({
-    nx: parseFloat(v.dataset.rippleX || 0.5),
-    ny: parseFloat(v.dataset.rippleY || 0.5),
-  }));
-
-  function resize() {
-    W = canvas.width  = section.offsetWidth;
-    H = canvas.height = section.offsetHeight;
-  }
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  function spawnAt(nx, ny, big = false) {
-    ripples.push({
-      x:     nx * W,
-      y:     ny * H,
-      r:     0,
-      maxR:  big ? 160 + Math.random() * 100 : 80 + Math.random() * 80,
-      alpha: big ? 0.18 : 0.13,
-      speed: big ? 0.45 : 0.65,
-      lw:    big ? 0.7  : 0.5,
-    });
-  }
-
-  // Auto-spawn: one ripple per verse on a slow, non-uniform cycle
-  // Each character position gets its own quiet rhythm
-  const intervals = seeds.map((seed, i) => {
-    const base = 3500 + i * 1200;
-    return {
-      seed,
-      next: Date.now() + base + Math.random() * 2000,
-      delay: base + Math.random() * 2000,
-    };
-  });
-
-  // Mouse click inside dao section spawns a ripple there
-  section.addEventListener('click', (e) => {
-    const rect = section.getBoundingClientRect();
-    const nx = (e.clientX - rect.left) / rect.width;
-    const ny = (e.clientY - rect.top)  / rect.height;
-    spawnAt(nx, ny, true); // bigger on intentional tap
-  });
-
-  // When a verse is hovered, seed a ripple from its character position
-  verses.forEach((v, i) => {
-    v.addEventListener('mouseenter', () => {
-      spawnAt(seeds[i].nx, seeds[i].ny, true);
-    });
-  });
-
-  function frame() {
-    const now = Date.now();
-
-    // Auto-spawn from character positions
-    intervals.forEach(iv => {
-      if (now > iv.next) {
-        spawnAt(iv.seed.nx, iv.seed.ny);
-        iv.next = now + iv.delay + Math.random() * 1500;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    ctx.clearRect(0, 0, W, H);
-
-    for (let i = ripples.length - 1; i >= 0; i--) {
-      const rp = ripples[i];
-      rp.r += rp.speed;
-
-      const progress = rp.r / rp.maxR;
-      const alpha    = rp.alpha * (1 - progress) * (1 - progress); // quadratic fade — more graceful
-
-      if (alpha <= 0.005 || rp.r >= rp.maxR) {
-        ripples.splice(i, 1);
-        continue;
-      }
-
-      // Primary ring — celadon
-      ctx.beginPath();
-      ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(107, 144, 128, ${alpha})`;
-      ctx.lineWidth   = rp.lw;
-      ctx.stroke();
-
-      // Inner ghost ring — ink, echoes the character strokes
-      if (rp.r > 20) {
-        ctx.beginPath();
-        ctx.arc(rp.x, rp.y, rp.r * 0.65, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(26, 20, 16, ${alpha * 0.25})`;
-        ctx.lineWidth   = rp.lw * 0.5;
-        ctx.stroke();
-      }
-
-      // Outermost whisper ring — very faint, wide, slow
-      if (rp.r > 50 && rp.maxR > 120) {
-        ctx.beginPath();
-        ctx.arc(rp.x, rp.y, rp.r * 1.3, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(107, 144, 128, ${alpha * 0.15})`;
-        ctx.lineWidth   = 0.4;
-        ctx.stroke();
-      }
-    }
-
-    requestAnimationFrame(frame);
-  }
-
-  frame();
-
-  // Seed initial ripples with a stagger so section isn't blank
-  setTimeout(() => seeds.forEach((s, i) =>
-    setTimeout(() => spawnAt(s.nx, s.ny, true), i * 700)
-  ), 300);
+  cards.forEach(card => observer.observe(card));
 })();
 
-// ── NAV ACTIVE STATE ──────────────────────────────────────────
-(function navActive() {
+
+// ── NAV STATE ─────────────────────────────────────────────────
+(function navState() {
   const nav = document.getElementById('nav');
   if (!nav) return;
 
-  // Subtle background shift when scrolled past hero
   window.addEventListener('scroll', () => {
-    const past = window.scrollY > window.innerHeight * 0.7;
-    if (past) {
+    if (window.scrollY > window.innerHeight * 0.7) {
       nav.classList.add('nav--scrolled');
     } else {
       nav.classList.remove('nav--scrolled');
     }
   }, { passive: true });
 
-  // Active section highlight
+  // Active section highlight (index page)
   const sections = [
-    { id: 'irays',   nav: 'nav-irays'  },
-    { id: 'vessel',  nav: 'nav-vessel' },
+    { id: 'irays',  nav: 'nav-irays'  },
+    { id: 'vessel', nav: 'nav-vessel' },
   ];
 
   const sectionEls = sections.map(s => ({
@@ -294,19 +286,22 @@
     navEl: document.getElementById(s.nav),
   })).filter(s => s.el && s.navEl);
 
-  window.addEventListener('scroll', () => {
-    const mid = window.scrollY + window.innerHeight * 0.4;
-    sectionEls.forEach(({ el, navEl }) => {
-      const top = el.offsetTop;
-      const bot = top + el.offsetHeight;
-      if (mid >= top && mid < bot) {
-        navEl.classList.add('active');
-      } else {
-        navEl.classList.remove('active');
-      }
-    });
-  }, { passive: true });
+  if (sectionEls.length) {
+    window.addEventListener('scroll', () => {
+      const mid = window.scrollY + window.innerHeight * 0.4;
+      sectionEls.forEach(({ el, navEl }) => {
+        const top = el.offsetTop;
+        const bot = top + el.offsetHeight;
+        if (mid >= top && mid < bot) {
+          navEl.classList.add('active');
+        } else {
+          navEl.classList.remove('active');
+        }
+      });
+    }, { passive: true });
+  }
 })();
+
 
 // ── SMOOTH ANCHORS ────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -318,17 +313,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
-// ── SCROLL REVEAL (Works site-wide) ───────────────────────────
-(function initReveal() {
-  const cards = document.querySelectorAll('[data-reveal]');
-  if (!cards.length) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  cards.forEach(card => observer.observe(card));
-})();
