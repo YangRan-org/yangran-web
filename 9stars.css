@@ -1,0 +1,124 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; -webkit-font-smoothing: antialiased; }
+
+/* ── PASSWORD GATE ─────────────────────── */
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #F4F2EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.8s cubic-bezier(0.22, 0.68, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 0.68, 0.36, 1);
+}
+
+#gate.dissolve {
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+.gate-glyph {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 200;
+  color: #1A1D21;
+  opacity: 0.06;
+  letter-spacing: 0.15em;
+  margin-bottom: 2.5rem;
+  user-select: none;
+  animation: glyphFade 2s ease both;
+}
+
+@keyframes glyphFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 0.06; transform: none; }
+}
+
+.gate-input-wrap {
+  position: relative;
+  animation: riseIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.gate-input {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #1A1D21;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(26,29,33,0.14);
+  padding: 0.6rem 0;
+  width: 220px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.4s;
+  -webkit-text-security: disc;
+}
+
+.gate-input:focus {
+  border-color: #5E8A78;
+}
+
+.gate-input::placeholder {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(26,29,33,0.25);
+}
+
+.gate-hint {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: rgba(26,29,33,0.18);
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+  animation: riseIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+.gate-error {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: rgba(200, 80, 80, 0.6);
+  margin-top: 1rem;
+  height: 1rem;
+  transition: opacity 0.3s;
+}
+
+/* Subtle grain overlay to match site */
+#gate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+}
+
+/* ── APP CONTAINER ─────────────────────── */
+#app-root {
+  display: none;
+}
+
+#app-root.unlocked {
+  display: block;
+  animation: contentReveal 1s cubic-bezier(0.22, 0.68, 0.36, 1) 0.4s both;
+}
+
+@keyframes contentReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
