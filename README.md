@@ -25,12 +25,8 @@ yangran.org/
 ├── phys252.html            — PHYS 252: Electronics course page
 ├── phys351.html            — PHYS 351: Advanced Instrumentation course page
 ├── engineering-physics.html — EPAD Capstone & Honors Thesis courses
-├── 9stars.html             — 九星: password-protected Jyotish visualization
 ├── style.css               — Shared stylesheet for all pages
 ├── main.js                 — Shared JS (ripple canvas, scroll reveals, nav)
-├── 9stars.css              — Styles for the 9stars gate + app
-├── 9stars.js               — Password auth logic for 9stars
-├── 9stars-app.jsx          — React/JSX planetary system component (Babel in-browser)
 └── README.md               — This file
 ```
 
@@ -79,18 +75,8 @@ No build tools. No npm. No framework. Zero dependencies. Ships as-is.
 | **Impact**     | 6 aggregate statistics — wide type, no footnotes                   |
 | **Tier 2**     | MCP + Waveform.ai — equal weight, horizontal split                 |
 | **Tier 3**     | Earlier work & recognition — compact list, one line each           |
-| **Dao**        | Tao Te Ching verse · canvas ripples · hidden link to 九星          |
+| **Dao**        | Tao Te Ching verse · canvas ripples                                |
 | **Contact**    | Email + faculty profile                                            |
-
-### `9stars.html`
-
-Password-protected Jyotish astrology visualization. Files split for cleanliness:
-
-- `9stars.css` — gate overlay + app container styles
-- `9stars.js` — SHA-256 password auth (runtime hash comparison, no stored plaintext)
-- `9stars-app.jsx` — full React component: 9 planets, two systems, three bridges, dasha timeline
-
-The page uses Babel standalone to transpile JSX in-browser; no build step needed.
 
 ### `teaching.html`
 
@@ -221,10 +207,9 @@ In `index.html`, search for `inum`. Six stats, each has a number and label. Edit
 
 ## Performance
 
-- No JS frameworks on main site — vanilla JS ~3KB
+- No JS frameworks — vanilla JS ~3KB
 - No CSS frameworks — pure CSS ~9KB
 - Google Fonts: 2 families, preconnect hints
-- `9stars.html` loads React 18 + Babel via CDN (intentional — private page, no build toolchain)
 - Canvas: `requestAnimationFrame` with `clearRect` — no leak
 - Scroll reveals: `IntersectionObserver` — no polling
 - Course sub-nav scroll-spy: `IntersectionObserver` — no polling
