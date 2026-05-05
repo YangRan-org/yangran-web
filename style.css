@@ -779,17 +779,17 @@ sup { font-size: 0.5em; vertical-align: super; }
 .t-live-feature {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.55rem;
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid var(--rule);
   max-width: 560px;
   text-decoration: none;
   animation: riseIn 1.6s var(--rise) 0.55s both;
-  transition: opacity 0.25s var(--ease);
+  transition: filter 0.25s var(--ease);
 }
 
-.t-live-feature:hover { opacity: 0.65; }
+.t-live-feature:hover { filter: opacity(0.65); }
 
 .t-lf-tag {
   font-family: var(--ff-mono);
