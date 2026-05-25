@@ -122,3 +122,17 @@ html { font-size: 17px; -webkit-font-smoothing: antialiased; }
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  #gate.dissolve {
+    transform: none;
+  }
+}

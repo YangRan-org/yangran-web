@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Yang, Ran</title>
+  <desc id="desc">A quiet celadon social preview for yangran.org.</desc>
+  <rect width="1200" height="630" fill="#F4F2EE"/>
+  <circle cx="812" cy="322" r="214" fill="none" stroke="#5E8A78" stroke-width="2" opacity="0.18"/>
+  <circle cx="812" cy="322" r="142" fill="none" stroke="#1A1D21" stroke-width="1.2" opacity="0.08"/>
+  <circle cx="812" cy="322" r="72" fill="none" stroke="#5E8A78" stroke-width="1.2" opacity="0.24"/>
+  <line x1="120" y1="504" x2="1080" y2="504" stroke="#1A1D21" stroke-width="1" opacity="0.09"/>
+  <text x="120" y="300" font-family="Cormorant Infant, Georgia, serif" font-size="132" font-weight="300" fill="#1A1D21">Yang, Ran</text>
+  <text x="126" y="372" font-family="EB Garamond, Georgia, serif" font-size="31" font-style="italic" letter-spacing="1" fill="#1A1D21" opacity="0.55">Physicist. Inventor. Educator.</text>
+  <text x="126" y="546" font-family="IBM Plex Mono, Menlo, monospace" font-size="17" letter-spacing="4" fill="#5E8A78" opacity="0.72">YANGRAN.ORG</text>
+</svg>

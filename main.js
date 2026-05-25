@@ -5,6 +5,14 @@
 
 'use strict';
 
+const reduceMotionQuery = window.matchMedia
+  ? window.matchMedia('(prefers-reduced-motion: reduce)')
+  : { matches: false };
+
+function shouldReduceMotion() {
+  return reduceMotionQuery.matches;
+}
+
 // ── RIPPLE CANVAS (Hero) ──────────────────────────────────────
 (function initRipples() {
   const canvas = document.getElementById('rippleCanvas');
@@ -20,6 +28,8 @@
   }
   window.addEventListener('resize', resize, { passive: true });
   resize();
+
+  if (shouldReduceMotion()) return;
 
   function spawn(x, y) {
     ripples.push({
@@ -117,6 +127,8 @@
   }
   window.addEventListener('resize', resize, { passive: true });
   resize();
+
+  if (shouldReduceMotion()) return;
 
   function spawnAt(nx, ny, big) {
     ripples.push({
@@ -224,12 +236,20 @@
     '.contact-title', '.contact-email', '.contact-profile',
   ];
 
+  const revealImmediately = shouldReduceMotion() || !('IntersectionObserver' in window);
+
   targets.forEach(sel => {
     document.querySelectorAll(sel).forEach((el, i) => {
       el.classList.add('reveal');
-      el.style.transitionDelay = `${i * 0.06}s`;
+      if (revealImmediately) {
+        el.classList.add('visible');
+      } else {
+        el.style.transitionDelay = `${i * 0.06}s`;
+      }
     });
   });
+
+  if (revealImmediately) return;
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -248,6 +268,11 @@
 (function initDataReveal() {
   const cards = document.querySelectorAll('[data-reveal]');
   if (!cards.length) return;
+
+  if (shouldReduceMotion() || !('IntersectionObserver' in window)) {
+    cards.forEach(card => card.classList.add('visible'));
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -310,6 +335,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const el = id ? document.getElementById(id) : null;
     if (!el) return;
     e.preventDefault();
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.scrollIntoView({
+      behavior: shouldReduceMotion() ? 'auto' : 'smooth',
+      block: 'start',
+    });
   });
 });

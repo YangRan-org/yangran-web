@@ -15,6 +15,8 @@ const COLORS = {
   accent: "#f0d48a",
 };
 
+const REDUCE_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const PLANETS = {
   Venus: { symbol: "♀", label: "金星", houses: "4宫+11宫主", color: "#e8963e", strength: "35%" },
   Mars: { symbol: "♂", label: "火星", houses: "5宫+10宫主", color: "#d4513a", strength: "75%", tag: "Yogakaraka" },
@@ -39,7 +41,7 @@ function PlanetNode({ x, y, planet, info, isActive, onClick, size = 44 }) {
       style={{ cursor: "pointer" }}
     >
       <circle cx={x} cy={y} r={size + 12} fill={glowColor} opacity={isActive || hover ? 0.5 : 0.15}>
-        {isActive && <animate attributeName="r" values={`${size+10};${size+18};${size+10}`} dur="2s" repeatCount="indefinite" />}
+        {isActive && !REDUCE_MOTION && <animate attributeName="r" values={`${size+10};${size+18};${size+10}`} dur="2s" repeatCount="indefinite" />}
       </circle>
       <circle cx={x} cy={y} r={size} fill={COLORS.bg} stroke={info.color} strokeWidth={isActive ? 2.5 : 1.5} opacity={isActive ? 1 : 0.85} />
       <text x={x} y={y - 6} textAnchor="middle" fill={info.color} fontSize="22" fontFamily="serif">{info.symbol}</text>
@@ -64,11 +66,15 @@ function AnimatedArrow({ x1, y1, x2, y2, color, dashArray = "none", opacity = 0.
   return (
     <g>
       <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="1.5" opacity={opacity} strokeDasharray={dashArray} />
-      <circle r="3" fill={color} opacity="0.9">
-        <animateMotion dur="3s" repeatCount="indefinite" begin={`${delay}s`}>
-          <mpath href={`#path-${x1}-${y1}-${x2}-${y2}`} />
-        </animateMotion>
-      </circle>
+      {REDUCE_MOTION ? (
+        <circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="2.5" fill={color} opacity="0.65" />
+      ) : (
+        <circle r="3" fill={color} opacity="0.9">
+          <animateMotion dur="3s" repeatCount="indefinite" begin={`${delay}s`}>
+            <mpath href={`#path-${x1}-${y1}-${x2}-${y2}`} />
+          </animateMotion>
+        </circle>
+      )}
       <path id={`path-${x1}-${y1}-${x2}-${y2}`} d={`M${x1},${y1} L${x2},${y2}`} fill="none" stroke="none" />
     </g>
   );
@@ -79,11 +85,15 @@ function CurvedArrow({ sx, sy, ex, ey, cx, cy, color, id, dashArray = "none", op
   return (
     <g>
       <path d={pathD} fill="none" stroke={color} strokeWidth="1.5" opacity={opacity} strokeDasharray={dashArray} />
-      <circle r="3" fill={color} opacity="0.9">
-        <animateMotion dur={dur} repeatCount="indefinite" begin={`${delay}s`}>
-          <mpath href={`#curve-${id}`} />
-        </animateMotion>
-      </circle>
+      {REDUCE_MOTION ? (
+        <circle cx={cx} cy={cy} r="2.5" fill={color} opacity="0.65" />
+      ) : (
+        <circle r="3" fill={color} opacity="0.9">
+          <animateMotion dur={dur} repeatCount="indefinite" begin={`${delay}s`}>
+            <mpath href={`#curve-${id}`} />
+          </animateMotion>
+        </circle>
+      )}
       <path id={`curve-${id}`} d={pathD} fill="none" stroke="none" />
     </g>
   );
@@ -95,6 +105,7 @@ export default function PlanetarySystem() {
   const [animStep, setAnimStep] = useState(0);
 
   useEffect(() => {
+    if (REDUCE_MOTION) return undefined;
     const timer = setInterval(() => setAnimStep(s => (s + 1) % 120), 100);
     return () => clearInterval(timer);
   }, []);
@@ -192,7 +203,7 @@ export default function PlanetarySystem() {
               borderRadius: "20px",
               fontSize: "12px",
               cursor: "pointer",
-              transition: "all 0.3s",
+              transition: REDUCE_MOTION ? "none" : "all 0.3s",
               fontFamily: "'Noto Sans SC', sans-serif",
             }}
           >
@@ -391,7 +402,7 @@ export default function PlanetarySystem() {
                   <span style={{ color: COLORS.textDim, fontSize: "10px" }}>{d.system}</span>
                 </div>
                 <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "4px", height: "6px", overflow: "hidden" }}>
-                  <div style={{ width: `${d.bar}%`, height: "100%", background: d.color, borderRadius: "4px", opacity: 0.7, transition: "width 1s" }} />
+                  <div style={{ width: `${d.bar}%`, height: "100%", background: d.color, borderRadius: "4px", opacity: 0.7, transition: REDUCE_MOTION ? "none" : "width 1s" }} />
                 </div>
                 <div style={{ fontSize: "10px", color: COLORS.textDim, marginTop: "2px" }}>{d.desc}</div>
               </div>

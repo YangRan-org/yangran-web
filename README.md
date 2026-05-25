@@ -1,229 +1,143 @@
-# yangran.org — v4
+# yangran.org
 
-**Personal website of Dr. Ran Yang, Teaching Professor of Physics, William & Mary.**
+Personal website of Dr. Ran Yang, Teaching Professor of Physics at William & Mary.
 
-> *"Where the instrument meets the infinite."*
+Live domain: <https://yangran.org>
 
----
+This is a static site: HTML, CSS, and mostly vanilla JavaScript. There is no build step, no npm install, and no framework required for the public portfolio pages.
 
-## Design Concept: Ink on Still Water
+## Design Direction
 
-Version 1 was a physics lab at night. Version 2 is a philosopher's study at dawn.
+The site should remain quiet, poetic, and spacious: celadon accents, paper-like surfaces, ripple canvases, Dao references, and a personal portfolio rhythm rather than an institutional one.
 
-The design principle is **Wu Wei** (無為) — effortless action, the Taoist concept at the center of Dr. Yang's Untitled Time work. The void is not empty. It is the most powerful thing. The website embodies this: radical negative space, one barely-there waveform that breathes rather than oscillates, and a single accent color — celadon green, drawn from Song dynasty porcelain — used with extreme restraint.
+Keep the homepage hero unchanged:
 
-**The one unforgettable thing:** You scroll to the bottom, and the Chinese characters 無為 emerge from the dark, barely visible, fading in over two seconds. They don't announce themselves. They were always there.
+```text
+Yang, Ran
+Physicist. Inventor. Educator.
+```
 
----
+Do not add a visible title, affiliation, CTA, portrait, badge, or explanatory hero text.
 
 ## File Structure
 
-```
-yangran.org/
-├── index.html              — Main portfolio (hero, projects, impact, dao)
-├── teaching.html           — Teaching hub + four-year pipeline
-├── phys252.html            — PHYS 252: Electronics course page
-├── phys351.html            — PHYS 351: Advanced Instrumentation course page
-├── engineering-physics.html — EPAD Capstone & Honors Thesis courses
-├── style.css               — Shared stylesheet for all pages
-├── main.js                 — Shared JS (ripple canvas, scroll reveals, nav)
-└── README.md               — This file
+```text
+yangran-web/
+├── index.html                 Public homepage
+├── teaching.html              Teaching hub and engineering physics pipeline
+├── phys252.html               PHYS 252: Electronics
+├── phys351.html               PHYS 351: Advanced Instrumentation
+├── engineering-physics.html   Capstone and Honors Thesis
+├── 9stars.html                Noindex private page reached from the Dao link
+├── style.css                  Shared public-page styles
+├── main.js                    Shared public-page JavaScript
+├── 9stars.css                 Private-page styles
+├── 9stars.js                  Private-page gate
+├── 9stars-app.jsx             Private-page app loaded in browser
+├── planetary-system.jsx       Source/reference copy for the private page
+├── assets/
+│   ├── favicon.svg
+│   ├── social-preview.png
+│   └── social-preview.svg
+├── scripts/
+│   └── check-site.py          Dependency-free local sanity checks
+├── CNAME                      GitHub Pages custom domain: yangran.org
+└── README.md
 ```
 
-No build tools. No npm. No framework. Zero dependencies. Ships as-is.
-
----
+`index_beforeStar.html` is an archived pre-private-link copy and is marked `noindex`.
 
 ## Design Tokens
 
-### Colors
+Primary tokens live in `style.css`.
 
-| Token             | Value                        | Role                                       |
-|-------------------|------------------------------|--------------------------------------------|
-| `--ground`        | `#F4F2EE`                    | Base surface — sun-bleached bone           |
-| `--ground-lift`   | `#ECEAE6`                    | Slightly lifted surfaces                   |
-| `--ground-deep`   | `#E4E1DC`                    | Deepest surface — course sub-nav bg        |
-| `--ink`           | `#1A1D21`                    | Cool charcoal — primary text               |
-| `--ink-mid`       | `#3A3D42`                    | Secondary body text                        |
-| `--ink-soft`      | `rgba(26,29,33,0.45)`        | Labels, captions                           |
-| `--ink-ghost`     | `rgba(26,29,33,0.18)`        | Timestamps, decorative arrows              |
-| `--celadon`       | `#5E8A78`                    | **The one accent.** Song dynasty porcelain |
-| `--celadon-dim`   | `rgba(94,138,120,0.15)`      | Borders, hover backgrounds                 |
-| `--celadon-wash`  | `rgba(94,138,120,0.06)`      | Active state fill on sub-nav               |
-| `--slate`         | `#8C9196`                    | Technical labels, spec tags                |
+| Token | Value | Role |
+| --- | --- | --- |
+| `--ground` | `#F4F2EE` | Base paper surface |
+| `--ground-lift` | `#ECEAE6` | Lifted surface |
+| `--ground-deep` | `#E4E1DC` | Deeper surface |
+| `--ink` | `#1A1D21` | Primary text |
+| `--ink-mid` | `#3A3D42` | Body text |
+| `--ink-soft` | `rgba(26,29,33,0.45)` | Labels and captions |
+| `--ink-ghost` | `rgba(26,29,33,0.18)` | Very subtle text |
+| `--celadon` | `#5E8A78` | Accent |
+| `--celadon-dim` | `rgba(94,138,120,0.15)` | Borders and focus wash |
+| `--celadon-wash` | `rgba(94,138,120,0.06)` | Quiet fills |
+| `--slate` | `#8C9196` | Technical labels |
 
-### Typography
+Fonts:
 
-| Role    | Font              | Weight   | Usage                          |
-|---------|-------------------|----------|--------------------------------|
-| Display | `Cormorant Infant`| 300 / it | Hero name, section headings    |
-| Body    | `EB Garamond`     | 400 / it | All prose                      |
-| Mono    | `IBM Plex Mono`   | 300–400  | Labels, codes, status, nav     |
+| Role | Font |
+| --- | --- |
+| Display | `Cormorant Infant` |
+| Body | `EB Garamond` |
+| Mono | `IBM Plex Mono` |
+| Chinese serif | `Noto Serif SC` |
 
----
+## Current Pages
 
-## Page Architecture
+- `index.html`: homepage, project hierarchy, impact, Dao section, contact.
+- `teaching.html`: teaching overview and four-course pipeline.
+- `phys252.html`: PHYS 252 course page.
+- `phys351.html`: PHYS 351 course page.
+- `engineering-physics.html`: PHYS 471/472 and EPAD 495/496.
+- `9stars.html`: noindex private page.
 
-### `index.html`
+## Metadata And Social Preview
 
-| Section        | Purpose                                                            |
-|----------------|--------------------------------------------------------------------|
-| **Nav**        | iRays · The Vessel · Teaching                                      |
-| **Hero**       | Name, one italic subtitle, ripple canvas on click/mousemove        |
-| **Opening**    | Three-line poem — sets the philosophical register                  |
-| **Tier 1**     | iRays (left) ↔ The Vessel (right) side by side                     |
-| **Impact**     | 6 aggregate statistics — wide type, no footnotes                   |
-| **Tier 2**     | MCP + Waveform.ai — equal weight, horizontal split                 |
-| **Tier 3**     | Earlier work & recognition — compact list, one line each           |
-| **Dao**        | Tao Te Ching verse · canvas ripples                                |
-| **Contact**    | Email + faculty profile                                            |
+Every HTML page should have:
 
-### `teaching.html`
+- a page-specific `<title>` and description
+- canonical URL using `https://yangran.org`
+- Open Graph title, description, URL, and image
+- Twitter summary card metadata
+- favicon links
+- `theme-color`
 
-Two-tier navigation: primary nav (site-wide) + **sticky course sub-nav** (page-specific).
+The shared preview asset is `assets/social-preview.png`, rendered from `assets/social-preview.svg`. If the SVG source changes, re-export the PNG at 1200x630 and keep the `og:image` and `twitter:image` values pointed at the PNG.
 
-#### Navigation Design
+Homepage JSON-LD uses conservative `Person` schema. Subpages use simple `WebPage` schema.
 
-The page uses a two-level sticky nav system so visitors reach any course in one click, without scrolling:
+## MCP Link State
 
-1. **Primary nav** (`.nav`, z-index 100) — site-wide, links back to index sections.
-2. **Course sub-nav** (`.course-nav`, z-index 98) — teaching-page-specific, always visible at the top of the viewport. Shows all four courses as jump-links the moment you land on the page.
+For now, MCP links should point to:
 
-```
-┌──────────────────────────────────────────────────────┐  ← z-100 .nav
-│   iRays    The Vessel    Teaching                     │
-├──────────────────────────────────────────────────────┤  ← z-98 .course-nav
-│  PHYS 252 → PHYS 351 → PHYS 471/472 → EPAD 495/496  │
-└──────────────────────────────────────────────────────┘
+```text
+https://mentoring-for-careers-in-physics.github.io/mcp-site/
 ```
 
-The sub-nav uses `IntersectionObserver` scroll-spy to highlight whichever course is currently in the viewport. Each pipeline stage card has a `scroll-margin-top: 110px` so neither sticky bar clips the heading on jump.
+When MCP DNS is ready, switch those links back to:
 
-#### Content
-
-Each pipeline stage links to a dedicated subpage and shows:
-- Year level (`Sophomore` / `Junior` / `Senior`)
-- Course code + name
-- One-paragraph description
-
----
-
-## The Ripple Canvas
-
-`main.js` → `initRipples()`
-
-Celadon concentric rings spawn from random positions on a slow timer (every 2.5–5 s). Clicking or moving the mouse anywhere on the hero spawns additional ripples at the cursor position. Each ripple expands and fades with a quadratic ease; a faint inner echo ring adds depth. The physics is there if you look; the poetry is there if you feel.
-
----
-
-## Navigation Reference
-
-### Primary nav (`.nav`)
-
-Lives in both `index.html` and `teaching.html`. Links: iRays, The Vessel, Teaching. Scrolls-down indicator via `nav--scrolled` class added at 70% viewport depth.
-
-### Course sub-nav (`.course-nav`) — `teaching.html` only
-
-- **Position:** `sticky; top: 0; z-index: 98` — pins just below the primary nav.
-- **Items:** One per course; each has a `.cn-code` (mono, celadon) and `.cn-label` (mono, muted).
-- **Flow arrows** (`→`) between items via `::after` — decorative, hidden on mobile.
-- **Active state:** celadon underline + celadon-wash background fill, toggled by scroll-spy.
-- **Smooth scroll:** `click` handler offsets by `120px` to clear both sticky bars.
-
-To add a new course item:
-```html
-<a href="#new-course-id" class="cn-item" data-course="new-course-id">
-  <span class="cn-code">PHYS XXX</span>
-  <span class="cn-label">Course Name</span>
-</a>
+```text
+https://mcp.physics.wm.edu
 ```
-Then add `id="new-course-id"` to the corresponding `.pipeline-stage` and include the id in the scroll-spy array in the inline `<script>`.
 
----
+Also update visible labels if they should once again display `mcp.physics.wm.edu`.
+
+## Local Checks
+
+Run:
+
+```bash
+python3 scripts/check-site.py
+```
+
+The script checks missing local files, broken internal anchors, required page metadata, and accidental use of the future MCP DNS host in site files.
 
 ## Deployment
 
-**Static site — no build step required.** Deploy all four files to any host.
+GitHub Pages serves the repository root directly. Keep `CNAME` set to:
 
-### GitHub Pages
+```text
+yangran.org
+```
+
+Recommended flow:
 
 ```bash
-git init && git add .
-git commit -m "launch yangran.org"
-git remote add origin https://github.com/yourusername/yangran.org.git
-git push -u origin main
-# Then: Settings → Pages → Branch: main / root
-# Add CNAME pointing yangran.org to yourusername.github.io
+git add .
+git commit -m "Update site metadata and accessibility"
+git push
 ```
 
-### Netlify (fastest)
-
-Drag the folder to [app.netlify.com](https://app.netlify.com) → set custom domain → done.
-
-### DNS Records (at your registrar)
-
-```
-A     @    185.199.108.153    (GitHub Pages)
-A     @    185.199.109.153
-A     @    185.199.110.153
-A     @    185.199.111.153
-CNAME www  yourusername.github.io
-```
-
-Adjust CNAME target for Netlify/Vercel accordingly. Enable HTTPS in dashboard.
-
----
-
-## Updating Content
-
-### Adding a grant or talk to Tier 3 (index.html)
-
-```html
-<li class="tier3-item">
-  <span class="t3y mono-sm">2026</span>
-  <span class="t3n">Title of Grant or Talk</span>
-  <span class="t3d">One sentence. Funder or venue. Role.</span>
-</li>
-```
-
-### Changing the impact numbers
-
-In `index.html`, search for `inum`. Six stats, each has a number and label. Edit directly.
-
-### Adding a course stage to the pipeline (teaching.html)
-
-1. Add a new `.cn-item` to `.course-nav` with a unique `data-course` and `href`.
-2. Add the matching `id` to the `.pipeline-stage` element.
-3. Add the id string to the `stageIds` array in the inline `<script>` at the bottom of `teaching.html`.
-
-### Adding a photo
-
-```html
-<img src="assets/ran.jpg" alt="Dr. Ran Yang"
-     style="max-width:240px; filter:grayscale(0.2) contrast(1.05); border:1px solid var(--rule-mid);" />
-```
-
----
-
-## Performance
-
-- No JS frameworks — vanilla JS ~3KB
-- No CSS frameworks — pure CSS ~9KB
-- Google Fonts: 2 families, preconnect hints
-- Canvas: `requestAnimationFrame` with `clearRect` — no leak
-- Scroll reveals: `IntersectionObserver` — no polling
-- Course sub-nav scroll-spy: `IntersectionObserver` — no polling
-- All animations on `opacity` + `transform` — GPU-composited
-
-Expected Lighthouse: Performance 95+, Best Practices 100.
-
----
-
-## Browser Support
-
-Chrome 90+, Firefox 88+, Safari 14+, Edge 90+.
-
----
-
-*"Can you plant a seed for a shadow you will never see?"*  
-*— Untitled Time, Ran Yang, 2026*
+Then verify GitHub Pages is configured for the main branch root, with HTTPS enabled for `yangran.org`.
